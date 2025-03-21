@@ -89,6 +89,9 @@
     <Image Include="bitmap_w-24.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="bitmap_w.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />

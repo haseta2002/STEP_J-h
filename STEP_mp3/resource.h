@@ -1,6 +1,6 @@
 //{{NO_DEPENDENCIES}}
-// Microsoft Visual C++ „ÅßÁîüÊàê„Åï„Çå„Åü„Ç§„É≥„ÇØ„É´„Éº„Éâ „Éï„Ç°„Ç§„É´„ÄÇ
-// STEP_mp3.rc „Åß‰ΩøÁî®
+// Microsoft Visual C++ Ç≈ê∂ê¨Ç≥ÇÍÇΩÉCÉìÉNÉãÅ[Éh ÉtÉ@ÉCÉãÅB
+// STEP_mp3.rc Ç≈égóp
 //
 #define IDD_DLG_FILE_RMP_ID3V2          171
 #define IDD_DLG_DEFAUT_VALUE            180
@@ -35,12 +35,19 @@
 #define IDC_UNSYNC                      3007
 #define IDC_COMBO_ID3V2_ENCODE_NEW      3008
 #define IDD_DLG_CONV_ID3V2_VERSION      3009
+#define IDB_BITMAP1                     3010
+#define IDB_BITMAP2                     3011
+#define IDB_BITMAP3                     3012
+#define IDB_BITMAP4                     3013
+#define IDB_BITMAP5                     3014
+#define IDB_BITMAP6                     3015
+#define IDB_BITMAP7                     3016
 
 // Next default values for new objects
-//
+// 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        3010
+#define _APS_NEXT_RESOURCE_VALUE        3017
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         3008
 #define _APS_NEXT_SYMED_VALUE           3000

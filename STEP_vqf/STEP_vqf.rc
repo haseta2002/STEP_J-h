@@ -1,4 +1,4 @@
-//Microsoft Developer Studio generated resource script.
+// Microsoft Visual C++ generated resource script.
 //
 #include "resource.h"
 
@@ -12,20 +12,28 @@
 /////////////////////////////////////////////////////////////////////////////
 #undef APSTUDIO_READONLY_SYMBOLS
 
-//////////////////////////////////////////////////////////////////////////////
-// Languages
-
-#include "lang/en_US.rc"
-#include "lang/ja_JP.rc"
-
 /////////////////////////////////////////////////////////////////////////////
-// 日本語 resources
+// 日本語 (日本) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)
-#ifdef _WIN32
-LANGUAGE LANG_ENGLISH, SUBLANG_DEFAULT
-#pragma code_page(65001)
-#endif //_WIN32
+LANGUAGE LANG_JAPANESE, SUBLANG_DEFAULT
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_BITMAP1             BITMAP                  "bitmap_acc.bmp"
+
+#endif    // 日本語 (日本) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// 英語 (米国) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
@@ -33,18 +41,18 @@ LANGUAGE LANG_ENGLISH, SUBLANG_DEFAULT
 // TEXTINCLUDE
 //
 
-1 TEXTINCLUDE DISCARDABLE
+1 TEXTINCLUDE 
 BEGIN
     "resource.h\0"
 END
 
-2 TEXTINCLUDE DISCARDABLE
+2 TEXTINCLUDE 
 BEGIN
     "#include ""afxres.h""\r\n"
     "\0"
 END
 
-3 TEXTINCLUDE DISCARDABLE
+3 TEXTINCLUDE 
 BEGIN
     "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
     "#define _AFX_NO_OLE_RESOURCES\r\n"
@@ -56,8 +64,8 @@ BEGIN
     "LANGUAGE 17, 1\r\n"
     "#pragma code_page(65001)\r\n"
     "#endif //_WIN32\r\n"
-    "#include ""res\\STEP_vqf.rc2""  // Microsoft Visual C++ 以外のツールで編集されたリソース\r\n"
-    "#include ""l.jpn\\afxres.rc""          // 標準のコンポーネント\r\n"
+    "#include ""res\\STEP_vqf.rc2""  // Microsoft Visual C++ 莉･螟悶・繝・・繝ｫ縺ｧ邱ｨ髮・＆繧後◆繝ｪ繧ｽ繝ｼ繧ｹ\r\n"
+    "#include ""l.jpn\\afxres.rc""          // 讓呎ｺ悶・繧ｳ繝ｳ繝昴・繝阪Φ繝・\n"
     "#endif\r\n"
     "\0"
 END
@@ -70,8 +78,9 @@ END
 // Bitmap
 //
 
-IDB_BITMAP_VQF          BITMAP  DISCARDABLE     "bitmap_acc-24.bmp"
-#endif    // 日本語 resources
+IDB_BITMAP_VQF          BITMAP                  "bitmap_acc.bmp"
+
+#endif    // 英語 (米国) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
@@ -91,8 +100,8 @@ IDB_BITMAP_VQF          BITMAP  DISCARDABLE     "bitmap_acc-24.bmp"
 LANGUAGE 17, 1
 #pragma code_page(65001)
 #endif //_WIN32
-#include "res\STEP_vqf.rc2"  // Microsoft Visual C++ 以外のツールで編集されたリソース
-#include "l.jpn\afxres.rc"          // 標準のコンポーネント
+#include "res\STEP_vqf.rc2"  // Microsoft Visual C++ ä»¥å¤–ã®ãƒ„ãƒ¼ãƒ«ã§ç·¨é›†ã•ã‚ŒãŸãƒªã‚½ãƒ¼ã‚¹
+#include "l.jpn\afxres.rc"          // æ¨™æº–ã®ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆ
 #endif
 
 /////////////////////////////////////////////////////////////////////////////

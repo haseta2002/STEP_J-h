@@ -95,5 +95,8 @@
     <Image Include="bmpdsf-24.bmp">
       <Filter>リソース ファイル</Filter>
     </Image>
+    <Image Include="bmpdsf.bmp">
+      <Filter>リソース ファイル</Filter>
+    </Image>
   </ItemGroup>
 </Project>

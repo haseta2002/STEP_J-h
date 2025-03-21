@@ -748,7 +748,7 @@ BOOL CSuperTagEditorApp::InitInstance()
     if(!hDll){//インストールされていない
         MessageBox(NULL,
                    _T("VS2022 ランタイムがインストールされていません。\n")
-                   _T("STEP_J の動作には VS2022 ランタイムのインストールが必要です。\n")
+                   _T("STEP_J-h の動作には VS2022 ランタイムのインストールが必要です。\n")
                    _T("既にインストール済みなのにこのダイアログが表示される場合はランタイムの\r\n")
                    _T("バージョンが古い可能性があります。最新版をインストールし直して下さい。\r\n" )
                    _T("インストールしないと標準のプラグインを使用出来ないため、何も出来ません。\n")
@@ -815,7 +815,7 @@ CAboutDlg::CAboutDlg() : CDialog(CAboutDlg::IDD)
     // バージョン情報の設定
     //m_strVersion.Format(PROG_NAME" Ver "PROG_VERSION"(Build:%d) 改", BUILDCOUNT_NUM);
     //m_strVersion.Format(PROG_NAME_ORG2 " (" PROG_NAME_ORG " Ver " PROG_VERSION_ORG "改) Ver " PROG_VERSION_ORG2 " 改\n\n" PROG_NAME " Version " PROG_VERSION);
-    m_strVersion = _T("五代目 SuperTagEditor\n") PROG_NAME _T(" Version ") PROG_VERSION _T(" (") PROG_PLATFORM _T(")\n")
+    m_strVersion = _T("五代目+h SuperTagEditor\n") PROG_NAME _T(" Version ") PROG_VERSION _T(" (") PROG_PLATFORM _T(")\n")
                    _T("\n")
                    PROG_COPYRIGHT _T("\n")
                    PROG_URL       _T("\n") ;

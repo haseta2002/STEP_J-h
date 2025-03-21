@@ -12,18 +12,197 @@
 /////////////////////////////////////////////////////////////////////////////
 #undef APSTUDIO_READONLY_SYMBOLS
 
-//////////////////////////////////////////////////////////////////////////////
-// Languages
-
-#include "lang/en_US.rc"
-#include "lang/ja_JP.rc"
-
 /////////////////////////////////////////////////////////////////////////////
 // 日本語 (日本) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)
-LANGUAGE LANG_ENGLISH, SUBLANG_DEFAULT
-#pragma code_page(65001)
+LANGUAGE LANG_JAPANESE, SUBLANG_DEFAULT
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DLG_FILE_RMP_ID3V2 DIALOGEX 0, 0, 240, 223
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "RIFF MP3/ID3v2"
+FONT 9, "Meiryo UI", 0, 0, 0x0
+BEGIN
+    GROUPBOX        "共通の設定",IDC_STATIC,7,7,226,46
+    GROUPBOX        "ID3v1 への変換時の対象項目",IDC_STATIC,11,19,222,28
+    CONTROL         "全ての項目",IDC_RA_SIF_CONV_ALL,"Button",BS_AUTORADIOBUTTON | WS_GROUP,15,31,56,10
+    CONTROL         "ID3 の文字数に収まる項目のみ",IDC_RA_SIF_CONV_LENGTH,"Button",BS_AUTORADIOBUTTON,79,31,119,10
+    GROUPBOX        "RIFF MP3",IDC_STATIC,7,57,226,63
+    CONTROL         "ID3tag の制限を超えたファイルを自動的に変換(設定廃止)",IDC_CH_AUTO_CONV_RMP,
+                    "Button",BS_AUTOCHECKBOX | WS_DISABLED | WS_TABSTOP,12,69,210,10
+    CONTROL         "RIFF SIF を ID3v1 にコピー(オフの場合は個別に編集)",IDC_CH_RMP_ID3TAG_AUTO_WRITE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,81,210,10
+    CONTROL         "ジャンル名はリストから選択する(※再起動後有効)",IDC_CH_RMP_GENRE_LIST_SELECT,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,93,210,10
+    CONTROL         "ファイル形式変換時に拡張子を .rmp/.mp3 に変更する",IDC_CH_CHANGE_FILE_EXT,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,105,210,10
+    GROUPBOX        "ID3v2",IDC_STATIC,7,124,226,74
+    CONTROL         "ID3tag の制限を超えたファイルを自動的に変換(設定廃止)",IDC_CH_AUTO_CONV_ID3V2,
+                    "Button",BS_AUTOCHECKBOX | WS_DISABLED | WS_TABSTOP,12,135,210,10
+    CONTROL         "ID3v2 を ID3v1 にコピー(オフの場合は個別に編集)",IDC_CH_ID3V2_ID3TAG_AUTO_WRITE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,147,210,10
+    CONTROL         "ID3v1 を作成しない(更新時に削除)",IDC_CH_ID3V2_ID3TAG_AUTO_DELETE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,159,210,10
+    CONTROL         "ジャンル名はリストから選択する(※再起動後有効)",IDC_CH_ID3V2_GENRE_LIST_SELECT,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,171,210,10
+    CONTROL         "ジャンル名にジャンル番号を付加する(設定廃止)",IDC_CH_ID3V2_GENRE_ADD_NUMBER,
+                    "Button",BS_AUTOCHECKBOX | WS_DISABLED | WS_TABSTOP,12,184,210,10
+    PUSHBUTTON      "初期値に戻す",IDC_BT_RESET_PAGE,7,202,50,14
+END
+
+IDD_DLG_DEFAUT_VALUE DIALOGEX 0, 0, 239, 219
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "その他"
+FONT 9, "Meiryo UI", 0, 0, 0x0
+BEGIN
+    LTEXT           "ソフトウェアのデフォルト",IDC_STATIC,7,15,78,10
+    EDITTEXT        IDC_SOFTWARE_TAG,88,14,144,14,ES_AUTOHSCROLL
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,28,225,1
+    PUSHBUTTON      "初期値に戻す",IDC_BT_RESET_PAGE,182,198,50,14
+    CONTROL         "ID3v2 のフレームを非同期化する(非推奨)",IDC_CHECK_UNSYNC,"Button",BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,7,100,225,19
+    LTEXT           "ID3v2の保存形式",IDC_STATIC,7,38,68,8
+    COMBOBOX        IDC_COMBO_ID3V2_VERSION,59,49,49,62,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMBO_ID3V2_ENCODE,168,49,64,57,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "ID3v2 のフレームを非同期化すると情報を正しく取得出来ないソフトがあるため、非同期化しないことをお勧めします。\n非同期化しないとID3v2を認識しないプレーヤで問題が生じることがあります。そのような古いプレーヤを使用する場合は非同期化した方が良いかもしれません。",IDC_STATIC_INFO,7,124,225,42
+    LTEXT           "バージョン",IDC_STATIC,14,51,40,8
+    LTEXT           "文字エンコード",IDC_STATIC,112,51,50,8
+    LTEXT           "ID3v2の保存形式(新規作成時)",IDC_STATIC,7,69,103,8
+    COMBOBOX        IDC_COMBO_ID3V2_VERSION_NEW,59,81,49,62,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMBO_ID3V2_ENCODE_NEW,168,81,64,57,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "バージョン",IDC_STATIC,14,83,41,8
+    LTEXT           "文字エンコード",IDC_STATIC,112,83,50,8
+END
+
+IDD_DLG_CONV_ID3V2_VERSION DIALOGEX 0, 0, 232, 242
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "ID3v2 に変換&バージョン/文字エンコードの変換"
+FONT 9, "Meiryo UI", 0, 0, 0x0
+BEGIN
+    LTEXT           "選択中の MP3 ファイルを ID3v2 に変換します。(必要な場合)\nID3v2 のバージョンと文字エンコードを変換します。\n変換を実行してもよろしいですか？\n良く分からない場合の推奨設定\n\nバージョン： ID3v2.3\n文字エンコード： UTF-16\nID3v2 のフレームを非同期化： オフ",IDC_STATIC,7,2,206,71
+    LTEXT           "バージョン",IDC_STATIC,14,80,39,8
+    COMBOBOX        IDC_COMBO_ID3V2_VERSION,74,78,63,62,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "文字エンコード",IDC_STATIC,14,99,51,8
+    COMBOBOX        IDC_COMBO_ID3V2_ENCODE,74,97,63,57,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    DEFPUSHBUTTON   "はい",IDOK,43,221,50,14
+    PUSHBUTTON      "いいえ",IDCANCEL,119,221,50,14
+    CONTROL         "ID3v2 のフレームを非同期化する(非推奨)",IDC_UNSYNC,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,116,194,10
+    LTEXT           "ID3v2 のフレームを非同期化すると情報を正しく取得出来ないソフトがあるため、非同期化しないことをお勧めします。\n非同期化しないとID3v2を認識しないプレーヤで問題が生じることがあります。そのような古いプレーヤを使用する場合は非同期化した方が良いかもしれません。",IDC_STATIC,7,136,218,50
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_BITMAP1             BITMAP                  "bitmap1.bmp"
+
+IDB_BITMAP2             BITMAP                  "bmp00001.bmp"
+
+IDB_BITMAP3             BITMAP                  "bmp00002.bmp"
+
+IDB_BITMAP4             BITMAP                  "bmp00003.bmp"
+
+IDB_BITMAP5             BITMAP                  "bmp00004.bmp"
+
+IDB_BITMAP6             BITMAP                  "bmp00005.bmp"
+
+IDB_BITMAP7             BITMAP                  "file_con.bmp"
+
+#endif    // 日本語 (日本) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// 英語 (米国) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DLG_FILE_RMP_ID3V2 DIALOGEX 0, 0, 240, 223
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "RIFF MP3/ID3v2"
+FONT 9, "Segoe UI", 0, 0, 0x0
+BEGIN
+    GROUPBOX        "Common Settings",IDC_STATIC,7,7,226,46
+    GROUPBOX        "Target items when converting to ID3v1",IDC_STATIC,11,19,222,28
+    CONTROL         "All items",IDC_RA_SIF_CONV_ALL,"Button",BS_AUTORADIOBUTTON | WS_GROUP,15,31,56,10
+    CONTROL         "Only items that fit into the number of characters in ID3",IDC_RA_SIF_CONV_LENGTH,
+                    "Button",BS_AUTORADIOBUTTON | BS_MULTILINE,79,26,119,20
+    GROUPBOX        "RIFF MP3",IDC_STATIC,7,57,226,63
+    CONTROL         "Automatically convert files that exceed ID3tag limits (obsolete setting)",IDC_CH_AUTO_CONV_RMP,
+                    "Button",BS_AUTOCHECKBOX | WS_DISABLED | WS_TABSTOP,12,69,210,10
+    CONTROL         "Copy RIFF SIF to ID3v1 (edit individually if off)",IDC_CH_RMP_ID3TAG_AUTO_WRITE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,81,210,10
+    CONTROL         "Genre names are selected from a list (*effective after reboot)",IDC_CH_RMP_GENRE_LIST_SELECT,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,93,210,10
+    CONTROL         "Change file extension to .rmp/.mp3 when converting file formats",IDC_CH_CHANGE_FILE_EXT,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,105,210,10
+    GROUPBOX        "ID3v2",IDC_STATIC,7,124,226,74
+    CONTROL         "Automatically convert files that exceed ID3tag limits (obsolete setting)",IDC_CH_AUTO_CONV_ID3V2,
+                    "Button",BS_AUTOCHECKBOX | WS_DISABLED | WS_TABSTOP,12,135,210,10
+    CONTROL         "Copy ID3v2 to ID3v1 (edit individually if off)",IDC_CH_ID3V2_ID3TAG_AUTO_WRITE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,147,210,10
+    CONTROL         "Do not create ID3v1 (delete on update)",IDC_CH_ID3V2_ID3TAG_AUTO_DELETE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,159,210,10
+    CONTROL         "Genre names are selected from a list (*effective after reboot)",IDC_CH_ID3V2_GENRE_LIST_SELECT,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,171,210,10
+    CONTROL         "Append genre number to genre name (obsolete setting)",IDC_CH_ID3V2_GENRE_ADD_NUMBER,
+                    "Button",BS_AUTOCHECKBOX | WS_DISABLED | WS_TABSTOP,12,184,210,10
+    PUSHBUTTON      "Reset",IDC_BT_RESET_PAGE,7,202,50,14
+END
+
+IDD_DLG_DEFAUT_VALUE DIALOGEX 0, 0, 239, 219
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Other"
+FONT 9, "Segoe UI", 0, 0, 0x0
+BEGIN
+    LTEXT           "Software Defaults",IDC_STATIC,7,15,78,10
+    EDITTEXT        IDC_SOFTWARE_TAG,88,14,144,14,ES_AUTOHSCROLL
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,28,225,1
+    PUSHBUTTON      "Reset",IDC_BT_RESET_PAGE,182,198,50,14
+    CONTROL         "Desynchronize ID3v2 frames (deprecated)",IDC_CHECK_UNSYNC,
+                    "Button",BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,7,100,225,19
+    LTEXT           "ID3v2 Save format",IDC_STATIC,7,38,68,8
+    COMBOBOX        IDC_COMBO_ID3V2_VERSION,59,49,49,62,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMBO_ID3V2_ENCODE,168,49,64,57,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "We recommend not to asynchronize ID3v2 frames because some software may not be able to get the information correctly.",IDC_STATIC_INFO,7,124,225,42
+    LTEXT           "Version",IDC_STATIC,14,51,40,8
+    LTEXT           "Character Encoding",IDC_STATIC,112,51,50,8
+    LTEXT           "ID3v2 save format (when creating a new one)",IDC_STATIC,7,69,103,8
+    COMBOBOX        IDC_COMBO_ID3V2_VERSION_NEW,59,81,49,62,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMBO_ID3V2_ENCODE_NEW,168,81,64,57,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Version",IDC_STATIC,14,83,41,8
+    LTEXT           "Character Encoding",IDC_STATIC,112,83,50,8
+END
+
+IDD_DLG_CONV_ID3V2_VERSION DIALOGEX 0, 0, 232, 242
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Convert to ID3v2 & convert version/character encoding"
+FONT 9, "Segoe UI", 0, 0, 0x0
+BEGIN
+    LTEXT           "Converts the selected MP3 file to ID3v2. Convert (if necessary)\nID3v2 version and character encoding.\nAre you sure you want to perform the conversion?\nRecommended\n\nVersion: ID3v2.3\nCharacter encoding: UTF-16\nDesynchronize ID3v2 frames: Off",IDC_STATIC,7,2,206,71
+    LTEXT           "Version",IDC_STATIC,14,80,39,8
+    COMBOBOX        IDC_COMBO_ID3V2_VERSION,74,78,63,62,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Character Encoding",IDC_STATIC,14,99,51,8
+    COMBOBOX        IDC_COMBO_ID3V2_ENCODE,74,97,63,57,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    DEFPUSHBUTTON   "Yes",IDOK,43,221,50,14
+    PUSHBUTTON      "No",IDCANCEL,119,221,50,14
+    CONTROL         "Desynchronize ID3v2 frames (deprecated)",IDC_UNSYNC,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,116,194,10
+    LTEXT           "We recommend not to asynchronize ID3v2 frames because some software may not be able to get the information correctly.",IDC_STATIC,7,136,218,50
+END
+
 
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
@@ -31,18 +210,18 @@ LANGUAGE LANG_ENGLISH, SUBLANG_DEFAULT
 // TEXTINCLUDE
 //
 
-1 TEXTINCLUDE
+1 TEXTINCLUDE 
 BEGIN
     "resource.h\0"
 END
 
-2 TEXTINCLUDE
+2 TEXTINCLUDE 
 BEGIN
     "#include ""afxres.h""\r\n"
     "\0"
 END
 
-3 TEXTINCLUDE
+3 TEXTINCLUDE 
 BEGIN
     "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
     "#define _AFX_NO_OLE_RESOURCES\r\n"
@@ -54,8 +233,8 @@ BEGIN
     "LANGUAGE 17, 1\r\n"
     "#pragma code_page(65001)\r\n"
     "#endif //_WIN32\r\n"
-    "#include ""res\\STEP_mp3.rc2""  // Microsoft Visual C++ 以外のツールで編集されたリソース\r\n"
-    "#include ""l.jpn\\afxres.rc""          // 標準のコンポーネント\r\n"
+    "#include ""res\\STEP_mp3.rc2""  // Microsoft Visual C++ 莉･螟悶・繝・・繝ｫ縺ｧ邱ｨ髮・＆繧後◆繝ｪ繧ｽ繝ｼ繧ｹ\r\n"
+    "#include ""l.jpn\\afxres.rc""          // 讓呎ｺ悶・繧ｳ繝ｳ繝昴・繝阪Φ繝・\n"
     "#endif\r\n"
     "\0"
 END
@@ -68,19 +247,19 @@ END
 // Bitmap
 //
 
-IDB_BITMAP_MP3          BITMAP                  "bitmap1-24.bmp"
+IDB_BITMAP_MP3          BITMAP                  "bitmap1.bmp"
 
-IDB_BITMAP_ID3V2        BITMAP                  "bmp00001-24.bmp"
+IDB_BITMAP_ID3V2        BITMAP                  "bmp00001.bmp"
 
-IDB_BITMAP_RMP          BITMAP                  "bmp00002-24.bmp"
+IDB_BITMAP_RMP          BITMAP                  "bmp00002.bmp"
 
-IDB_FILE_CONV_AUTO_ID3  BITMAP                  "file_con-24.bmp"
+IDB_FILE_CONV_AUTO_ID3  BITMAP                  "file_con.bmp"
 
-IDB_FILE_CONV_MP3       BITMAP                  "bmp00003-24.bmp"
+IDB_FILE_CONV_MP3       BITMAP                  "bmp00003.bmp"
 
-IDB_FILE_CONV_RMP       BITMAP                  "bmp00004-24.bmp"
+IDB_FILE_CONV_RMP       BITMAP                  "bmp00004.bmp"
 
-IDB_FILE_CONV_ID3V2     BITMAP                  "bmp00005-24.bmp"
+IDB_FILE_CONV_ID3V2     BITMAP                  "bmp00005.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -138,7 +317,7 @@ BEGIN
     0
 END
 
-#endif    // 日本語 (日本) resources
+#endif    // 英語 (米国) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
@@ -158,8 +337,8 @@ END
 LANGUAGE 17, 1
 #pragma code_page(65001)
 #endif //_WIN32
-#include "res\STEP_mp3.rc2"  // Microsoft Visual C++ 以外のツールで編集されたリソース
-#include "l.jpn\afxres.rc"          // 標準のコンポーネント
+#include "res\STEP_mp3.rc2"  // Microsoft Visual C++ ä»¥å¤–ã®ãƒ„ãƒ¼ãƒ«ã§ç·¨é›†ã•ã‚ŒãŸãƒªã‚½ãƒ¼ã‚¹
+#include "l.jpn\afxres.rc"          // æ¨™æº–ã®ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆ
 #endif
 
 /////////////////////////////////////////////////////////////////////////////

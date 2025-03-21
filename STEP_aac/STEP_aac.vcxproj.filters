@@ -101,6 +101,9 @@
     <Image Include="bitmap_acc-24.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="bitmap_acc.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />

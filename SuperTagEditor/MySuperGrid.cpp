@@ -415,7 +415,7 @@ int CMySuperGrid::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
     //associate imagelist with listviewctrl,
     //this imagelist is only for the first column re: the tree column
-    if(!m_image.Create(IDB_BITMAP_TREE,24,1,RGB(255, 0, 255)))
+    if(!m_image.Create(IDB_BITMAP_TREE,16,1,RGB(255, 0, 255)))
         return -1;
 
     SetImageList(&m_image, LVSIL_SMALL);
@@ -432,7 +432,7 @@ int CMySuperGrid::OnCreate(LPCREATESTRUCT lpCreateStruct)
     // if(!m_imageCheck.Create(IDB_BITMAP_CHECK,16,1,RGB(255, 0, 255)))
     //     return -1;
     // SetImageList(&m_imageCheck, LVSIL_STATE);
-    g_imageCheckMark.Create(IDB_BITMAP_CHECK,24,1,RGB(255, 0, 255));
+    g_imageCheckMark.Create(IDB_BITMAP_CHECK,16,1,RGB(255, 0, 255));
 
     //If you want to assiciate images to subitems, create an imagelist
     //and call SetSubItemImageList

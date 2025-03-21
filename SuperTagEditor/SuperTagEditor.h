@@ -14,10 +14,13 @@
 
 #include "resource.h"       // メイン シンボル
 
-#define PROG_NAME       _T("STEP_J")     // プログラム名
-#define PROG_VERSION    _T("1.04")  // バージョン
-#define PROG_COPYRIGHT  _T("Copyright (C) 2022 jarupxx")
-#define PROG_URL        _T("https://github.com/jarupxx/STEP_J/")
+#define PROG_NAME       _T("STEP_J-h")     // プログラム名
+#define PROG_VERSION    _T("1.04-h01")  // バージョン
+#define PROG_COPYRIGHT_ORG5  _T("Copyright (C) 2022 jarupxx")
+#define PROG_COPYRIGHT  _T("Copyright (C) 2025 haseta")
+#define PROG_URL_ORG5   _T("https://github.com/jarupxx/STEP_J/")
+#define PROG_URL        _T("https://github.com/haseta2002/STEP_J-h")
+
 // #define PROG_MAIL       _T("example@co.jp")
 #ifdef _WIN64
 #define PROG_PLATFORM   _T("x64")
@@ -25,9 +28,9 @@
 #define PROG_PLATFORM   _T("x86")
 #endif
 
-#define STEP_MUTEX_NAME       _T("STEP_J")    //起動済み Mutex オブジェクト名
-#define STEP_DDE_SERVICE_NAME _T("STEP_J")    //STEP DDE サービス名
-#define STEP_DDE_TOPIC_NAME   _T("STEP_J")    //STEP DDE トピック名
+#define STEP_MUTEX_NAME       _T("STEP_J-h")    //起動済み Mutex オブジェクト名
+#define STEP_DDE_SERVICE_NAME _T("STEP_J-h")    //STEP DDE サービス名
+#define STEP_DDE_TOPIC_NAME   _T("STEP_J-h")    //STEP DDE トピック名
 
 #define PROG_NAME_ORG       _T("SuperTagEditor")    // プログラム名
 #define PROG_VERSION_ORG    _T("2.00β")            // バージョン
@@ -37,6 +40,8 @@
 #define PROG_VERSION_ORG3   _T("1.054f")
 #define PROG_NAME_ORG4      _T("STEP_K")
 #define PROG_VERSION_ORG4   _T("1.05a")
+#define PROG_NAME_ORG5      _T("STEP_J")
+#define PROG_VERSION_ORG5   _T("1.04")
 
 #define VCRUNTIME_URL _T("https://visualstudio.microsoft.com/ja/downloads/#other-ja-family") //VS2022 再頒布可能パッケージURL
 #define WM_USER_SET_STATUS_POS      WM_USER+1

@@ -107,6 +107,9 @@
     <Image Include="bitmap_tta-24.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="bitmap_tta.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />

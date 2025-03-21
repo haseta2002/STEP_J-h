@@ -75,14 +75,14 @@
     <_ProjectFileVersion>14.0.24720.0</_ProjectFileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)_bin\$(PlatformShortName)\</OutDir>
+    <OutDir>$(SolutionDir)bin\$(PlatformShortName)\</OutDir>
     <IntDir>$(SolutionDir)_temp\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <IntDir>$(SolutionDir)_temp\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
-    <OutDir>$(SolutionDir)_bin\$(PlatformShortName)\</OutDir>
+    <OutDir>$(SolutionDir)bin\$(PlatformShortName)\$(Configuration)\</OutDir>
     <EmbedManifest>true</EmbedManifest>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -93,7 +93,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <IntDir>$(SolutionDir)_temp\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
-    <OutDir>$(SolutionDir)_bin\$(PlatformShortName)\</OutDir>
+    <OutDir>$(SolutionDir)bin\$(PlatformShortName)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Midl>
@@ -150,9 +150,9 @@
       <EnableDpiAwareness>true</EnableDpiAwareness>
     </Manifest>
     <PostBuildEvent>
-      <Command>copy $(ProjectDir)..\*.txt /b $(outputpath)..\
-copy $(ProjectDir)..\Copying /b $(outputpath)..\
-copy $(ProjectDir)..\Help\SuperTagEditor.chm /b $(outputpath)..\
+      <Command>copy "$(ProjectDir)..\*.txt" /b "$(outputpath)"
+copy "$(ProjectDir)..\Copying" /b "$(outputpath)"
+copy "$(ProjectDir)..\Help\SuperTagEditor.chm" /b "$(outputpath)"
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -213,9 +213,9 @@ copy $(ProjectDir)..\Help\SuperTagEditor.chm /b $(outputpath)..\
       </AdditionalManifestFiles>
     </Manifest>
     <PostBuildEvent>
-      <Command>copy $(ProjectDir)..\*.txt /b $(outputpath)..\
-copy $(ProjectDir)..\Copying /b $(outputpath)..\
-copy $(ProjectDir)..\Help\SuperTagEditor.chm /b $(outputpath)..\
+      <Command>copy "$(ProjectDir)..\*.txt" /b "$(outputpath)"
+copy "$(ProjectDir)..\Copying" /b "$(outputpath)"
+copy "$(ProjectDir)..\Help\SuperTagEditor.chm" /b "$(outputpath)"
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -268,9 +268,7 @@ copy $(ProjectDir)..\Help\SuperTagEditor.chm /b $(outputpath)..\
     <ManifestResourceCompile />
     <ManifestResourceCompile />
     <PostBuildEvent>
-      <Command>copy $(ProjectDir)..\*.txt /b $(outputpath)..\
-copy $(ProjectDir)..\Copying /b $(outputpath)..\
-copy $(ProjectDir)..\Help\SuperTagEditor.chm /b $(outputpath)..\
+      <Command>
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -323,10 +321,8 @@ copy $(ProjectDir)..\Help\SuperTagEditor.chm /b $(outputpath)..\
     <ManifestResourceCompile />
     <ManifestResourceCompile />
     <PostBuildEvent>
-      <Command>copy $(ProjectDir)..\*.txt /b $(outputpath)..\
-copy $(ProjectDir)..\Copying /b $(outputpath)..\
-copy $(ProjectDir)..\Help\SuperTagEditor.chm /b $(outputpath)..\
-</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -493,6 +489,8 @@ copy $(ProjectDir)..\Help\SuperTagEditor.chm /b $(outputpath)..\
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\COPYING" />
+    <None Include="..\README.md" />
     <None Include="Help\history.html" />
     <None Include="Help\index.html" />
     <None Include="Help\schedule.html" />
@@ -506,20 +504,31 @@ copy $(ProjectDir)..\Help\SuperTagEditor.chm /b $(outputpath)..\
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\check-24.bmp" />
+    <Image Include="res\check.bmp" />
     <Image Include="res\folders.bmp" />
     <Image Include="res\icon1.ico" />
-    <Image Include="res\subitems.bmp" />
     <Image Include="res\SuperTagEditor.ico" />
     <Image Include="res\SuperTagEditorDoc.ico" />
     <Image Include="res\Toolbar-32.bmp" />
+    <Image Include="res\Toolbar.bmp" />
     <Image Include="res\toolbar_-32.bmp" />
+    <Image Include="res\toolbar_.bmp" />
     <Image Include="res\tree-24.bmp" />
+    <Image Include="res\tree.bmp" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="..\sample_csv.txt" />
+    <Text Include="..\sample_html.txt" />
+    <Text Include="..\sample_m3u.txt" />
+    <Text Include="..\sample_playlist.txt" />
+    <Text Include="..\STEP.txt" />
+    <Text Include="..\step_j-h_readme.txt" />
+    <Text Include="..\step_j_readme.txt" />
     <Text Include="..\step_k_history.txt" />
     <Text Include="..\step_k_memo.txt" />
     <Text Include="..\step_k_readme.txt" />
     <Text Include="..\STEP_SDK\STEP_API.txt" />
+    <Text Include="..\STE改.txt" />
     <Text Include="..\var_list.txt" />
     <Text Include="..\var_list2.txt" />
   </ItemGroup>

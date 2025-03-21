@@ -81,19 +81,19 @@
     <TargetExt>.ste</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>$(SolutionDir)_bin\$(PlatformShortName)\Plugin\</OutDir>
+    <OutDir>$(SolutionDir)bin\$(PlatformShortName)\$(Configuration)\Plugin\</OutDir>
     <IntDir>$(SolutionDir)_temp\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
     <LinkIncremental>true</LinkIncremental>
     <TargetExt>.ste</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)_bin\$(PlatformShortName)\Plugin\</OutDir>
+    <OutDir>$(SolutionDir)bin\$(PlatformShortName)\Plugin\</OutDir>
     <IntDir>$(SolutionDir)_temp\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
     <TargetExt>.ste</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>$(SolutionDir)_bin\$(PlatformShortName)\Plugin\</OutDir>
+    <OutDir>$(SolutionDir)bin\$(PlatformShortName)\$(Configuration)\Plugin\</OutDir>
     <IntDir>$(SolutionDir)_temp\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
     <TargetExt>.ste</TargetExt>
@@ -267,12 +267,13 @@
       <AdditionalDependencies>winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <ModuleDefinitionFile>.\STEP_mp3.def</ModuleDefinitionFile>
+      <ProgramDatabaseFile>$(IntDir)$(TargetName).pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <ImportLibrary>$(IntDir)$(TargetName).lib</ImportLibrary>
-      <ProgramDatabaseFile>$(IntDir)$(TargetName).pdb</ProgramDatabaseFile>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <AdditionalLibraryDirectories>$(SolutionDir)_temp\_lib\$(PlatformShortName)\$(Configuration)\</AdditionalLibraryDirectories>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -341,12 +342,19 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="bitmap1-24.bmp" />
+    <Image Include="bitmap1.bmp" />
     <Image Include="bmp00001-24.bmp" />
+    <Image Include="bmp00001.bmp" />
     <Image Include="bmp00002-24.bmp" />
+    <Image Include="bmp00002.bmp" />
     <Image Include="bmp00003-24.bmp" />
+    <Image Include="bmp00003.bmp" />
     <Image Include="bmp00004-24.bmp" />
+    <Image Include="bmp00004.bmp" />
     <Image Include="bmp00005-24.bmp" />
+    <Image Include="bmp00005.bmp" />
     <Image Include="file_con-24.bmp" />
+    <Image Include="file_con.bmp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="STEP_mp3_memo.txt" />

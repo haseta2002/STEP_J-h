@@ -82,19 +82,19 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)_bin\$(PlatformShortName)\Plugin\</OutDir>
+    <OutDir>$(SolutionDir)bin\$(PlatformShortName)\$(Configuration)\Plugin\</OutDir>
     <IntDir>$(SolutionDir)_temp\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
     <TargetExt>.ste</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)_bin\$(PlatformShortName)\Plugin\</OutDir>
+    <OutDir>$(SolutionDir)bin\$(PlatformShortName)\Plugin\</OutDir>
     <IntDir>$(SolutionDir)_temp\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
     <TargetExt>.ste</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)_bin\$(PlatformShortName)\Plugin\</OutDir>
+    <OutDir>$(SolutionDir)bin\$(PlatformShortName)\$(Configuration)\Plugin\</OutDir>
     <IntDir>$(SolutionDir)_temp\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
     <TargetExt>.ste</TargetExt>
   </PropertyGroup>
@@ -281,6 +281,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="bmpdsf-24.bmp" />
+    <Image Include="bmpdsf.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

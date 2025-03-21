@@ -164,6 +164,27 @@
     <Image Include="file_con-24.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="bitmap1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="bmp00001.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="bmp00002.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="bmp00003.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="bmp00004.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="bmp00005.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="file_con.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="STEP_mp3_memo.txt" />

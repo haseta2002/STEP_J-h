@@ -19,3 +19,12 @@ Kobarin 様STEP_Kとの相違点
 
 STEP_J についての要望・苦情等はissuesまでお願いします。
 原作者である MERCURY 様、haseta 様、Mimura 様、 Kobarin 様に問い合わせはしないようにお願いします。
+
+## STEP_J-h
+
+STEP_Jとの相違点
+
+・大アイコンを小アイコンに戻す
+
+STEP_J-h についての要望・苦情等はissuesまでお願いします。
+原作者である MERCURY 様、Mimura 様、 Kobarin 様、 jarupxx様に問い合わせはしないようにお願いします。

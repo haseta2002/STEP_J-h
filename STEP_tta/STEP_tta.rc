@@ -12,18 +12,67 @@
 /////////////////////////////////////////////////////////////////////////////
 #undef APSTUDIO_READONLY_SYMBOLS
 
-//////////////////////////////////////////////////////////////////////////////
-// Languages
-
-#include "lang/en_US.rc"
-#include "lang/ja_JP.rc"
-
 /////////////////////////////////////////////////////////////////////////////
 // 日本語 (日本) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)
-LANGUAGE LANG_ENGLISH, SUBLANG_DEFAULT
-#pragma code_page(65001)
+LANGUAGE LANG_JAPANESE, SUBLANG_DEFAULT
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DLG_SETUP DIALOGEX 0, 0, 213, 75
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "True Audio"
+FONT 9, "Meiryo UI", 0, 0, 0x0
+BEGIN
+    CONTROL         "ジャンル名はリストから選択する(※再起動後有効)",IDC_CH_GENRE_LIST_SELECT,
+                    "Button",BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,7,7,199,20
+    GROUPBOX        "ID3v2",IDC_STATIC,7,26,199,38
+    CONTROL         "ID3v2 を ID3v1 にコピー(オフの場合は個別に編集)",IDC_CH_ID3TAG_AUTO_WRITE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,38,194,10
+    CONTROL         "ID3v1 を作成しない(更新時に削除)",IDC_CH_ID3TAG_AUTO_DELETE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,50,194,10
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_BITMAP1             BITMAP                  "bitmap_tta.bmp"
+
+#endif    // 日本語 (日本) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// 英語 (米国) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DLG_SETUP DIALOGEX 0, 0, 213, 75
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "True Audio"
+FONT 9, "Segoe UI", 0, 0, 0x0
+BEGIN
+    CONTROL         "Genre names are selected from a list (*effective after reboot)",IDC_CH_GENRE_LIST_SELECT,
+                    "Button",BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,7,7,199,20
+    GROUPBOX        "ID3v2",IDC_STATIC,7,26,199,38
+    CONTROL         "Copy ID3v2 to ID3v1 (edit individually if off)",IDC_CH_ID3TAG_AUTO_WRITE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,38,194,10
+    CONTROL         "Do not create ID3v1 (delete on update)",IDC_CH_ID3TAG_AUTO_DELETE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,50,194,10
+END
+
 
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
@@ -31,18 +80,18 @@ LANGUAGE LANG_ENGLISH, SUBLANG_DEFAULT
 // TEXTINCLUDE
 //
 
-1 TEXTINCLUDE
+1 TEXTINCLUDE 
 BEGIN
     "resource.h\0"
 END
 
-2 TEXTINCLUDE
+2 TEXTINCLUDE 
 BEGIN
     "#include ""afxres.h""\r\n"
     "\0"
 END
 
-3 TEXTINCLUDE
+3 TEXTINCLUDE 
 BEGIN
     "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
     "#define _AFX_NO_OLE_RESOURCES\r\n"
@@ -54,8 +103,8 @@ BEGIN
     "LANGUAGE 17, 1\r\n"
     "#pragma code_page(65001)\r\n"
     "#endif //_WIN32\r\n"
-    "#include ""res\\STEP_tta.rc2""  // Microsoft Visual C++ 以外のツールで編集されたリソース\r\n"
-    "#include ""l.jpn\\afxres.rc""          // 標準のコンポーネント\r\n"
+    "#include ""res\\STEP_tta.rc2""  // Microsoft Visual C++ 莉･螟悶・繝・・繝ｫ縺ｧ邱ｨ髮・＆繧後◆繝ｪ繧ｽ繝ｼ繧ｹ\r\n"
+    "#include ""l.jpn\\afxres.rc""          // 讓呎ｺ悶・繧ｳ繝ｳ繝昴・繝阪Φ繝・\n"
     "#endif\r\n"
     "\0"
 END
@@ -68,7 +117,7 @@ END
 // Bitmap
 //
 
-IDB_BITMAP_TTA          BITMAP                  "bitmap_tta-24.bmp"
+IDB_BITMAP_TTA          BITMAP                  "bitmap_tta.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -100,7 +149,7 @@ BEGIN
     0
 END
 
-#endif    // 日本語 (日本) resources
+#endif    // 英語 (米国) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
@@ -120,8 +169,8 @@ END
 LANGUAGE 17, 1
 #pragma code_page(65001)
 #endif //_WIN32
-#include "res\STEP_tta.rc2"  // Microsoft Visual C++ 以外のツールで編集されたリソース
-#include "l.jpn\afxres.rc"          // 標準のコンポーネント
+#include "res\STEP_tta.rc2"  // Microsoft Visual C++ ä»¥å¤–ã®ãƒ„ãƒ¼ãƒ«ã§ç·¨é›†ã•ã‚ŒãŸãƒªã‚½ãƒ¼ã‚¹
+#include "l.jpn\afxres.rc"          // æ¨™æº–ã®ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆ
 #endif
 
 /////////////////////////////////////////////////////////////////////////////

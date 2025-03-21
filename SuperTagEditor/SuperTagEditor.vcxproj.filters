@@ -525,6 +525,8 @@
     <None Include="res\ini1.bin">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="..\COPYING" />
+    <None Include="..\README.md" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\check-24.bmp">
@@ -534,9 +536,6 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\icon1.ico">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\subitems.bmp">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\SuperTagEditor.ico">
@@ -554,6 +553,18 @@
     <Image Include="res\tree-24.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\Toolbar.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\toolbar_.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\tree.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\check.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\STEP_SDK\STEP_API.txt">
@@ -564,6 +575,14 @@
     <Text Include="..\step_k_history.txt" />
     <Text Include="..\step_k_readme.txt" />
     <Text Include="..\step_k_memo.txt" />
+    <Text Include="..\step_j_readme.txt" />
+    <Text Include="..\sample_csv.txt" />
+    <Text Include="..\sample_html.txt" />
+    <Text Include="..\sample_m3u.txt" />
+    <Text Include="..\sample_playlist.txt" />
+    <Text Include="..\STEP.txt" />
+    <Text Include="..\step_j-h_readme.txt" />
+    <Text Include="..\STE改.txt" />
   </ItemGroup>
   <ItemGroup>
     <Manifest Include="VisualStyle.manifest" />

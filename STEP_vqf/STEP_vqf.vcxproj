@@ -81,19 +81,19 @@
     <TargetExt>.ste</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>$(SolutionDir)_bin\$(PlatformShortName)\Plugin\</OutDir>
+    <OutDir>$(SolutionDir)bin\$(PlatformShortName)\$(Configuration)\Plugin\</OutDir>
     <IntDir>$(SolutionDir)_temp\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
     <LinkIncremental>true</LinkIncremental>
     <TargetExt>.ste</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)_bin\$(PlatformShortName)\Plugin\</OutDir>
+    <OutDir>$(SolutionDir)bin\$(PlatformShortName)\Plugin\</OutDir>
     <IntDir>$(SolutionDir)_temp\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
     <TargetExt>.ste</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>$(SolutionDir)_bin\$(PlatformShortName)\Plugin\</OutDir>
+    <OutDir>$(SolutionDir)bin\$(PlatformShortName)\$(Configuration)\Plugin\</OutDir>
     <IntDir>$(SolutionDir)_temp\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
     <TargetExt>.ste</TargetExt>
@@ -304,6 +304,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="bitmap_acc-24.bmp" />
+    <Image Include="bitmap_acc.bmp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />

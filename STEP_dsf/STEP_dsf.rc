@@ -16,17 +16,146 @@
 /////////////////////////////////////////////////////////////////////////////
 #undef APSTUDIO_READONLY_SYMBOLS
 
-//////////////////////////////////////////////////////////////////////////////
-// Languages
-
-#include "lang/en_US.rc"
-#include "lang/ja_JP.rc"
-
 /////////////////////////////////////////////////////////////////////////////
 // 日本語 (日本) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)
-LANGUAGE LANG_ENGLISH, SUBLANG_DEFAULT
+LANGUAGE LANG_JAPANESE, SUBLANG_DEFAULT
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DLG_CONV_ID3V2_VERSION DIALOGEX 0, 0, 215, 142
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "ID3v2のバージョン/文字コードの変換"
+FONT 9, "Meiryo UI", 0, 0, 0x0
+BEGIN
+    LTEXT           "選択中の DSF ファイルについて ID3v2 のバージョンと文字エンコードを変換します\n変換を実行してもよろしいですか？\n良く分からない場合の推奨設定\n\nバージョン： ID3v2.3\n文字エンコード： UTF-16",IDC_STATIC,7,7,201,55
+    LTEXT           "バージョン",IDC_STATIC,34,85,48,8
+    COMBOBOX        IDC_COMBO_ID3V2_VERSION,92,82,70,62,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "文字エンコード",IDC_STATIC,34,104,48,8
+    COMBOBOX        IDC_COMBO_ID3V2_ENCODE,92,101,70,57,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    DEFPUSHBUTTON   "はい",IDOK,45,122,50,14
+    PUSHBUTTON      "いいえ",IDCANCEL,121,122,50,14
+END
+
+IDD_DLG_SETUP DIALOGEX 0, 0, 309, 176
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "DSF"
+FONT 9, "Meiryo UI", 400, 0, 0x1
+BEGIN
+    CONTROL         "ジャンル名はリストから選択する(※再起動後有効)",IDC_CH_GENRE_LIST_SELECT,
+                    "Button",BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,16,108,189,20
+    CONTROL         "Type1： DSD64 / 2.8MHz, 2ch",IDC_RADIO_FORMATTYPE1,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP,16,21,174,8
+    CONTROL         "Type2： DSD64 / 2.822MHz, 2ch",IDC_RADIO_FORMATTYPE2,
+                    "Button",BS_AUTORADIOBUTTON,16,33,174,8
+    CONTROL         "Type3： DSD64 / 2.8MHz(2822400Hz), 2ch",IDC_RADIO_FORMATTYPE3,
+                    "Button",BS_AUTORADIOBUTTON,16,44,174,8
+    CONTROL         "Type4： DSD64 / 2.822MHz(2822400Hz), 2ch",IDC_RADIO_FORMATTYPE4,
+                    "Button",BS_AUTORADIOBUTTON,16,56,174,8
+    GROUPBOX        "フォーマットの表示タイプ",IDC_STATIC_FORMATTYPE,7,7,295,90
+    GROUPBOX        "ID3v2",IDC_STATIC_ID3V2,7,100,295,34
+    LTEXT           "※2.8MHz(2,822,400Hz),3.0MHz(3,072,000Hz)以外のサンプリングレートの場合、\n先頭の「DSD64」は表示されません。",IDC_STATIC_FORMATTYPE_INFO,16,74,280,20
+    PUSHBUTTON      "初期値に戻す",IDC_BT_RESET_PAGE,243,156,59,13
+END
+
+IDD_DLG_SETUP_OTHER DIALOGEX 0, 0, 309, 176
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "その他"
+FONT 9, "Meiryo UI", 400, 0, 0x1
+BEGIN
+    LTEXT           "ID3v2の保存形式",IDC_STATIC,7,7,79,9
+    COMBOBOX        IDC_COMBO_ID3V2_VERSION,68,17,57,62,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMBO_ID3V2_ENCODE,195,17,75,57,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "バージョン",IDC_STATIC,16,19,47,9
+    LTEXT           "文字エンコード",IDC_STATIC,130,19,59,9
+    LTEXT           "ID3v2の保存形式(新規作成時)",IDC_STATIC,7,36,120,9
+    COMBOBOX        IDC_COMBO_ID3V2_VERSION_NEW,68,47,57,62,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMBO_ID3V2_ENCODE_NEW,195,47,75,57,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "バージョン",IDC_STATIC,16,49,48,9
+    LTEXT           "文字エンコード",IDC_STATIC,130,49,59,9
+    PUSHBUTTON      "初期値に戻す",IDC_BT_RESET_PAGE,243,156,59,13
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_BITMAP1             BITMAP                  "bmpdsf.bmp"
+
+#endif    // 日本語 (日本) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// 英語 (米国) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DLG_CONV_ID3V2_VERSION DIALOGEX 0, 0, 215, 142
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "ID3v2 version/character code conversion"
+FONT 9, "Segoe UI", 0, 0, 0x0
+BEGIN
+    LTEXT           "Convert ID3v2 version and character encoding for the selected DSF file\nAre you sure you want to perform the conversion?\nRecommended settings if unsure\n\nVersion： ID3v2.3\nCharacter encoding： UTF-16",IDC_STATIC,7,7,201,55
+    LTEXT           "Version",IDC_STATIC,14,85,70,8
+    COMBOBOX        IDC_COMBO_ID3V2_VERSION,92,82,70,62,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Character Encoding",IDC_STATIC,14,104,70,8
+    COMBOBOX        IDC_COMBO_ID3V2_ENCODE,92,101,70,57,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    DEFPUSHBUTTON   "Yes",IDOK,45,122,50,14
+    PUSHBUTTON      "No",IDCANCEL,121,122,50,14
+END
+
+IDD_DLG_SETUP DIALOGEX 0, 0, 309, 176
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "DSF"
+FONT 9, "Segoe UI", 400, 0, 0x1
+BEGIN
+    CONTROL         "Genre names are selected from a list (*effective after reboot)",IDC_CH_GENRE_LIST_SELECT,
+                    "Button",BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,16,108,250,20
+    CONTROL         "Type1： DSD64 / 2.8MHz, 2ch",IDC_RADIO_FORMATTYPE1,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP,16,21,174,8
+    CONTROL         "Type2： DSD64 / 2.822MHz, 2ch",IDC_RADIO_FORMATTYPE2,
+                    "Button",BS_AUTORADIOBUTTON,16,33,174,8
+    CONTROL         "Type3： DSD64 / 2.8MHz(2822400Hz), 2ch",IDC_RADIO_FORMATTYPE3,
+                    "Button",BS_AUTORADIOBUTTON,16,44,174,8
+    CONTROL         "Type4： DSD64 / 2.822MHz(2822400Hz), 2ch",IDC_RADIO_FORMATTYPE4,
+                    "Button",BS_AUTORADIOBUTTON,16,56,174,8
+    GROUPBOX        "Format Display Type",IDC_STATIC_FORMATTYPE,7,7,295,90
+    GROUPBOX        "ID3v2",IDC_STATIC_ID3V2,7,100,295,34
+    LTEXT           "*For sampling rates other than 2.8MHz (2,822,400Hz) and 3.0MHz (3,072,000Hz), ""DSD64"" at the beginning of is not displayed.",IDC_STATIC_FORMATTYPE_INFO,16,74,280,20
+    PUSHBUTTON      "Reset",IDC_BT_RESET_PAGE,243,156,59,13
+END
+
+IDD_DLG_SETUP_OTHER DIALOGEX 0, 0, 309, 176
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Other"
+FONT 9, "Segoe UI", 400, 0, 0x1
+BEGIN
+    LTEXT           "ID3v2 Save format",IDC_STATIC,7,7,79,9
+    COMBOBOX        IDC_COMBO_ID3V2_VERSION,68,17,57,62,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMBO_ID3V2_ENCODE,195,17,75,57,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Version",IDC_STATIC,16,19,47,9
+    LTEXT           "Character Encoding",IDC_STATIC,126,19,66,9
+    LTEXT           "ID3v2 save format (when creating a new one)",IDC_STATIC,7,36,180,9
+    COMBOBOX        IDC_COMBO_ID3V2_VERSION_NEW,68,47,57,62,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMBO_ID3V2_ENCODE_NEW,195,47,75,57,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Version",IDC_STATIC,16,49,48,9
+    LTEXT           "Character Encoding",IDC_STATIC,126,49,66,9
+    PUSHBUTTON      "Reset",IDC_BT_RESET_PAGE,243,156,59,13
+END
+
 
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
@@ -34,12 +163,12 @@ LANGUAGE LANG_ENGLISH, SUBLANG_DEFAULT
 // TEXTINCLUDE
 //
 
-1 TEXTINCLUDE
+1 TEXTINCLUDE 
 BEGIN
     "resource.h\0"
 END
 
-2 TEXTINCLUDE
+2 TEXTINCLUDE 
 BEGIN
     "#ifndef APSTUDIO_INVOKED\r\n"
     "#include ""targetver.h""\r\n"
@@ -49,7 +178,7 @@ BEGIN
     "\0"
 END
 
-3 TEXTINCLUDE
+3 TEXTINCLUDE 
 BEGIN
     "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
     "#define _AFX_NO_OLE_RESOURCES\r\n"
@@ -58,8 +187,8 @@ BEGIN
     "\r\n"
     "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)\r\n"
     "LANGUAGE 17, 1\r\n"
-    "#include ""res\\STEP_dsf.rc2""  // Microsoft Visual C++ 以外で編集されたリソース\r\n"
-    "#include ""l.JPN\\afxres.rc""      // 標準コンポーネント\r\n"
+    "#include ""res\\STEP_dsf.rc2""  // Microsoft Visual C++ 莉･螟悶〒邱ｨ髮・＆繧後◆繝ｪ繧ｽ繝ｼ繧ｹ\r\n"
+    "#include ""l.JPN\\afxres.rc""      // 讓呎ｺ悶さ繝ｳ繝昴・繝阪Φ繝・\n"
     "#endif\r\n"
     "\0"
 END
@@ -111,7 +240,7 @@ END
 // Bitmap
 //
 
-IDB_BITMAP_DSF          BITMAP                  "bmpdsf-24.bmp"
+IDB_BITMAP_DSF          BITMAP                  "bmpdsf.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -168,7 +297,7 @@ BEGIN
     0
 END
 
-#endif    // 日本語 (日本) resources
+#endif    // 英語 (米国) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
@@ -185,8 +314,8 @@ END
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)
 LANGUAGE 17, 1
-#include "res\STEP_dsf.rc2"  // Microsoft Visual C++ 以外で編集されたリソース
-#include "l.JPN\afxres.rc"      // 標準コンポーネント
+#include "res\STEP_dsf.rc2"  // Microsoft Visual C++ ä»¥å¤–ã§ç·¨é›†ã•ã‚ŒãŸãƒªã‚½ãƒ¼ã‚¹
+#include "l.JPN\afxres.rc"      // æ¨™æº–ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆ
 #endif
 
 /////////////////////////////////////////////////////////////////////////////

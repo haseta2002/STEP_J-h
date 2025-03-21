@@ -1,6 +1,6 @@
 //{{NO_DEPENDENCIES}}
-// Microsoft Visual C++ „ÅßÁîüÊàê„Åï„Çå„Åü„Ç§„É≥„ÇØ„É´„Éº„Éâ „Éï„Ç°„Ç§„É´„ÄÇ
-// STEP_dsf.rc „Åß‰ΩøÁî®
+// Microsoft Visual C++ Ç≈ê∂ê¨Ç≥ÇÍÇΩÉCÉìÉNÉãÅ[Éh ÉtÉ@ÉCÉãÅB
+// STEP_dsf.rc Ç≈égóp
 //
 #define IDD_DLG_CONV_ID3V2_VERSION      1000
 #define IDC_COMBO_ID3V2_VERSION         1001
@@ -14,6 +14,7 @@
 #define IDC_STATIC_ID3V2                1007
 #define IDC_STATIC_FORMATTYPE_INFO      1008
 #define IDD_DLG_SETUP_OTHER             1009
+#define IDB_BITMAP1                     1011
 #define IDC_CH_GENRE_LIST_SELECT        1104
 #define IDC_BT_RESET_PAGE               1119
 #define IDC_COMBO_ID3V2_VERSION_NEW     3007
@@ -22,10 +23,10 @@
 #define IDB_BITMAP_DSF                  4000
 
 // Next default values for new objects
-//
+// 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        1011
+#define _APS_NEXT_RESOURCE_VALUE        1012
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1009
 #define _APS_NEXT_SYMED_VALUE           1000
