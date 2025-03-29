@@ -31,6 +31,7 @@
 %ENCODEST%
 %OTHER%
 %FOLDER_FILE_COUNT%
+%ALBUM_ARTIST%
 
 [ユーザ変換書式で使用できる変数]
 %TRACK_NAME%
@@ -60,6 +61,7 @@
 %URL%
 %ENCODEST%
 %OTHER%
+%ALBUM_ARTIST%
 %SKIP%             ※ ファイル名→タグ情報のみ
 
 [書式コピーで使用できる変数]
@@ -97,3 +99,4 @@
 %COMMENT%          ※１行目のみ
 %GENRE%
 %STRING%
+%ALBUM_ARTIST%

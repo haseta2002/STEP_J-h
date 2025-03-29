@@ -70,6 +70,7 @@ enum COLUMNTYPE {
     COLUMN_WRITER,          // 作詞
     COLUMN_COMPOSER,        // 作曲
     COLUMN_ALBM_ARTIST,     // Albm.アーティスト
+    COLUMN_ALBUM_ARTIST = COLUMN_ALBM_ARTIST,	// アルバムアーティスト /* STEP 042 */
     COLUMN_ORIG_ARTIST,     // Orig.アーティスト
     COLUMN_URL,             // URL
     COLUMN_ENCODEST,        // エンコードした人
@@ -84,7 +85,8 @@ enum COLUMNTYPE {
     COLUMN_FILE_CTIME,      // ファイル作成日 /* 2003.06.19 add */
     COLUMN_MAX,
 };
-#define COLUMN_EDIT_MAX COLUMN_OTHER
+//#define COLUMN_EDIT_MAX COLUMN_OTHER
+#define COLUMN_EDIT_MAX (COLUMN_MAX-1) /* STEP 042 */
 
 /* タグ情報取得／設定用のフィールド名 */
 enum FIELDTYPE {
@@ -121,6 +123,7 @@ enum FIELDTYPE {
     FIELD_WRITER_SI,                // 作詞
     FIELD_COMPOSER_SI,              // 作曲
     FIELD_ALBM_ARTIST_SI,           // Albm.アーティスト
+    FILED_ALBUM_ARTIST_SI = FIELD_ALBM_ARTIST_SI,			// アルバムアーティスト /* STEP 042 */
     FIELD_ORIG_ARTIST_SI,           // Orig.アーティスト
     FIELD_URL_SI,                   // URL
     FIELD_ENCODEST,                 // エンコードした人

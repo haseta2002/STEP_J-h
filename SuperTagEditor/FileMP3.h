@@ -86,6 +86,7 @@ struct    FILE_MP3    {
     CString strURLSI;                   // URL /* Baja 154 */
     CString strEncodest;                // エンコードした人 /* Baja 154 */
     CString strOther;                // その他(OggVorbisの非標準タグ) /* Conspiracy 196 */
+    //CString strAlbumArtist;				// アルバムアーティスト /* STEP 042 */
     CString strEngineer;                // エンジニア（出版）/* ADD MIMURA */
 
     void*    fileSpecificInfo;          // ファイル固有情報

@@ -48,6 +48,7 @@
 %LYRIC_FILE_NAME_SHORT%
 %OTHER%
 %FORMAT%
+%ALBUM_ARTIST%
 
 [ヘッダ部・フッタ部で使用できる変数]
 %FILE_COUNT%

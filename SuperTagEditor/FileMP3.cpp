@@ -599,6 +599,7 @@ void CFileMP3::InitDataSIF(FILE_MP3 *fileMP3)
     fileMP3->strURLSI.Empty();          // URL
     fileMP3->strEncodest.Empty();       // エンコードした人
     fileMP3->strOther.Empty();          // その他
+    //fileMP3->strAlbumArtist.Empty();	// アルバムアーティスト /* STEP 042 */
 
 }
 

@@ -480,6 +480,7 @@ extern "C" STEP_API CONTROLTYPE WINAPI STEPGetControlType(UINT nFormat, COLUMNTY
     case COLUMN_ORIG_ARTIST:
     case COLUMN_URL:
     case COLUMN_ENCODEST:
+    //case COLUMN_ALBUM_ARTIST: /* STEP 042 */
         if (!isEditSIF) {
             return _NULL;
         }
@@ -537,6 +538,7 @@ extern "C" STEP_API UINT WINAPI STEPGetColumnMax(UINT nFormat, COLUMNTYPE nColum
         case COLUMN_ORIG_ARTIST:    // Orig.アーティスト
         case COLUMN_URL:            // URL
         case COLUMN_ENCODEST:       // エンコードした人
+        //case COLUMN_ALBUM_ARTIST:	// アルバムアーティスト /* STEP 042 */
         case COLUMN_ENGINEER:       // エンジニア（出版）
         case COLUMN_COMMENT:        // コメント
             return 2048; /* 2003.06.20 増やした */
@@ -1342,6 +1344,7 @@ bool IsCreateID3v2SI(FILE_INFO *pFileMP3, bool bID3v1Only = FALSE)
     if (_tcslen(GetEngineerSI(pFileMP3)) > 0)                       return true;    // エンジニア
     if (_tcslen(GetSoftwareSI(pFileMP3)) > 0
         && _tcscmp(GetSoftwareSI(pFileMP3), strOptSoftwareTag) != 0)        return true;    // ソフトウェア
+    if (_tcslen(GetAlbumArtistSI(pFileMP3)) > 0)				return true;	// アルバムアーティスト /* STEP 042 */
     return false;
 }
 

@@ -74,6 +74,7 @@ const TCHAR    *g_sNameListDefault[] = {
     _T("ファイルの種類"),
     _T("フォーマット"),     //_T("BitRate"), /* Conspiracy 198 */
     _T("その他"), /* Conspiracy 196 */
+    //_T("アルバムアーティスト"), /* STEP 042 */
     _T("作成日"), /* 2003.06.19 add */
     NULL,
 };
@@ -103,7 +104,7 @@ struct COLUMN_STATUS    g_columnStatus[/*COLUMN_MAX*/] = {//デバッグ版で _
     {_T("Commission"), FALSE, 19, 128,   0, FALSE, 0, LVCFMT_LEFT },    // コミッション
     {_T("Writer")    , FALSE, 20, 128,   0, FALSE, 0, LVCFMT_LEFT },    // 作詞
     {_T("Composer")  , FALSE, 21, 128,   0, FALSE, 0, LVCFMT_LEFT },    // 作曲 /* Baja 154 */
-    {_T("AlbmArtist"), TRUE,  22, 128,   0,  TRUE, 0, LVCFMT_LEFT },    // Albm.アーティスト /* Baja 154 */
+    {_T("AlbmArtist"), TRUE,  22, 128,   0,  TRUE, 0, LVCFMT_LEFT },    // Albm.アーティスト
     {_T("OrigArtist"), FALSE, 23, 128,   0, FALSE, 0, LVCFMT_LEFT },    // Orig.アーティスト /* Baja 154 */
     {_T("URL")       , FALSE, 24, 128,   0, FALSE, 0, LVCFMT_LEFT },    // URL /* Baja 154 */
     {_T("Encodest")  , FALSE, 25, 128,   0, FALSE, 0, LVCFMT_LEFT },    // エンコードした人/* Baja 154 */
@@ -117,6 +118,7 @@ struct COLUMN_STATUS    g_columnStatus[/*COLUMN_MAX*/] = {//デバッグ版で _
     {_T("Format")    , FALSE, 32, 128, 0, FALSE, 0, LVCFMT_LEFT },    // フォーマット /* Conspiracy 198 */
     {_T("Other")     , FALSE, 33, 128, 128, FALSE, 128, LVCFMT_LEFT },    // その他 /* Conspiracy 196 */
     {_T("FileCTime") , FALSE, 34, 128, 128, FALSE, 128, LVCFMT_LEFT },    // ファイル作成日 /* 2003.06.19 add */
+    //{_T"AlbumArtist") , FALSE, 30, 128, 128, LVCFMT_LEFT },	// アルバムアーティスト /* STEP 042 */
 };
 
 // カラムタイプ(タグ項目) => カラム番号 への変換テーブル(InitializeGrid() で作成される)
@@ -823,6 +825,7 @@ void CMySuperGrid::UpdateCellInfo()
             controlTable[COLUMN_URL] = GetControlType(nFormat, COLUMN_URL, isEditSIF);
             controlTable[COLUMN_ENCODEST] = GetControlType(nFormat, COLUMN_ENCODEST, isEditSIF);
             controlTable[COLUMN_OTHER] = GetControlType(nFormat, COLUMN_OTHER, isEditSIF);
+            //controlTable[COLUMN_ALBUM_ARTIST] = GetControlType(nFormat, COLUMN_ALBUM_ARTIST, isEditSIF); /* STEP 042 */
             /*
             controlTable[COLUMN_FILE_SIZE] = GetControlType(nFormat, COLUMN_FILE_SIZE, isEditSIF);
             controlTable[COLUMN_FILE_TIME] = GetControlType(nFormat, COLUMN_FILE_TIME, isEditSIF);
@@ -859,6 +862,7 @@ void CMySuperGrid::UpdateCellInfo()
             colMax[COLUMN_URL] = GetColumnMax(nFormat, COLUMN_URL, isEditSIF);
             colMax[COLUMN_ENCODEST] = GetColumnMax(nFormat, COLUMN_ENCODEST, isEditSIF);
             colMax[COLUMN_OTHER] = GetColumnMax(nFormat, COLUMN_OTHER, isEditSIF);
+            //colMax[COLUMN_ALBUM_ARTIST] = GetColumnMax(nFormat, COLUMN_ALBUM_ARTIST, isEditSIF); /* STEP 042 */
             /*
             colMax[COLUMN_FILE_SIZE] = GetColumnMax(nFormat, COLUMN_FILE_SIZE, isEditSIF);
             colMax[COLUMN_FILE_TIME] = GetColumnMax(nFormat, COLUMN_FILE_TIME, isEditSIF);
@@ -897,6 +901,7 @@ void CMySuperGrid::UpdateCellInfo()
                     nameList[COLUMN_URL] = GetColumnName(nFormat, COLUMN_URL);
                     nameList[COLUMN_ENCODEST] = GetColumnName(nFormat, COLUMN_ENCODEST);
                     nameList[COLUMN_OTHER] = GetColumnName(nFormat, COLUMN_OTHER);
+                    //nameList[COLUMN_ALBUM_ARTIST] = GetColumnName(nFormat, COLUMN_ALBUM_ARTIST); /* STEP 042 */
                 } else {
                     delete [] nameList;
                     nameList = NULL;
@@ -1447,6 +1452,8 @@ bool CMySuperGrid::AddFile(const FILE_MP3 *fileMP3, CTreeItem *pItemParent, LPAR
     lp->AddSubItemText("");
     // 歌詞ファイル
     lp->AddSubItemText("");
+    // アルバムアーティスト
+    lp->AddSubItemText(""); /* STEP 042 */
 
     // ジャンルのコンボボックスの設定
     int     nColNum = g_nColumnNumberList[COLUMN_GENRE];
@@ -1615,6 +1622,9 @@ CString CMySuperGrid::GetFileColumnText(const FILE_MP3 *fileMP3, int nColumn)
                           fileMP3->timeCreate.GetHour(), fileMP3->timeCreate.GetMinute(), fileMP3->timeCreate.GetSecond());
         break;
 /* 2003.06.19 end */
+    //case COLUMN_ALBUM_ARTIST:	// アルバムアーティスト /* STEP 042 */
+    //    return(fileMP3->strAlbumArtist);
+    //    break;
     }
     return(strBuffer);
 }
@@ -2952,6 +2962,7 @@ bool CMySuperGrid::ConvTagInfo(CTreeItem *pItem, int nType, const TCHAR *sFormat
             strFileName = StrReplace(strFileName, _T("%URL%")        , fileMP3->strURLSI.SpanExcluding(_T("\r"))); /* Baja 154 */
             strFileName = StrReplace(strFileName, _T("%ENCODEST%")    , fileMP3->strEncodest.SpanExcluding(_T("\r"))); /* Baja 154 */
             strFileName = StrReplace(strFileName, _T("%OTHER%")        , fileMP3->strOther.SpanExcluding(_T("\r"))); /* Conspiracy 196 */
+            strFileName = StrReplace(strFileName, _T("%ALBUM_ARTIST%"), fileMP3->strAlbmArtistSI.SpanExcluding(_T("\r"))); /* STEP 042 */
             ChangeSubItemText(nIndex, g_nColumnNumberList[COLUMN_FILE_NAME], strFileName);
             InvalidateItemRect(nIndex);
         }
@@ -3088,6 +3099,9 @@ bool CMySuperGrid::ConvTagInfo(CTreeItem *pItem, int nType, const TCHAR *sFormat
                 } else if (_tcsnicmp(sFormat, _T("%OTHER%"), 7) == 0) { /* Conspiracy 200 */
                     nColumn = COLUMN_OTHER;
                     nLen = 7;
+                } else if (_tcsnicmp(sFormat, _T("%ALBUM_ARTIST%"), 14) == 0) { /* STEP 042 */
+                    nColumn = COLUMN_ALBUM_ARTIST;
+                    nLen = 14;
                 } else if (_tcsnicmp(sFormat, _T("%SKIP%"), 6) == 0) {
                     nColumn = COLUMN_DUMMY;
                     nLen = 6;
@@ -3994,6 +4008,7 @@ bool CMySuperGrid::ConvUserFormatEx(USER_CONV_FORMAT_EX *pForm)
             strText = StrReplace(strText, _T("%URL%")        , fileMP3->strURLSI.SpanExcluding(_T("\r"))); /* Baja 154 */
             strText = StrReplace(strText, _T("%ENCODEST%")    , fileMP3->strEncodest.SpanExcluding(_T("\r"))); /* Baja 154 */
             strText = StrReplace(strText, _T("%OTHER%")      , fileMP3->strOther.SpanExcluding(_T("\r"))); /* Conspiracy 196 */
+            strText = StrReplace(strText, _T("%ALBUM_ARTIST%"), fileMP3->strAlbmArtistSI.SpanExcluding(_T("\r"))); /* STEP 042 */
 
             /* STEP 007 */
             if (fileCount == 0) {
@@ -5098,6 +5113,7 @@ bool CMySuperGrid::MoveFolderFormat(USER_MOVE_FODLER_FORMAT *pForm, CString strF
         strText = StrReplace(strText, _T("%URL%")          , fileMP3->strURLSI.SpanExcluding(_T("\r"))); /* Baja 154 */
         strText = StrReplace(strText, _T("%ENCODEST%")     , fileMP3->strEncodest.SpanExcluding(_T("\r"))); /* Baja 154 */
         strText = StrReplace(strText, _T("%OTHER%")        , fileMP3->strOther.SpanExcluding(_T("\r"))); /* Conspiracy 196 */
+        strText = StrReplace(strText, _T("%ALBUM_ARTIST%") , fileMP3->strAlbmArtistSI.SpanExcluding(_T("\r"))); /* STEP 042 */
 
 
         // 制御コード（一部）をスペースに置き換え /* SeaKnows2 040 */
@@ -6764,6 +6780,14 @@ void CMySuperGrid::ChangeSubItemText(int iItem, int iSubItem, const TCHAR *sUpda
                     fileMP3->bModifyFlag = TRUE;    // 編集フラグを設定する
                 }
                 break;
+
+            //case COLUMN_ALBUM_ARTIST:		// アルバムアーティスト /* STEP 042 */
+            //    if (fileMP3->strAlbumArtist != strText) {
+            //        fileMP3->strAlbumArtist = strText;
+            //        fileMP3->bModifyFlag = TRUE;	// 編集フラグを設定する
+            //        fileMP3->bTagModifyFlag = TRUE;	// タグ情報が変更された /* STEP 047 */
+            //    }
+            //    break;
             }
 
             // セル内容を更新
@@ -7169,6 +7193,7 @@ CString CMySuperGrid::MakeFormatFileBody(FILE_MP3    *fileMP3, const CString &st
     strText = StrReplaceEx(strText, _T("%URL%")                , ConvHTML(fileMP3->strURLSI, bWriteHtml), bIsHtml); /* Baja 154 */
     strText = StrReplaceEx(strText, _T("%ENCODEST%")        , ConvHTML(fileMP3->strEncodest, bWriteHtml), bIsHtml); /* Baja 154 */
     strText = StrReplaceEx(strText, _T("%OTHER%")            , ConvHTML(fileMP3->strOther, bWriteHtml), bIsHtml); /* Conspiracy 196 */
+    strText = StrReplaceEx(strText, _T("%ALBUM_ARTIST%"), ConvHTML(fileMP3->strAlbmArtistSI, bWriteHtml), bIsHtml); /* STEP 042 */
 
     // 総合演奏時間
     CString strBuffer;
