@@ -1,4 +1,4 @@
-*2005.09.21更新
+*2025.04.06更新
 
 1.プラグインに必ず実装しなければいけない関数
 2.プラグインがタグの読み書きをサポートする場合に実装しなければいけない関数
@@ -486,6 +486,9 @@ LPCTSTR GetURLSI(FILE_INFO* info)
 LPCTSTR GetEncodest(FILE_INFO* info)
 LPCTSTR GetOther(FILE_INFO* info)
 LPCTSTR GetFileTypeName(FILE_INFO* info)
+LPCTSTR GetAlbumArtistSI(FILE_INFO* info) /* STEP 042 */
+LPCTSTR GetWriterSI(FILE_INFO* info) /* STEP 043 */
+
 void SetFullPathName(FILE_INFO* info, LPCTSTR szValue)
 void SetFileName(FILE_INFO* info, LPCTSTR szValue)
 void SetFilePath(FILE_INFO* info, LPCTSTR szValue)
@@ -518,6 +521,8 @@ void SetURLSI(FILE_INFO* info, LPCTSTR szValue)
 void SetEncodest(FILE_INFO* info, LPCTSTR szValue)
 void SetOther(FILE_INFO* info, LPCTSTR szValue)
 void SetFileTypeName(FILE_INFO* info, LPCTSTR szValue)
+void SetAlbumArtistSI(FILE_INFO* info, LPCTSTR szValue) { /* STEP 042 */
+void SetWriterSI(FILE_INFO* info, LPCTSTR szValue) { /* STEP 043 */
 
 bool isModify(FILE_INFO*)
 void SetModifyFlag(FILE_INFO* pInfo, bool bModify)

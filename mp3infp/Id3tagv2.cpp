@@ -988,6 +988,35 @@ void CId3tagv2::SetGenre(LPCTSTR szGenre)
 	SetId3String("TCON",strGenre);
 }
 
+#ifdef STEP
+// id3tagv2.h で定義
+/* STEP 042 */
+CString CId3tagv2::GetAlbumArtist()
+{
+	// アルバムアーティスト
+	return GetId3String("TPE2");
+}
+
+void CId3tagv2::SetAlbumArtist(const char *artist)
+{
+	// アルバムアーティスト
+	SetId3String("TPE2",artist);
+}
+
+/* STEP 043 */
+CString CId3tagv2::GetWriter()
+{
+	// 作詞者
+	return GetId3String("TEXT");
+}
+
+void CId3tagv2::SetWriter(const char *writer)
+{
+	// 作詞者
+	SetId3String("TEXT",writer);
+}
+#endif
+
 DWORD CId3tagv2::DecodeUnSynchronization(unsigned char *data,DWORD dwSize)
 {
 	DWORD dwDecodeSize = 0;

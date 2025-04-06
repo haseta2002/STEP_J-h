@@ -297,7 +297,9 @@ inline LPCTSTR GetFileTypeName(FILE_INFO* info) {
 //inline LPCTSTR GetAlbumArtistSI(FILE_INFO* info) { /* STEP 042 */
 //    return GetValue(info, FILED_ALBUM_ARTIST_SI);
 //}
-
+//inline LPCTSTR GetWriterSI(FILE_INFO* info) { /* STEP 043 */
+//    return GetValue(info, FILED_WRITER_SI);
+//}
 inline void SetFullPathName(FILE_INFO* info, LPCTSTR szValue) {
     SetValue(info, FIELD_FULL_PATH_NAME, szValue);
 }
@@ -414,4 +416,8 @@ inline void SetFileTypeName(FILE_INFO* info, LPCTSTR szValue) {
 }
 //inline void SetAlbumArtistSI(FILE_INFO* info, LPCTSTR szValue) { /* STEP 042 */
 //    SetValue(info, FILED_ALBUM_ARTIST_SI, szValue);
+//}
+//inline void
+// (FILE_INFO* info, LPCTSTR szValue) { /* STEP 043 */
+//    SetValue(info, FILED_WRITER_SI, szValue);
 //}

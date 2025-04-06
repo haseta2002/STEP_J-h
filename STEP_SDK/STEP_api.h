@@ -3,7 +3,9 @@
 
 #define STEP_API //__declspec(dllexport)
 
-#define STEP_API_VERSION 0x000200 /* STEP 029 */
+//#define STEP_API_VERSION 0x000200 /* STEP 029 */
+//#define STEP_API_VERSION 0x000300 /* STEP 042 */
+#define STEP_API_VERSION 0x000400 /* STEP 043 */
 
 /* 処理結果 */
 enum {
@@ -68,6 +70,7 @@ enum COLUMNTYPE {
     COLUMN_LYRIC,           // 歌詞
     COLUMN_COMMISSION,      // コミッション
     COLUMN_WRITER,          // 作詞
+    //COLUMN_WRITER,			// 作詞者 /* STEP 043 */
     COLUMN_COMPOSER,        // 作曲
     COLUMN_ALBM_ARTIST,     // Albm.アーティスト
     COLUMN_ALBUM_ARTIST = COLUMN_ALBM_ARTIST,	// アルバムアーティスト /* STEP 042 */
@@ -129,6 +132,10 @@ enum FIELDTYPE {
     FIELD_ENCODEST,                 // エンコードした人
     FIELD_OTHER,                    // その他
     FILED_FILE_TYPE_NAME,           // ファイルタイプ文字列
+#ifdef STEP
+    FILED_ALBUM_ARTIST_SI,			// アルバムアーティスト /* STEP 042 */
+    FIELD_WRITER_SI,				// 作詞者 /* STEP 043 */
+#endif
     FIELD_MAX
 };
 

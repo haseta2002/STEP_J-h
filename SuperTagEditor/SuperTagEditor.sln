@@ -70,6 +70,14 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "STEP_dsf", "..\STEP_dsf\STE
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libwavpack", "..\libwavpack\sources\src\libwavpack.vcxproj", "{5CCCB9CF-0384-458F-BA08-72B73866840F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "STEP_SDK", "STEP_SDK", "{2022CB0F-8BAF-F49E-0C48-8EF4C96EC109}"
+	ProjectSection(SolutionItems) = preProject
+		..\STEP_SDK\STEPlugin.cpp = ..\STEP_SDK\STEPlugin.cpp
+		..\STEP_SDK\STEPlugin.h = ..\STEP_SDK\STEPlugin.h
+		..\STEP_SDK\STEP_api.h = ..\STEP_SDK\STEP_api.h
+		..\STEP_SDK\STEP_API.txt = ..\STEP_SDK\STEP_API.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32

@@ -481,6 +481,7 @@ extern "C" STEP_API CONTROLTYPE WINAPI STEPGetControlType(UINT nFormat, COLUMNTY
     case COLUMN_URL:
     case COLUMN_ENCODEST:
     //case COLUMN_ALBUM_ARTIST: /* STEP 042 */
+    //case COLUMN_WRITER: /* STEP 043 */
         if (!isEditSIF) {
             return _NULL;
         }
@@ -539,6 +540,7 @@ extern "C" STEP_API UINT WINAPI STEPGetColumnMax(UINT nFormat, COLUMNTYPE nColum
         case COLUMN_URL:            // URL
         case COLUMN_ENCODEST:       // エンコードした人
         //case COLUMN_ALBUM_ARTIST:	// アルバムアーティスト /* STEP 042 */
+        //case COLUMN_WRITER:			// 作詞者 /* STEP 043 */
         case COLUMN_ENGINEER:       // エンジニア（出版）
         case COLUMN_COMMENT:        // コメント
             return 2048; /* 2003.06.20 増やした */
@@ -774,6 +776,8 @@ bool ReadTagID3v2(LPCTSTR sFileName, FILE_INFO *pFileMP3)
     SetOrigArtistSI(pFileMP3, id3v2.GetOrigArtist());   // Orig.アーティスト
     SetURLSI(pFileMP3, id3v2.GetUrl());                 // URL
     SetEncodest(pFileMP3, id3v2.GetEncodedBy());        // エンコードした人
+    //SetAlbumArtistSI(pFileMP3, id3v2.GetAlbumArtist());	// アルバムアーティスト /* STEP 042 */
+    //SetWriterSI(pFileMP3, id3v2.GetWriter());			// 作詞者 /* STEP 043 */
     SetEngineerSI(pFileMP3,id3v2.GetEngineer());        // エンジニア（出版）
 
 //  SetFileTypeName(pFileMP3, "MP3(ID3v2)");
@@ -1177,6 +1181,8 @@ bool WriteTagID3v2(FILE_INFO *pFileMP3)
     id3v2.SetOrigArtist(GetOrigArtistSI(pFileMP3));     // Orig.アーティスト
     id3v2.SetUrl(GetURLSI(pFileMP3));                   // URL
     id3v2.SetEncodedBy(GetEncodest(pFileMP3));          // エンコードした人
+    //id3v2.SetAlbumArtist(GetAlbumArtistSI(pFileMP3));	// アルバムアーティスト /* STEP 042 */
+    //id3v2.SetWriter(GetWriterSI(pFileMP3));				// 作詞者 /* STEP 043 */
     id3v2.SetEngineer(GetEngineerSI(pFileMP3));         // エンジニア（出版）
     // ジャンル名
     CString strGenre;
@@ -1291,6 +1297,7 @@ bool IsCreateID3v2(FILE_INFO *pFileMP3)
     if (STEPIsUserGenre(GetGenreSI(pFileMP3)))                  return true;
     if (CString(GetComment(pFileMP3)).Find('\n') > -1)          return true;
     if (!STEPIsNumeric(GetTrackNumberSI(pFileMP3)))             return true;
+#ifdef STEP_J-h
     /*
     if (_tcslen(GetCopyrightSI(pFileMP3)) > 0)                  return true;    // 著作権
     if (_tcslen(GetComposerSI(pFileMP3)) > 0)                   return true;    // 作曲
@@ -1299,7 +1306,10 @@ bool IsCreateID3v2(FILE_INFO *pFileMP3)
     if (_tcslen(GetEncodest(pFileMP3)) > 0)                     return true;    // エンコードした人
     if (_tcslen(GetSoftwareSI(pFileMP3)) > 0
         && _tcscmp(GetSoftwareSI(pFileMP3), strOptSoftwareTag) != 0)        return true;    // ソフトウェア
+    if (_tcslen(GetAlbumArtistSI(pFileMP3)) > 0)						return true;	// アルバムアーティスト /* STEP 042 */
+    if (_tcslen(GetWriterSI(pFileMP3)) > 0)							return true;	// 作詞者 /* STEP 043 */
     */
+#endif
     return false;
 }
 

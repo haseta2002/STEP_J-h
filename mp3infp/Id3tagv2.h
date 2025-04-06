@@ -224,6 +224,14 @@ private:
 	CString m_strDefaultEnc;		//TENCのデフォルト値
 //	WORD m_wDefaultId3TagVersion;	// ID3V2の初期値(新規作成時にこのバージョンとなる)
 public:
+#ifdef STEP
+    /* STEP 042 */
+    CString GetAlbumArtist();
+    void SetAlbumArtist(const char* artist);
+    /* STEP 043 */
+    CString GetWriter();
+    void SetWriter(const char* writer);
+#endif
     //by Kobarin
     //SetEncode の結果を反映させる
     void ApplyStringEncode(void);

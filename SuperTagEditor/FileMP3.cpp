@@ -600,6 +600,7 @@ void CFileMP3::InitDataSIF(FILE_MP3 *fileMP3)
     fileMP3->strEncodest.Empty();       // エンコードした人
     fileMP3->strOther.Empty();          // その他
     //fileMP3->strAlbumArtist.Empty();	// アルバムアーティスト /* STEP 042 */
+    fileMP3->strWriter.Empty();			// 作詞者 /* STEP 043 */
 
 }
 
