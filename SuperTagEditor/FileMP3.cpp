@@ -524,8 +524,10 @@ void CFileMP3::InitData(FILE_MP3 *fileMP3)
     fileMP3->bModifyFlag    = false;    // 外部から編集されたかどうかのフラグ
     fileMP3->bCheckFlag     = false;    // チェック状態
     fileMP3->lFileSize      = 0L;       // ファイルサイズ
-    fileMP3->time           = CTime(0); // ファイル更新日
-    fileMP3->timeCreate     = CTime(0); // ファイル作成日
+//	fileMP3->time			= CTime(0);	// ファイル更新日
+//	fileMP3->timeCreate		= CTime(0);	// ファイル作成日
+    fileMP3->time = COleDateTime();	// ファイル更新日 /* STEP 044 */
+    fileMP3->timeCreate = COleDateTime();	// ファイル作成日 /* STEP 044 */
 #ifdef USE_VBMP3_DLL
     fileMP3->nPlayTime      = 0;        // 演奏時間(単位：秒)
 #endif
@@ -669,20 +671,27 @@ bool CFileMP3::Attach(const TCHAR *sFileName)
 
     // タイムスタンプを取得
     CFileStatus fileStatus = {0};
-    try{//タイムスタンプが異常だと例外が発生するらしいのでごまかす
-
-    if (CFile::GetStatus(sFileName, fileStatus) == FALSE || fileStatus.m_mtime == -1) {
-        fileStatus.m_mtime = CTime(0);
-        fileStatus.m_ctime = CTime(0);
+    /* STEP 044 */
+//    try{//タイムスタンプが異常だと例外が発生するらしいのでごまかす
+//
+//    if (CFile::GetStatus(sFileName, fileStatus) == FALSE || fileStatus.m_mtime == -1) {
+//        fileStatus.m_mtime = CTime(0);
+//        fileStatus.m_ctime = CTime(0);
+//    }
+//
+//    }catch(...){
+//        fileStatus.m_mtime = CTime(0);
+//        fileStatus.m_ctime = CTime(0);
+//    }
+    CFile::GetStatus(sFileName, fileStatus);
+    if (GetFileTimeStamp(sFileName, m_fileMP3.timeCreate, m_fileMP3.time) == false) { /* STEP 044 */
+        m_fileMP3.time = COleDateTime();
+        m_fileMP3.timeCreate = COleDateTime();
     }
-
-    }catch(...){
-        fileStatus.m_mtime = CTime(0);
-        fileStatus.m_ctime = CTime(0);
-    }
-    m_fileMP3.time          = fileStatus.m_mtime;   // ファイル更新日
-    m_fileMP3.timeCreate    = fileStatus.m_ctime;   // ファイル作成日
-    m_fileMP3.lFileSize     = fileStatus.m_size;    // ファイルサイズ
+    /* STEP 044 */
+//	m_fileMP3.time			= fileStatus.m_mtime;	// ファイル更新日
+//	m_fileMP3.timeCreate	= fileStatus.m_ctime;	// ファイル作成日
+    m_fileMP3.lFileSize = fileStatus.m_size;	// ファイルサイズ
 
     // フルパスをパス名とファイル名に分解
     TCHAR   drive[_MAX_DRIVE], dir[_MAX_DIR], fname[_MAX_FNAME], ext[_MAX_EXT];
@@ -734,18 +743,21 @@ bool CFileMP3::WriteTag(FILE_MP3 *fileMP3, bool bKeepTimeStamp)
         return(false);                      // 以降中止
     }
 
-    try{
-        // タイムスタンプを取得
-        if (CFile::GetStatus(fileMP3->strFullPathName, fileStatus) == FALSE) {
-            return(false);
-        }
-        if (fileStatus.m_mtime == -1)   fileStatus.m_mtime = fileStatus.m_ctime; /* 2005.10.11 日時がおかしい場合に落ちないように */
-        if (fileStatus.m_atime == -1)   fileStatus.m_atime = fileStatus.m_mtime; /* 2005.10.11 日時がおかしい場合に落ちないように */
-    }
-    catch (...) {
-        if (fileStatus.m_mtime == -1)   fileStatus.m_mtime = fileStatus.m_ctime;
-        if (fileStatus.m_atime == -1)   fileStatus.m_atime = fileStatus.m_mtime;
-    }
+    /* STEP 044 */
+//    try{
+//        // タイムスタンプを取得
+//        if (CFile::GetStatus(fileMP3->strFullPathName, fileStatus) == FALSE) {
+//            return(false);
+//        }
+//        if (fileStatus.m_mtime == -1)   fileStatus.m_mtime = fileStatus.m_ctime; /* 2005.10.11 日時がおかしい場合に落ちないように */
+//        if (fileStatus.m_atime == -1)   fileStatus.m_atime = fileStatus.m_mtime; /* 2005.10.11 日時がおかしい場合に落ちないように */
+//    }
+//    catch (...) {
+//        if (fileStatus.m_mtime == -1)   fileStatus.m_mtime = fileStatus.m_ctime;
+//        if (fileStatus.m_atime == -1)   fileStatus.m_atime = fileStatus.m_mtime;
+//    }
+    COleDateTime mtime, ctime;
+    GetFileTimeStamp(fileMP3->strFullPathName, ctime, mtime);
 
     // 読み出し専用ファイルは、上書き確認を行う
     if (fileStatus.m_attribute & CFile::readOnly) {
@@ -753,17 +765,24 @@ bool CFileMP3::WriteTag(FILE_MP3 *fileMP3, bool bKeepTimeStamp)
             // 上書き確認ダイアログを開く
             CDlgFileOverWrite   dialog;
             dialog.m_strFileName = fileMP3->strFullPathName;
-            dialog.m_strSize.Format(_T("%ld byte"), fileStatus.m_size);
-            if (fileStatus.m_mtime.GetTime() < 0) {
+            dialog.m_strSize.Format(_T("%llu byte"), fileStatus.m_size); /* STEP J-h %ld -> %llu */
+            /* STEP 044 *///			if (fileStatus.m_mtime.GetTime() < 0) {
+            if (mtime.GetStatus() != COleDateTime::DateTimeStatus::valid) {
                 dialog.m_strTimeStamp.Format(_T("----/--/-- --:--:--"));
             } else {
                 dialog.m_strTimeStamp.Format(_T("%04d/%02d/%02d %02d:%02d:%02d"),
-                                             fileStatus.m_mtime.GetYear(),
+                    /* STEP 044 */			 /*fileStatus.m_mtime.GetYear(),
                                              fileStatus.m_mtime.GetMonth(),
                                              fileStatus.m_mtime.GetDay(),
                                              fileStatus.m_mtime.GetHour(),
                                              fileStatus.m_mtime.GetMinute(),
-                                             fileStatus.m_mtime.GetSecond());
+                                             fileStatus.m_mtime.GetSecond());*/
+                                            mtime.GetYear(),
+                                            mtime.GetMonth(),
+                                            mtime.GetDay(),
+                                            mtime.GetHour(),
+                                            mtime.GetMinute(),
+                                            mtime.GetSecond());
             }
             dialog.DoModal();
             g_nWriteTagProcFlag = dialog.m_nResult;
@@ -793,6 +812,7 @@ bool CFileMP3::WriteTag(FILE_MP3 *fileMP3, bool bKeepTimeStamp)
     // タイムスタンプをファイル更新前に戻す
     if (bResult) {
         if (bKeepTimeStamp) {
+            /* STEP 044 *//*
             if (fileMP3->time.GetTime() != -1) {
                 // ファイル更新時間を設定
                 fileStatus.m_mtime = fileMP3->time;
@@ -808,15 +828,32 @@ bool CFileMP3::WriteTag(FILE_MP3 *fileMP3, bool bKeepTimeStamp)
                 bResult = false;
             }
             END_CATCH
+            */
+            if (fileMP3->time.GetStatus() == COleDateTime::DateTimeStatus::valid) {
+                // ファイル更新時間を設定
+                mtime = fileMP3->time;
+                if (g_bOptSyncCreateTime) ctime = fileMP3->time;
+            }
+            if (SetFileTimeStamp(fileMP3->strFullPathName, ctime, mtime) != true) {
+                CString	strMsg;
+                strMsg.Format(_T("%s がオープンできませんでした"), (LPCWSTR)fileMP3->strFullPathName);
+                MessageBox(NULL, strMsg, _T("タイムスタンプの更新エラー"), MB_ICONSTOP|MB_OK|MB_TOPMOST);
+                bResult = false;
+            }
         } else {
             // 更新後のタイムスタンプを取得
-            try{
-            if (CFile::GetStatus(fileMP3->strFullPathName, fileStatus) != FALSE) {
-                fileMP3->time = fileStatus.m_mtime;
-            }
+            /* STEP 044 *//*
+            try {
+                if (CFile::GetStatus(fileMP3->strFullPathName, fileStatus) != FALSE) {
+                    fileMP3->time = fileStatus.m_mtime;
+                }
             }
             catch(...){
                 fileMP3->time = fileStatus.m_mtime;
+            }
+            */
+            if (GetFileTimeStamp(fileMP3->strFullPathName, ctime, mtime) != false) {
+                fileMP3->time = mtime;
             }
         }
     }
@@ -1173,4 +1210,94 @@ bool CFileMP3::IsNumeric(const CString &str)
         }
     }
     return TRUE;
+}
+
+/* STEP 044 */
+bool CFileMP3::GetFileTimeStamp(/*const char* */ LPCTSTR sFileName, COleDateTime& ctime, COleDateTime& mtime)
+{
+    HANDLE     hFile;
+    FILETIME   creationTime, lastWriteTime, locTime;
+    SYSTEMTIME sysTime;
+
+    // ファイルハンドルの取得
+    hFile = CreateFile(sFileName,
+        GENERIC_READ/* | GENERIC_WRITE*/,
+        0,
+        NULL,
+        OPEN_EXISTING,
+        FILE_ATTRIBUTE_NORMAL,
+        NULL
+    );
+
+    if (hFile != INVALID_HANDLE_VALUE) {
+        if (GetFileTime(hFile, &creationTime, NULL, &lastWriteTime) == 0) {	// UTC世界標準時
+            CloseHandle(hFile);
+            ctime.SetStatus(COleDateTime::DateTimeStatus::invalid);
+            mtime.SetStatus(COleDateTime::DateTimeStatus::invalid);
+            return false;
+        }
+
+        FileTimeToLocalFileTime(&creationTime, &locTime);			 // ローカルタイム(日本時間)に
+        FileTimeToSystemTime(&locTime, &sysTime);					 // システムタイムに
+        ctime.SetDateTime(sysTime.wYear, sysTime.wMonth, sysTime.wDay, sysTime.wHour, sysTime.wMinute, sysTime.wSecond);
+
+        FileTimeToLocalFileTime(&lastWriteTime, &locTime);
+        FileTimeToSystemTime(&locTime, &sysTime);
+        mtime.SetDateTime(sysTime.wYear, sysTime.wMonth, sysTime.wDay, sysTime.wHour, sysTime.wMinute, sysTime.wSecond);
+
+        CloseHandle(hFile);
+        return true;
+    }
+    ctime.SetStatus(COleDateTime::DateTimeStatus::invalid);
+    mtime.SetStatus(COleDateTime::DateTimeStatus::invalid);
+    return false;
+}
+
+/* STEP 044 */
+bool CFileMP3::SetFileTimeStamp(/* const char* */ LPCTSTR sFileName, COleDateTime& ctime, COleDateTime& mtime)
+{
+    HANDLE     hFile;
+    FILETIME   creationTime, lastWriteTime, locTime;
+    SYSTEMTIME sysTime;
+
+    // ファイルハンドルの取得
+    hFile = CreateFile(sFileName,
+        GENERIC_READ | GENERIC_WRITE,
+        0,
+        NULL,
+        OPEN_EXISTING,
+        FILE_ATTRIBUTE_NORMAL,
+        NULL
+    );
+
+    if (hFile != INVALID_HANDLE_VALUE) {
+        sysTime.wYear = ctime.GetYear();
+        sysTime.wMonth = ctime.GetMonth();
+        sysTime.wDay = ctime.GetDay();
+        sysTime.wHour = ctime.GetHour();
+        sysTime.wMinute = ctime.GetMinute();
+        sysTime.wSecond = ctime.GetSecond();
+        sysTime.wMilliseconds = 0;
+        SystemTimeToFileTime(&sysTime, &locTime);
+        LocalFileTimeToFileTime(&locTime, &creationTime);
+
+        sysTime.wYear = mtime.GetYear();
+        sysTime.wMonth = mtime.GetMonth();
+        sysTime.wDay = mtime.GetDay();
+        sysTime.wHour = mtime.GetHour();
+        sysTime.wMinute = mtime.GetMinute();
+        sysTime.wSecond = mtime.GetSecond();
+        sysTime.wMilliseconds = 0;
+        SystemTimeToFileTime(&sysTime, &locTime);
+        LocalFileTimeToFileTime(&locTime, &lastWriteTime);
+
+        if (SetFileTime(hFile, &creationTime, NULL, &lastWriteTime) == 0) {    // タイムスタンプの修正
+            CloseHandle(hFile);
+            return false;
+        }
+
+        CloseHandle(hFile);
+        return true;
+    }
+    return false;
 }

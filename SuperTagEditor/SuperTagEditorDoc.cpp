@@ -179,6 +179,7 @@ void CSuperTagEditorDoc::Dump(CDumpContext& dc) const
 // 引数  : sFileName    = ファイル名
 // 戻り値: CTime        = タイムスタンプ(CTime(0):エラー)
 // =============================================
+/* STEP 044 *//*
 CTime CSuperTagEditorDoc::GetFileTime(const TCHAR *sFileName)
 {
     CFileStatus status;
@@ -195,6 +196,7 @@ CTime CSuperTagEditorDoc::GetFileTime(const TCHAR *sFileName)
     if (status.m_mtime.GetTime() == -1) return(CTime(0));
     return(status.m_mtime);
 }
+*/
 
 // =============================================
 // CSuperTagEditorDoc::AddRequestFile

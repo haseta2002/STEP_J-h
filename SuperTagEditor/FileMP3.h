@@ -37,8 +37,10 @@ struct    FILE_MP3    {
     bool    bModifyFlag;                // 外部から編集されたかどうかのフラグ
     bool    bCheckFlag;                 // チェック状態
     LONGLONG lFileSize;                 // ファイルサイズ
-    CTime    time;                      // 更新日
-    CTime    timeCreate;                // 作成日
+//	CTime	time;						// 更新日
+//	CTime	timeCreate;					// 作成日
+    COleDateTime	time;				// 更新日 /* STEP 044 */
+    COleDateTime	timeCreate;			// 作成日 /* STEP 044 */
     int     nFormat;                 // ファイルフォーマット(FILE_FORMAT_xxxxx)
     CString strFullPathName;         // ファイル名(フルパス)
     CString strFileName;             // strFullPathName のファイル名部分
@@ -165,11 +167,11 @@ public:     // ======================================
     static  void    InitDataID3(FILE_MP3 *); /* STEP 029 */
             bool    Attach(const TCHAR *);
             void    Detach(void);
-            bool    LoadFile(const TCHAR *, const TCHAR *);
+/* STEP_J-h *///            bool    LoadFile(const TCHAR*, const TCHAR*);
     static  bool    CopyFile(FILE_MP3 *, const TCHAR *, bool = false);
     static  bool    WriteTag(FILE_MP3 *, bool = true);
-    static  bool    WriteFileTag(FILE_MP3 *fileMP3);
-    static  bool    ConvFileFormat(FILE_MP3 *, int);
+/* STEP_J-h *///    static  bool    WriteFileTag(FILE_MP3 *fileMP3);
+/* STEP_J-h *///    static  bool    ConvFileFormat(FILE_MP3 *, int);
 //    static    bool    AutoConvFileFormatID3(FILE_MP3 *fileMP3);
 //    static    bool    DeleteTagID3(FILE_MP3 *fileMP3/*const char **//* Baja 153 */);
 //    static    bool    IsCreateID3v2(FILE_MP3 *fileMP3);
@@ -181,6 +183,8 @@ public:     // ======================================
     static  CString CFileMP3::GetIntDiscNo(const CString &no);
     static  bool    IsNumeric(const CString &str);
     static  bool    ConvFileName(FILE_MP3 *);
+    static	bool	SetFileTimeStamp(/* const char* */ LPCTSTR sFileName, COleDateTime& ctime, COleDateTime& mtime); /* STEP 044 */
+    static	bool	GetFileTimeStamp(/* const char* */ LPCTSTR sFileName, COleDateTime& ctime, COleDateTime& mtime); /* STEP 044 */
 
 private:    // ======================================
             // =====     private メンバ関数     =====

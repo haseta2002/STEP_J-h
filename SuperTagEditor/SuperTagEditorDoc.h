@@ -122,7 +122,7 @@ private:    // ======================================
                 //CString strINI = AfxGetApp()->m_pszProfileName;
                 //InitProfile();
             }
-    CTime    GetFileTime(const TCHAR *);
+/* STEP 044*///    CTime    GetFileTime(const TCHAR*);
     BOOL    SelectDirectory(TCHAR *sLocal, int size);
 
     //追加 by Kobarin

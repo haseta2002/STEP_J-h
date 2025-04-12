@@ -1200,19 +1200,26 @@ extern "C" STEP_API bool WINAPI STEPFileNameChange(FILE_INFO* pFileInfo, LPCTSTR
     _tsplitpath_s(fileMP3->strFileName, NULL, 0, NULL, 0, fname, _MAX_FNAME, NULL, 0);
 
     // ファイル名変更
-    CFileStatus    fileStatus;
+/* STEP 044 *///    CFileStatus    fileStatus;
     bool    bKeepTimeStamp = g_bOptKeepTimeStamp;
     // タイムスタンプを取得
-    fileStatus.m_mtime = -1;
-    try{
-
+   /* STEP 044 */
+//    fileStatus.m_mtime = -1;
+//    try{
+//
+//    if (bKeepTimeStamp
+//    &&  CFile::GetStatus(fileMP3->strFullPathName, fileStatus) == FALSE) {
+//            bKeepTimeStamp = false;
+//    }
+//
+//    }
+//    catch(...){
+//        bKeepTimeStamp = false;
+//    }
+    COleDateTime ctime, mtime;  /* STEP 044 */
     if (bKeepTimeStamp
-    &&  CFile::GetStatus(fileMP3->strFullPathName, fileStatus) == FALSE) {
-        bKeepTimeStamp = false;
-    }
-
-    }
-    catch(...){
+        /* STEP 044 *///	&&  CFile::GetStatus(fileMP3->strFullPathName, fileStatus) == FALSE) {
+        && CFileMP3::GetFileTimeStamp(fileMP3->strFullPathName, ctime, mtime) == false) {
         bKeepTimeStamp = false;
     }
     if (CFileMP3::ConvFileName(fileMP3) == false) {
@@ -1223,14 +1230,23 @@ extern "C" STEP_API bool WINAPI STEPFileNameChange(FILE_INFO* pFileInfo, LPCTSTR
     } else {
         if (bKeepTimeStamp) {
             // ファイル更新時間を設定
+            /* STEP 044 *//*
             fileStatus.m_mtime = fileMP3->time;
             if (g_bOptSyncCreateTime) fileStatus.m_ctime = fileMP3->time;
             try{
             CFile::SetStatus(fileMP3->strFullPathName, fileStatus);
             }catch(...){}
+            */
+            mtime = fileMP3->time;
+            if (g_bOptSyncCreateTime) ctime = fileMP3->time;
+            CFileMP3::SetFileTimeStamp(fileMP3->strFullPathName, ctime, mtime);
         } else {
-            if (fileStatus.m_mtime.GetTime() != -1) {
-                fileMP3->time = fileStatus.m_mtime;
+            /* STEP 044 */
+//			if (fileStatus.m_mtime.GetTime() != -1) {
+//				fileMP3->time = fileStatus.m_mtime;
+//			}
+            if (CFileMP3::GetFileTimeStamp(fileMP3->strFullPathName, ctime, mtime) != false) {
+                fileMP3->time = mtime;
             }
         }
     }
