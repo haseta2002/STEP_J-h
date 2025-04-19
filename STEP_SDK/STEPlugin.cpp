@@ -235,7 +235,7 @@ inline LPCTSTR GetTrackNumberSI(FILE_INFO* info) {
     return GetValue(info, FIELD_TRACK_NUMBER_SI);
 }
 inline LPCTSTR GetDiscNumberSI(FILE_INFO* info) {
-    return GetValue(info, FIELD_Disc_NUMBER_SI);
+    return GetValue(info, FIELD_DISC_NUMBER_SI); /* STEP J-h FIELD_Disc_NUMBER_SI -> FIELD_DISC_NUMBER_SI */
 }
 inline LPCTSTR GetTrackTotalSI(FILE_INFO* info) {//by Kobarin
     return GetValue(info, FIELD_TRACK_TOTAL_SI);
@@ -355,7 +355,7 @@ inline void SetTrackNumberSI(FILE_INFO* info, LPCTSTR szValue) {
     SetValue(info, FIELD_TRACK_NUMBER_SI, szValue);
 }
 inline void SetDiscNumberSI(FILE_INFO* info, LPCTSTR szValue) {
-    SetValue(info, FIELD_Disc_NUMBER_SI, szValue);
+    SetValue(info, FIELD_DISC_NUMBER_SI, szValue); /* STEP J-h FIELD_Disc_NUMBER_SI -> FIELD_DISC_NUMBER_SI */
 }
 inline void SetTrackTotalSI(FILE_INFO* info, LPCTSTR szValue) {//by Kobarin
     SetValue(info, FIELD_TRACK_TOTAL_SI, szValue);

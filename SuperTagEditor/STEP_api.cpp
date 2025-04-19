@@ -801,7 +801,7 @@ extern "C" STEP_API LPCTSTR WINAPI STEPGetValue(FILE_INFO* pFileInfo, FIELDTYPE 
         return pFileMP3->strYearSI;
     case FIELD_TRACK_NUMBER_SI:         // トラック番号
         return pFileMP3->strTrackNumberSI;
-    case FIELD_Disc_NUMBER_SI:          // トラック番号
+    case FIELD_DISC_NUMBER_SI:          // ディスク番号 /* STEP J-h FIELD_Disc_NUMBER_SI -> FIELD_DISC_NUMBER_SI */
         return pFileMP3->strDiscNumberSI;
     case FIELD_TRACK_TOTAL_SI:          // トラック数(by Kobarin)
         return pFileMP3->strTrackTotalSI;
@@ -847,6 +847,8 @@ extern "C" STEP_API LPCTSTR WINAPI STEPGetValue(FILE_INFO* pFileInfo, FIELDTYPE 
     case FIEED_WRITER_SI:				// 作詞者 /* STEP 043 */
         return pFileMP3->strWriter;
 #endif
+    //case FIELD_DISK_NUMBER_SI:			// ディスク番号 /* STEP 045 */ -> FIELD_DISC_NUMBER_SI
+    //    return pFileMP3->strDiskNumberSI;
     }
     return _T("");
 }
@@ -917,7 +919,7 @@ extern "C" STEP_API void WINAPI STEPSetValue(FILE_INFO* pFileInfo, FIELDTYPE nFi
     case FIELD_TRACK_TOTAL_SI:          // トラック数(by Kobarin)
         pFileMP3->strTrackTotalSI = szValue;
         break;
-    case FIELD_Disc_NUMBER_SI:          // ディスク番号
+    case FIELD_DISC_NUMBER_SI:          // ディスク番号 /* STEP J-h FIELD_Disc_NUMBER_SI -> FIELD_DISC_NUMBER_SI */
         pFileMP3->strDiscNumberSI = szValue;
         break;
     case FIELD_DISC_TOTAL_SI:           // ディスク数(by Kobarin)
@@ -980,6 +982,9 @@ extern "C" STEP_API void WINAPI STEPSetValue(FILE_INFO* pFileInfo, FIELDTYPE nFi
         break;
     case FIELD_WRITER_SI:				// 作詞者 /* STEP 043 */
         pFileMP3->strWriter = szValue;
+        break;
+    case FIELD_DISK_NUMBER_SI:			// ディスク番号 /* STEP 045 */ -> FIELD_DISC_NUMBER_SI
+        pFileMP3->strDiskNumberSI = szValue;
         break;
 #endif
     }

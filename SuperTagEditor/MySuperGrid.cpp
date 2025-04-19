@@ -77,6 +77,7 @@ const TCHAR    *g_sNameListDefault[] = {
     _T("作成日"), /* 2003.06.19 add */
     //_T("アルバムアーティスト"), /* STEP 042 */
     _T("作詞者"), /* STEP 043 */
+    //_T("DiskNo"), /* STEP 045 */ -> DiscNo
 
     NULL,
 };
@@ -122,6 +123,7 @@ struct COLUMN_STATUS    g_columnStatus[/*COLUMN_MAX*/] = {//デバッグ版で _
     {_T("FileCTime") , FALSE, 34, 128, 128, FALSE, 128, LVCFMT_LEFT },    // ファイル作成日 /* 2003.06.19 add */
     //{_T"AlbumArtist") , FALSE, 30, 128, 128, LVCFMT_LEFT },	// アルバムアーティスト /* STEP 042 */
     {_T("Writer")    , FALSE, 35, 128, 128, FALSE, 48, LVCFMT_LEFT },	// 作詞者 /* STEP 043 */
+    //{"DiskNo"    , FALSE, 32, 48, 48, LVCFMT_RIGHT },	// ディスク番号 /* STEP 045 */ -> DiscNo
 };
 
 // カラムタイプ(タグ項目) => カラム番号 への変換テーブル(InitializeGrid() で作成される)
@@ -342,7 +344,8 @@ static CString GetFileType(const FILE_MP3 *fileMP3)
 // =============================================
 CMySuperGrid::CMySuperGrid()
 {
-    ASSERT(_countof(g_columnStatus) == COLUMN_MAX);
+    //ASSERT(_countof(g_columnStatus) == COLUMN_MAX);
+    ASSERT(_countof(g_columnStatus) == COLUMN_LIST_MAX);; /* STEP J-h */
 
     m_bDrag = TRUE;
     m_pDoc = NULL;
@@ -830,6 +833,7 @@ void CMySuperGrid::UpdateCellInfo()
             controlTable[COLUMN_OTHER] = GetControlType(nFormat, COLUMN_OTHER, isEditSIF);
             //controlTable[COLUMN_ALBUM_ARTIST] = GetControlType(nFormat, COLUMN_ALBUM_ARTIST, isEditSIF); /* STEP 042 */
             controlTable[COLUMN_WRITER] = GetControlType(nFormat, COLUMN_WRITER, isEditSIF); /* STEP 043 */
+            //controlTable[COLUMN_DISK_NUMBER] = GetControlType(nFormat, COLUMN_DISK_NUMBER, isEditSIF); /* STEP 045 */ -> COLUMN_DISC_NUMBER
             /*
             controlTable[COLUMN_FILE_SIZE] = GetControlType(nFormat, COLUMN_FILE_SIZE, isEditSIF);
             controlTable[COLUMN_FILE_TIME] = GetControlType(nFormat, COLUMN_FILE_TIME, isEditSIF);
@@ -868,6 +872,7 @@ void CMySuperGrid::UpdateCellInfo()
             colMax[COLUMN_OTHER] = GetColumnMax(nFormat, COLUMN_OTHER, isEditSIF);
             //colMax[COLUMN_ALBUM_ARTIST] = GetColumnMax(nFormat, COLUMN_ALBUM_ARTIST, isEditSIF); /* STEP 042 */
             colMax[COLUMN_WRITER] = GetColumnMax(nFormat, COLUMN_WRITER, isEditSIF); /* STEP 043 */
+            //colMax[COLUMN_DISK_NUMBER] = GetColumnMax(nFormat, COLUMN_DISK_NUMBER, isEditSIF); /* STEP 045 */ -> COLUMN_DISC_NUMBER
             /*
             colMax[COLUMN_FILE_SIZE] = GetColumnMax(nFormat, COLUMN_FILE_SIZE, isEditSIF);
             colMax[COLUMN_FILE_TIME] = GetColumnMax(nFormat, COLUMN_FILE_TIME, isEditSIF);
@@ -908,6 +913,7 @@ void CMySuperGrid::UpdateCellInfo()
                     nameList[COLUMN_OTHER] = GetColumnName(nFormat, COLUMN_OTHER);
                     //nameList[COLUMN_ALBUM_ARTIST] = GetColumnName(nFormat, COLUMN_ALBUM_ARTIST); /* STEP 042 */
                     nameList[COLUMN_WRITER] = GetColumnName(nFormat, COLUMN_WRITER); /* STEP 043 */
+                    //nameList[COLUMN_DISK_NUMBER] = GetColumnName(nFormat, COLUMN_DISK_NUMBER); /* STEP 045 */ -> COLUMN_DISC_NUMBER
                 } else {
                     delete [] nameList;
                     nameList = NULL;
@@ -1462,6 +1468,8 @@ bool CMySuperGrid::AddFile(const FILE_MP3 *fileMP3, CTreeItem *pItemParent, LPAR
     lp->AddSubItemText(""); /* STEP 042 */
     // 作詞者
     lp->AddSubItemText(""); /* STEP 043 */
+    // ディスク番号
+    //lp->AddSubItemText(""); /* STEP 045 */
 
     // ジャンルのコンボボックスの設定
     int     nColNum = g_nColumnNumberList[COLUMN_GENRE];
@@ -1635,6 +1643,9 @@ CString CMySuperGrid::GetFileColumnText(const FILE_MP3 *fileMP3, int nColumn)
     //    break;
     //case COLUMN_WRITER:	// 作詞者 /* STEP 043 */
     //    return(fileMP3->strWriter);
+    //    break;
+    //case COLUMN_DISK_NUMBER:	// ディスク番号 /* STEP 045 */ -> COLUMN_DISC_NUMBER
+    //    return(fileMP3->strDiskNumberSI);
     //    break;
     }
     return(strBuffer);
@@ -2945,6 +2956,12 @@ bool CMySuperGrid::ConvTagInfo(CTreeItem *pItem, int nType, const TCHAR *sFormat
             strDiscNumber.Format(_T("%d"), _ttoi(CFileMP3::GetIntDiscNo(GetFileColumnText(fileMP3, COLUMN_DISC_NUMBER).SpanExcluding(_T("\r")))));
             strDiscNumber2.Format(_T("%02d"), _ttoi(CFileMP3::GetIntDiscNo(GetFileColumnText(fileMP3, COLUMN_DISC_NUMBER).SpanExcluding(_T("\r")))));
             strDiscNumber3.Format(_T("%03d"), _ttoi(CFileMP3::GetIntDiscNo(GetFileColumnText(fileMP3, COLUMN_DISC_NUMBER).SpanExcluding(_T("\r")))));
+            //CString	strDiskNumber1; /* STEP 045 */
+            //CString	strDiskNumber2; /* STEP 045 */
+            //CString	strDiskNumber3; /* STEP 045 */
+            //strDiskNumber1.Format("%d", atoi(CFileMP3::GetIntTrackNo(GetFileColumnText(fileMP3, COLUMN_DISK_NUMBER).SpanExcluding("\r")))); /* STEP 045 */
+            //strDiskNumber2.Format("%02d", atoi(CFileMP3::GetIntTrackNo(GetFileColumnText(fileMP3, COLUMN_DISK_NUMBER).SpanExcluding("\r")))); /* STEP 045 */
+            //strDiskNumber3.Format("%03d", atoi(CFileMP3::GetIntTrackNo(GetFileColumnText(fileMP3, COLUMN_DISK_NUMBER).SpanExcluding("\r")))); /* STEP 045 */
             strFileName = StrReplace(strFileName, _T("%TRACK_NAME%")   , GetFileColumnText(fileMP3, COLUMN_TRACK_NAME).SpanExcluding(_T("\r")));
             strFileName = StrReplace(strFileName, _T("%ALBUM_NAME%")   , GetFileColumnText(fileMP3, COLUMN_ALBUM_NAME).SpanExcluding(_T("\r")));
             strFileName = StrReplace(strFileName, _T("%ARTIST_NAME%")  , GetFileColumnText(fileMP3, COLUMN_ARTIST_NAME).SpanExcluding(_T("\r")));
@@ -2975,6 +2992,10 @@ bool CMySuperGrid::ConvTagInfo(CTreeItem *pItem, int nType, const TCHAR *sFormat
             strFileName = StrReplace(strFileName, _T("%OTHER%")        , fileMP3->strOther.SpanExcluding(_T("\r"))); /* Conspiracy 196 */
             strFileName = StrReplace(strFileName, _T("%ALBUM_ARTIST%"), fileMP3->strAlbmArtistSI.SpanExcluding(_T("\r"))); /* STEP 042 */
             strFileName = StrReplace(strFileName, _T("%WRITER%"), fileMP3->strWriter.SpanExcluding(_T("\r"))); /* STEP 043 */
+            strFileName = StrReplace(strFileName, _T("%DISK_NUMBER%"), fileMP3->strDiscNumberSI.SpanExcluding(_T("\r"))); /* STEP 045 */
+            strFileName = StrReplace(strFileName, _T("%DISK_NUMBER1%"), strDiscNumber); /* STEP 045 */
+            strFileName = StrReplace(strFileName, _T("%DISK_NUMBER2%"), strDiscNumber2); /* STEP 045 */
+            strFileName = StrReplace(strFileName, _T("%DISK_NUMBER3%"), strDiscNumber3); /* STEP 045 */
             ChangeSubItemText(nIndex, g_nColumnNumberList[COLUMN_FILE_NAME], strFileName);
             InvalidateItemRect(nIndex);
         }
@@ -3117,6 +3138,22 @@ bool CMySuperGrid::ConvTagInfo(CTreeItem *pItem, int nType, const TCHAR *sFormat
                 //}  else if (_tcsnicmp(sFormat, _T("%WRITER%"), 8) == 0) { /* STEP 043 */
                 //    nColumn = COLUMN_WRITER;
                 //    nLen = 8;
+                }
+                else if (_tcsnicmp(sFormat, _T("%DISK_NUMBER%"), 13) == 0) { /* STEP 045 */
+                    nColumn = COLUMN_DISC_NUMBER;
+                    nLen = 8;
+                }
+                else if (_tcsnicmp(sFormat, _T("%DISK_NUMBER1%"), 14) == 0) { /* STEP 045 */
+                    nColumn = COLUMN_DISC_NUMBER;
+                    nLen = 8;
+                }
+                else if (_tcsnicmp(sFormat, _T("%DISK_NUMBER2%"), 14) == 0) { /* STEP 045 */
+                    nColumn = COLUMN_DISC_NUMBER;
+                    nLen = 8;
+                }
+                else if (_tcsnicmp(sFormat, _T("%DISK_NUMBER3%"), 14) == 0) { /* STEP 045 */
+                    nColumn = COLUMN_DISC_NUMBER;
+                    nLen = 8;
                 } else if (_tcsnicmp(sFormat, _T("%SKIP%"), 6) == 0) {
                     nColumn = COLUMN_DUMMY;
                     nLen = 6;
@@ -3972,6 +4009,7 @@ bool CMySuperGrid::ConvUserFormatEx(USER_CONV_FORMAT_EX *pForm)
 
             CString strText = pForm->strFormat;
             CString strNumber, strNumber2, strTrackNumber, strTrackNumber2, strTrackNumber3, strDiscNumber, strDiscNumber2, strDiscNumber3;
+            //CString strDiskNumber1, strDiskNumber2, strDiskNumber3; /* STEP 045 */
             // 連番
             strNumber.Format(sNumFormat, nNumber);
             // 途切れたら加算する連番2
@@ -3990,6 +4028,13 @@ bool CMySuperGrid::ConvUserFormatEx(USER_CONV_FORMAT_EX *pForm)
             // ３桁のディスク番号
             strDiscNumber3.Format(_T("%03d"), _ttoi(CFileMP3::GetIntDiscNo(GetFileColumnText(fileMP3, COLUMN_DISC_NUMBER).SpanExcluding(_T("\r")))));
 
+            // １桁のディスク番号
+            //strDiskNumber1.Format("%d", atoi(CFileMP3::GetIntTrackNo(GetFileColumnText(fileMP3, COLUMN_DISK_NUMBER).SpanExcluding("\r")))); /* STEP 045 */
+            // ２桁のディスク番号
+            //strDiskNumber2.Format("%02d", atoi(CFileMP3::GetIntTrackNo(GetFileColumnText(fileMP3, COLUMN_DISK_NUMBER).SpanExcluding("\r")))); /* STEP 045 */
+            // ３桁のディスク番号
+            //strDiskNumber3.Format("%03d", atoi(CFileMP3::GetIntTrackNo(GetFileColumnText(fileMP3, COLUMN_DISK_NUMBER).SpanExcluding("\r")))); /* STEP 045 */
+
             // 書式を使って文字列を作成
             strText = StrReplace(strText, _T("%FILE_NAME%")    , sFileName);
             strText = StrReplace(strText, _T("%TRACK_NAME%")   , GetFileColumnText(fileMP3, COLUMN_TRACK_NAME).SpanExcluding(_T("\r")));
@@ -4007,7 +4052,7 @@ bool CMySuperGrid::ConvUserFormatEx(USER_CONV_FORMAT_EX *pForm)
             strText = StrReplace(strText, _T("%NUMBER%")       , strNumber);
             strText = StrReplace(strText, _T("%NUMBER2%")      , strNumber2);
             strText = StrReplace(strText, _T("%STRING%")       , pForm->strFixString);
-            // SIF の項目
+            // SIF の項目 /* STEPTODO: データ取得元を確認する */
             strText = StrReplace(strText, _T("%COPYRIGHT%") , fileMP3->strCopyrightSI.SpanExcluding(_T("\r")));
             strText = StrReplace(strText, _T("%ENGINEER%")  , fileMP3->strEngineerSI.SpanExcluding(_T("\r")));
             strText = StrReplace(strText, _T("%SOURCE%")    , fileMP3->strSourceSI.SpanExcluding(_T("\r")));
@@ -4025,6 +4070,10 @@ bool CMySuperGrid::ConvUserFormatEx(USER_CONV_FORMAT_EX *pForm)
             strText = StrReplace(strText, _T("%OTHER%")      , fileMP3->strOther.SpanExcluding(_T("\r"))); /* Conspiracy 196 */
             strText = StrReplace(strText, _T("%ALBUM_ARTIST%"), fileMP3->strAlbmArtistSI.SpanExcluding(_T("\r"))); /* STEP 042 */
             strText = StrReplace(strText, _T("%WRITER%"), fileMP3->strWriter.SpanExcluding(_T("\r"))); /* STEP 043 */
+            strText = StrReplace(strText, _T("%DISK_NUMBER%"), fileMP3->strDiscNumberSI.SpanExcluding(_T("\r"))); /* STEP 045 */
+            strText = StrReplace(strText, _T("%DISK_NUMBER1%"), strDiscNumber); /* STEP 045 */
+            strText = StrReplace(strText, _T("%DISK_NUMBER2%"), strDiscNumber2); /* STEP 045 */
+            strText = StrReplace(strText, _T("%DISK_NUMBER3%"), strDiscNumber3); /* STEP 045 */
 
             /* STEP 007 */
             if (fileCount == 0) {
@@ -5082,6 +5131,7 @@ bool CMySuperGrid::MoveFolderFormat(USER_MOVE_FODLER_FORMAT *pForm, CString strF
 
         CString strText = pForm->strFormat;
         CString strTrackNumber, strTrackNumber2, strTrackNumber3, strDiscNumber, strDiscNumber2, strDiscNumber3;
+        //CString strDiskNumber1, strDiskNumber2, strDiskNumber3; /* STEP 045 */
 
         // １桁のトラック番号
         strTrackNumber.Format(_T("%d"), _ttoi(CFileMP3::GetIntTrackNo(GetFileColumnText(fileMP3, COLUMN_TRACK_NUMBER).SpanExcluding(_T("\r")))));
@@ -5097,6 +5147,12 @@ bool CMySuperGrid::MoveFolderFormat(USER_MOVE_FODLER_FORMAT *pForm, CString strF
         // ３桁のディスク番号
         strDiscNumber3.Format(_T("%03d"), _ttoi(CFileMP3::GetIntDiscNo(GetFileColumnText(fileMP3, COLUMN_DISC_NUMBER).SpanExcluding(_T("\r")))));
 
+        // １桁のディスク番号
+        //strDiskNumber1.Format("%d", atoi(CFileMP3::GetIntTrackNo(GetFileColumnText(fileMP3, COLUMN_DISK_NUMBER).SpanExcluding("\r")))); /* STEP 045 */
+        // ２桁のディスク番号
+        //strDiskNumber2.Format("%02d", atoi(CFileMP3::GetIntTrackNo(GetFileColumnText(fileMP3, COLUMN_DISK_NUMBER).SpanExcluding("\r")))); /* STEP 045 */
+        // ３桁のディスク番号
+        //strDiskNumber3.Format("%03d", atoi(CFileMP3::GetIntTrackNo(GetFileColumnText(fileMP3, COLUMN_DISK_NUMBER).SpanExcluding("\r")))); /* STEP 045 */
 
         // 書式を使って文字列を作成
         strText = StrReplace(strText, _T("%FILE_NAME%")    , sFileName);
@@ -5113,7 +5169,7 @@ bool CMySuperGrid::MoveFolderFormat(USER_MOVE_FODLER_FORMAT *pForm, CString strF
         strText = StrReplace(strText, _T("%COMMENT%")      , GetFileColumnText(fileMP3, COLUMN_COMMENT).SpanExcluding(_T("\r"))); /* BeachMonster 089 */
         strText = StrReplace(strText, _T("%GENRE%")        , GetFileColumnText(fileMP3, COLUMN_GENRE).SpanExcluding(_T("\r")));
         strText = StrReplace(strText, _T("%STRING%")       , pForm->strFixString);
-        // SIF の項目
+        // SIF の項目 /* STEPTODO: データ取得元を確認する */
         strText = StrReplace(strText, _T("%COPYRIGHT%")    , fileMP3->strCopyrightSI.SpanExcluding(_T("\r")));
         strText = StrReplace(strText, _T("%ENGINEER%")     , fileMP3->strEngineerSI.SpanExcluding(_T("\r")));
         strText = StrReplace(strText, _T("%SOURCE%")       , fileMP3->strSourceSI.SpanExcluding(_T("\r")));
@@ -5130,6 +5186,10 @@ bool CMySuperGrid::MoveFolderFormat(USER_MOVE_FODLER_FORMAT *pForm, CString strF
         strText = StrReplace(strText, _T("%ENCODEST%")     , fileMP3->strEncodest.SpanExcluding(_T("\r"))); /* Baja 154 */
         strText = StrReplace(strText, _T("%OTHER%")        , fileMP3->strOther.SpanExcluding(_T("\r"))); /* Conspiracy 196 */
         strText = StrReplace(strText, _T("%ALBUM_ARTIST%") , fileMP3->strAlbmArtistSI.SpanExcluding(_T("\r"))); /* STEP 042 */
+        strText = StrReplace(strText, _T("%DISK_NUMBER%"), GetFileColumnText(fileMP3, COLUMN_DISC_NUMBER).SpanExcluding(_T("\r"))); /* STEP 045 */
+        strText = StrReplace(strText, _T("%DISK_NUMBER1%"), strDiscNumber); /* STEP 045 */
+        strText = StrReplace(strText, _T("%DISK_NUMBER2%"), strDiscNumber2); /* STEP 045 */
+        strText = StrReplace(strText, _T("%DISK_NUMBER3%"), strDiscNumber3); /* STEP 045 */
 
 
         // 制御コード（一部）をスペースに置き換え /* SeaKnows2 040 */
@@ -6813,6 +6873,12 @@ void CMySuperGrid::ChangeSubItemText(int iItem, int iSubItem, const TCHAR *sUpda
             //    }
             //    break;
             }
+ 			//case COLUMN_DISK_NUMBER:	// ディスク番号 /* STEP 045 */
+            //    if (fileMP3->strDiskNumberSI != strText) {
+            //        fileMP3->strDiskNumberSI = strText;
+            //        fileMP3->bModifyFlag = TRUE;	// 編集フラグを設定する
+            //    }
+            //    break;
             // セル内容を更新
             if (!bUpdateInternal) { /* STEP 037 */
                 pInfo->SetSubItemText(iSubItem-1, strText);
@@ -7093,9 +7159,20 @@ CString CMySuperGrid::MakeFormatFileBody(FILE_MP3    *fileMP3, const CString &st
         strDiscNumber3.Format(_T("%03d"), nDiscNumber);
     }
 
+    /* STEP 045 */
+    //int		nDiskNumber;
+    //CString strDiskNumber1;
+    //CString	strDiskNumber2;
+    //CString	strDiskNumber3;
+    //if ((nDiskNumber = atoi(CFileMP3::GetIntTrackNo(GetFileColumnText(fileMP3, COLUMN_DISK_NUMBER)))) != 0) {
+    //    strDiskNumber1.Format("%d", nDiskNumber);
+    //    strDiskNumber2.Format("%02d", nDiskNumber);
+    //    strDiskNumber3.Format("%03d", nDiskNumber);
+    //}
+
     CString strFileSize, strFileSizeByte;
     strFileSize.Format(_T("%.2fMB"), (float)fileMP3->lFileSize / 1024 / 1024);
-    strFileSizeByte.Format(_T("%d"), fileMP3->lFileSize);
+    strFileSizeByte.Format(_T("%I64d"), fileMP3->lFileSize); /* STEP J-h %d -> %I64d */
     CString strFileTime;
     strFileTime.Format(_T("%04d/%02d/%02d %02d:%02d:%02d"),
                       fileMP3->time.GetYear(), fileMP3->time.GetMonth(), fileMP3->time.GetDay(),
@@ -7218,6 +7295,10 @@ CString CMySuperGrid::MakeFormatFileBody(FILE_MP3    *fileMP3, const CString &st
     strText = StrReplaceEx(strText, _T("%OTHER%")            , ConvHTML(fileMP3->strOther, bWriteHtml), bIsHtml); /* Conspiracy 196 */
     strText = StrReplaceEx(strText, _T("%ALBUM_ARTIST%"), ConvHTML(fileMP3->strAlbmArtistSI, bWriteHtml), bIsHtml); /* STEP 042 */
     strText = StrReplaceEx(strText, _T("%WRITER%"), ConvHTML(fileMP3->strWriter, bWriteHtml), bIsHtml); /* STEP 043 */
+    strText = StrReplaceEx(strText, _T("%DISK_NUMBER%"), ConvHTML(fileMP3->strDiscNumberSI, bWriteHtml), bIsHtml); /* STEP 045 */
+    strText = StrReplaceEx(strText, _T("%DISK_NUMBER1%"), strDiscNumber, bIsHtml); /* STEP 045 */
+    strText = StrReplaceEx(strText, _T("%DISK_NUMBER2%"), strDiscNumber2, bIsHtml); /* STEP 045 */
+    strText = StrReplaceEx(strText, _T("%DISK_NUMBER3%"), strDiscNumber3, bIsHtml); /* STEP 045 */
 
     // 総合演奏時間
     CString strBuffer;

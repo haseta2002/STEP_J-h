@@ -90,6 +90,7 @@ enum COLUMNTYPE {
 };
 //#define COLUMN_EDIT_MAX COLUMN_OTHER
 #define COLUMN_EDIT_MAX (COLUMN_MAX-1) /* STEP 042 */
+#define COLUMN_LIST_MAX (COLUMN_MAX+1/* COLUMN_FILE_NAME */) /* STEP J-h */
 
 /* タグ情報取得／設定用のフィールド名 */
 enum FIELDTYPE {
@@ -113,7 +114,7 @@ enum FIELDTYPE {
     FIELD_GENRE_SI,                 // ジャンル名
     FIELD_TRACK_NUMBER_SI,          // トラック番号
     FIELD_TRACK_TOTAL_SI,           // トラック数(by Kobarin)
-    FIELD_Disc_NUMBER_SI,           // ディスク番号
+    FIELD_DISC_NUMBER_SI,           // ディスク番号 /* STEP J-h FIELD_Disc_NUMBER_SI -> FIELD_DISC_NUMBER_SI */
     FIELD_DISC_TOTAL_SI,            // ディスク数(by Kobarin)
     FIELD_COPYRIGHT_SI,             // 著作権
     FIELD_ENGINEER_SI,              // エンジニア
