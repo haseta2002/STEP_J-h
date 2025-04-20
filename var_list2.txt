@@ -9,8 +9,12 @@
 %DISC_NUMBER%      ※本家STEP/STEP_M では %DISK_NUMBER% だったのを仕様変更
 %DISC_NUMBER2%     ※2桁で出力 (1 => 01)
 %DISC_NUMBER3%     ※3桁で出力 (1 => 001)
+%DISK_NUMBER%      ※STEP互換
+%DISK_NUMBER1%
+%DISK_NUMBER2%
+%DISK_NUMBER3%
 %RELEASE_YEAR%
-%COMMENT%               ※１行目のみ
+%COMMENT%          ※１行目のみ
 %GENRE%
 %NUMBER%           ※連番
 %NUMBER2%          ※途切れたら加算
@@ -31,7 +35,7 @@
 %ENCODEST%
 %OTHER%
 %FOLDER_FILE_COUNT%
-%ALBUM_ARTIST%
+%ALBUM_ARTIST%     ※STEP互換
 
 [ユーザ変換書式で使用できる変数]
 %TRACK_NAME%
@@ -43,6 +47,10 @@
 %DISC_NUMBER%      ※本家STEP/STEP_M では %DISK_NUMBER% だったのを仕様変更
 %DISC_NUMBER2%     ※2桁で出力 (1 => 01)
 %DISC_NUMBER3%     ※3桁で出力 (1 => 001)
+%DISK_NUMBER%      ※STEP互換
+%DISK_NUMBER1%
+%DISK_NUMBER2%
+%DISK_NUMBER3%
 %RELEASE_YEAR%
 %COMMENT%          ※１行目のみ
 %GENRE%
@@ -61,7 +69,7 @@
 %URL%
 %ENCODEST%
 %OTHER%
-%ALBUM_ARTIST%
+%ALBUM_ARTIST%     ※STEP互換
 %SKIP%             ※ ファイル名→タグ情報のみ
 
 [書式コピーで使用できる変数]
@@ -75,6 +83,10 @@
 %DISC_NUMBER%      ※本家STEP/STEP_M では %DISK_NUMBER% だったのを仕様変更
 %DISC_NUMBER2%     ※2桁で出力 (1 => 01)
 %DISC_NUMBER3%     ※3桁で出力 (1 => 001)
+%DISK_NUMBER%      ※STEP互換
+%DISK_NUMBER1%
+%DISK_NUMBER2%
+%DISK_NUMBER3%
 %RELEASE_YEAR%
 %COMMENT%          ※１行目のみ
 %GENRE%
@@ -95,8 +107,12 @@
 %DISC_NUMBER%      ※本家STEP/STEP_M では %DISK_NUMBER% だったのを仕様変更
 %DISC_NUMBER2%     ※2桁で出力 (1 => 01)
 %DISC_NUMBER3%     ※3桁で出力 (1 => 001)
+%DISK_NUMBER%      ※STEP互換
+%DISK_NUMBER1%
+%DISK_NUMBER2%
+%DISK_NUMBER3%
 %RELEASE_YEAR%
 %COMMENT%          ※１行目のみ
 %GENRE%
 %STRING%
-%ALBUM_ARTIST%
+%ALBUM_ARTIST%     ※STEP互換

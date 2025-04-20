@@ -6978,7 +6978,7 @@ void CMySuperGrid::ClipboardCopyFormat(USER_COPY_FORMAT_FORMAT *pForm) /* FunnyC
         strText = StrReplace(strText, _T("%COMMENT%")      , GetFileColumnText(fileMP3, COLUMN_COMMENT).SpanExcluding(_T("\r"))); /* BeachMonster 089 */
         strText = StrReplace(strText, _T("%GENRE%")        , GetFileColumnText(fileMP3, COLUMN_GENRE).SpanExcluding(_T("\r")));
         strText = StrReplace(strText, _T("%STRING%")       , pForm->strFixString);
-        // SIF の項目
+        // SIF の項目 /* STEPTODO: データ取得元を確認する */
         strText = StrReplace(strText, _T("%COPYRIGHT%") , fileMP3->strCopyrightSI.SpanExcluding(_T("\r")));
         strText = StrReplace(strText, _T("%ENGINEER%")  , fileMP3->strEngineerSI.SpanExcluding(_T("\r")));
         strText = StrReplace(strText, _T("%SOURCE%")    , fileMP3->strSourceSI.SpanExcluding(_T("\r")));
@@ -7277,7 +7277,7 @@ CString CMySuperGrid::MakeFormatFileBody(FILE_MP3    *fileMP3, const CString &st
     strText = StrReplaceEx(strText, _T("%LYRIC_FILE_NAME%") , ConvHTML(strLyricFile, bWriteHtml), bIsHtml); /* Rumble 191 */
     strText = StrReplaceEx(strText, _T("%LYRIC_FILE_NAME_SHORT%") , ConvHTML(strLyricFileShort, bWriteHtml), bIsHtml); /* Rumble 191 */
     strText = StrReplaceEx(strText, _T("%FILE_EXTENSION%")  , strExt, bIsHtml); /* Baja 162 */
-    // SIF の情報
+    // SIF の情報 /* STEPTODO: データ取得元を確認する */
     strText = StrReplaceEx(strText, _T("%COPYRIGHT%")       , ConvHTML(fileMP3->strCopyrightSI, bWriteHtml), bIsHtml); /* BeachMonster5 120 */
     strText = StrReplaceEx(strText, _T("%ENGINEER%")        , ConvHTML(fileMP3->strEngineerSI, bWriteHtml), bIsHtml); /* BeachMonster5 120 */
     strText = StrReplaceEx(strText, _T("%SOURCE%")          , ConvHTML(fileMP3->strSourceSI, bWriteHtml), bIsHtml); /* BeachMonster5 120 */
