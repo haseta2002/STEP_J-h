@@ -846,9 +846,9 @@ extern "C" STEP_API LPCTSTR WINAPI STEPGetValue(FILE_INFO* pFileInfo, FIELDTYPE 
         return pFileMP3->strAlbumArtist;
     case FIEED_WRITER_SI:				// 作詞者 /* STEP 043 */
         return pFileMP3->strWriter;
+    case FIELD_DISK_NUMBER_SI:			// ディスク番号 /* STEP 045 */ -> FIELD_DISC_NUMBER_SI
+        return pFileMP3->strDiskNumberSI;
 #endif
-    //case FIELD_DISK_NUMBER_SI:			// ディスク番号 /* STEP 045 */ -> FIELD_DISC_NUMBER_SI
-    //    return pFileMP3->strDiskNumberSI;
     }
     return _T("");
 }

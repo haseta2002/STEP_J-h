@@ -4,6 +4,7 @@
 %ALBUM_NAME%
 %ARTIST_NAME%
 %TRACK_NUMBER%
+%TRACK_NUMBER1%    ※ゼロサプレスで出力(01 => 1)
 %TRACK_NUMBER2%    ※2桁で出力 (1 => 01)
 %TRACK_NUMBER3%    ※3桁で出力 (1 => 001)
 %DISC_NUMBER%      ※本家STEP/STEP_M では %DISK_NUMBER% だったのを仕様変更
@@ -42,6 +43,7 @@
 %ALBUM_NAME%
 %ARTIST_NAME%
 %TRACK_NUMBER%
+%TRACK_NUMBER1%    ※ゼロサプレスで出力(01 => 1)
 %TRACK_NUMBER2%    ※2桁で出力 (1 => 01)
 %TRACK_NUMBER3%    ※3桁で出力 (1 => 001)
 %DISC_NUMBER%      ※本家STEP/STEP_M では %DISK_NUMBER% だったのを仕様変更
@@ -78,6 +80,7 @@
 %ALBUM_NAME%
 %ARTIST_NAME%
 %TRACK_NUMBER%
+%TRACK_NUMBER1%    ※ゼロサプレスで出力(01 => 1)
 %TRACK_NUMBER2%    ※2桁で出力 (1 => 01)
 %TRACK_NUMBER3%    ※3桁で出力 (1 => 001)
 %DISC_NUMBER%      ※本家STEP/STEP_M では %DISK_NUMBER% だったのを仕様変更
@@ -102,6 +105,7 @@
 %ALBUM_NAME%
 %ARTIST_NAME%
 %TRACK_NUMBER%
+%TRACK_NUMBER1%    ※ゼロサプレスで出力(01 => 1)
 %TRACK_NUMBER2%    ※2桁で出力 (1 => 01)
 %TRACK_NUMBER3%    ※3桁で出力 (1 => 001)
 %DISC_NUMBER%      ※本家STEP/STEP_M では %DISK_NUMBER% だったのを仕様変更

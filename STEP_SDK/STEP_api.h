@@ -57,6 +57,7 @@ enum COLUMNTYPE {
     COLUMN_TRACK_NUMBER,    // トラック番号(ID3 tag v1.1のみ)
     COLUMN_TRACK_TOTAL,     // トラック数(by Kobarin)
     COLUMN_DISC_NUMBER,     // ディスク番号
+    COLUMN_DISK_NUMBER = COLUMN_DISC_NUMBER,     // ディスク番号 /* STEP 045 */
     COLUMN_DISC_TOTAL,      // ディスク数(by Kobarin)
     COLUMN_YEAR,            // リリース年号
     COLUMN_GENRE,           // ジャンル
@@ -115,6 +116,7 @@ enum FIELDTYPE {
     FIELD_TRACK_NUMBER_SI,          // トラック番号
     FIELD_TRACK_TOTAL_SI,           // トラック数(by Kobarin)
     FIELD_DISC_NUMBER_SI,           // ディスク番号 /* STEP J-h FIELD_Disc_NUMBER_SI -> FIELD_DISC_NUMBER_SI */
+    FIELD_DISK_NUMBER_SI = FIELD_DISC_NUMBER_SI,  // ディスク番号 /* STEP 045 */
     FIELD_DISC_TOTAL_SI,            // ディスク数(by Kobarin)
     FIELD_COPYRIGHT_SI,             // 著作権
     FIELD_ENGINEER_SI,              // エンジニア
