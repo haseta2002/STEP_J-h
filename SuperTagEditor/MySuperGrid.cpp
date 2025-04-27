@@ -1011,6 +1011,7 @@ void CMySuperGrid::InitializeGrid()
 
 }
 
+#if 0 /* STEP 047 */
 // =============================================
 // CMySuperGrid::SetItemModifyFlag
 // 概要  : アイテムの変更フラグを設定する
@@ -1027,6 +1028,7 @@ void CMySuperGrid::SetItemModifyFlag(CTreeItem *pItem, bool flag)
         fileMP3->bModifyFlag = flag;
     }
 }
+#endif /* STEP 047 */
 
 // =============================================
 // CMySuperGrid::GetItemModifyFlag
@@ -6632,11 +6634,13 @@ void CMySuperGrid::ChangeSubItemText(int iItem, int iSubItem, const TCHAR *sUpda
                     if (fileMP3->strTrackNameSI != strText) {
                         fileMP3->strTrackNameSI = strText;
                         fileMP3->bModifyFlag = TRUE;    // 編集フラグを設定する
+                        fileMP3->bTagModifyFlag = TRUE;	// タグ情報が変更された /* STEP 047 */
                     }
                 } else {
                     if (fileMP3->strTrackName != strText) {
                         fileMP3->strTrackName = strText;
                         fileMP3->bModifyFlag = TRUE;    // 編集フラグを設定する
+                        fileMP3->bTagModifyFlag = TRUE;	// タグ情報が変更された /* STEP 047 */
                     }
                 }
                 break;
@@ -6646,11 +6650,13 @@ void CMySuperGrid::ChangeSubItemText(int iItem, int iSubItem, const TCHAR *sUpda
                     if (fileMP3->strArtistNameSI != strText) {
                         fileMP3->strArtistNameSI = strText;
                         fileMP3->bModifyFlag = TRUE;    // 編集フラグを設定する
+                        fileMP3->bTagModifyFlag = TRUE;	// タグ情報が変更された /* STEP 047 */
                     }
                 } else {
                     if (fileMP3->strArtistName != strText) {
                         fileMP3->strArtistName = strText;
                         fileMP3->bModifyFlag = TRUE;    // 編集フラグを設定する
+                        fileMP3->bTagModifyFlag = TRUE;	// タグ情報が変更された /* STEP 047 */
                     }
                 }
                 break;
@@ -6660,11 +6666,13 @@ void CMySuperGrid::ChangeSubItemText(int iItem, int iSubItem, const TCHAR *sUpda
                     if (fileMP3->strAlbumNameSI != strText) {
                         fileMP3->strAlbumNameSI = strText;
                         fileMP3->bModifyFlag = TRUE;    // 編集フラグを設定する
+                        fileMP3->bTagModifyFlag = TRUE;	// タグ情報が変更された /* STEP 047 */
                     }
                 } else {
                     if (fileMP3->strAlbumName != strText) {
                         fileMP3->strAlbumName = strText;
                         fileMP3->bModifyFlag = TRUE;    // 編集フラグを設定する
+                        fileMP3->bTagModifyFlag = TRUE;	// タグ情報が変更された /* STEP 047 */
                     }
                 }
                 break;
@@ -6681,6 +6689,7 @@ void CMySuperGrid::ChangeSubItemText(int iItem, int iSubItem, const TCHAR *sUpda
                     if (fileMP3->strTrackNumberSI != strText) {
                         fileMP3->strTrackNumberSI = strText;
                         fileMP3->bModifyFlag = TRUE;    // 編集フラグを設定する
+                        fileMP3->bTagModifyFlag = TRUE;	// タグ情報が変更された /* STEP 047 */
                     }
                 } else {
                     int     nTrackNumber;
@@ -6701,6 +6710,7 @@ void CMySuperGrid::ChangeSubItemText(int iItem, int iSubItem, const TCHAR *sUpda
                         fileMP3->strTrackNumber = strText;
                         fileMP3->byTrackNumber = nTrackNumber;
                         fileMP3->bModifyFlag = TRUE;    // 編集フラグを設定する
+                        fileMP3->bTagModifyFlag = TRUE;	// タグ情報が変更された /* STEP 047 */
                     }
                 }
                 break;
@@ -6709,6 +6719,7 @@ void CMySuperGrid::ChangeSubItemText(int iItem, int iSubItem, const TCHAR *sUpda
                     if (fileMP3->strTrackTotalSI != strText) {
                         fileMP3->strTrackTotalSI = strText;
                         fileMP3->bModifyFlag = TRUE;    // 編集フラグを設定する
+                        fileMP3->bTagModifyFlag = TRUE;	// タグ情報が変更された /* STEP 047 */
                     }
                 }
                 break;
@@ -6717,6 +6728,7 @@ void CMySuperGrid::ChangeSubItemText(int iItem, int iSubItem, const TCHAR *sUpda
                     if (fileMP3->strDiscNumberSI != strText) {
                         fileMP3->strDiscNumberSI = strText;
                         fileMP3->bModifyFlag = TRUE;    // 編集フラグを設定する
+                        fileMP3->bTagModifyFlag = TRUE;	// タグ情報が変更された /* STEP 047 */
                     }
                 }
                 break;
@@ -6725,6 +6737,7 @@ void CMySuperGrid::ChangeSubItemText(int iItem, int iSubItem, const TCHAR *sUpda
                     if (fileMP3->strDiscTotalSI != strText) {
                         fileMP3->strDiscTotalSI = strText;
                         fileMP3->bModifyFlag = TRUE;    // 編集フラグを設定する
+                        fileMP3->bTagModifyFlag = TRUE;	// タグ情報が変更された /* STEP 047 */
                     }
                 }
                 break;
@@ -6733,11 +6746,13 @@ void CMySuperGrid::ChangeSubItemText(int iItem, int iSubItem, const TCHAR *sUpda
                     if (fileMP3->strYearSI != strText) {
                         fileMP3->strYearSI = strText;
                         fileMP3->bModifyFlag = TRUE;    // 編集フラグを設定する
+                        fileMP3->bTagModifyFlag = TRUE;	// タグ情報が変更された /* STEP 047 */
                     }
                 } else {
                     if (fileMP3->strYear != strText) {
                         fileMP3->strYear = strText;
                         fileMP3->bModifyFlag = TRUE;    // 編集フラグを設定する
+                        fileMP3->bTagModifyFlag = TRUE;	// タグ情報が変更された /* STEP 047 */
                     }
                 }
                 break;
@@ -6751,6 +6766,7 @@ void CMySuperGrid::ChangeSubItemText(int iItem, int iSubItem, const TCHAR *sUpda
                     if (fileMP3->strGenreSI != strText) {
                         fileMP3->strGenreSI = strText;
                         fileMP3->bModifyFlag = TRUE;
+                        fileMP3->bTagModifyFlag = TRUE;	// タグ情報が変更された /* STEP 047 */
                     }
                 } else {
                     int     nGenre = GetGenreCode(strText);
@@ -6766,6 +6782,7 @@ void CMySuperGrid::ChangeSubItemText(int iItem, int iSubItem, const TCHAR *sUpda
                             fileMP3->strGenre = strText;
                         }
                         fileMP3->bModifyFlag = TRUE;
+                        fileMP3->bTagModifyFlag = TRUE;	// タグ情報が変更された /* STEP 047 */
                     }
                 }
                 break;
@@ -6775,11 +6792,13 @@ void CMySuperGrid::ChangeSubItemText(int iItem, int iSubItem, const TCHAR *sUpda
                     if (fileMP3->strCommentSI != strText) {
                         fileMP3->strCommentSI = strText;
                         fileMP3->bModifyFlag = TRUE;    // 編集フラグを設定する
+                        fileMP3->bTagModifyFlag = TRUE;	// タグ情報が変更された /* STEP 047 */
                     }
                 } else {
                     if (fileMP3->strComment != strText) {
                         fileMP3->strComment = strText;
                         fileMP3->bModifyFlag = TRUE;    // 編集フラグを設定する
+                        fileMP3->bTagModifyFlag = TRUE;	// タグ情報が変更された /* STEP 047 */
                     }
                 }
                 break;
@@ -6788,6 +6807,7 @@ void CMySuperGrid::ChangeSubItemText(int iItem, int iSubItem, const TCHAR *sUpda
                 if (fileMP3->strCopyrightSI != strText) {
                     fileMP3->strCopyrightSI = strText;
                     fileMP3->bModifyFlag = TRUE;    // 編集フラグを設定する
+                    fileMP3->bTagModifyFlag = TRUE;	// タグ情報が変更された /* STEP 047 */
                 }
                 break;
 
@@ -6795,6 +6815,7 @@ void CMySuperGrid::ChangeSubItemText(int iItem, int iSubItem, const TCHAR *sUpda
                 if (fileMP3->strEngineerSI != strText) {
                     fileMP3->strEngineerSI = strText;
                     fileMP3->bModifyFlag = TRUE;    // 編集フラグを設定する
+                    fileMP3->bTagModifyFlag = TRUE;	// タグ情報が変更された /* STEP 047 */
                 }
                 break;
 
@@ -6802,6 +6823,7 @@ void CMySuperGrid::ChangeSubItemText(int iItem, int iSubItem, const TCHAR *sUpda
                 if (fileMP3->strSourceSI != strText) {
                     fileMP3->strSourceSI = strText;
                     fileMP3->bModifyFlag = TRUE;    // 編集フラグを設定する
+                    fileMP3->bTagModifyFlag = TRUE;	// タグ情報が変更された /* STEP 047 */
                 }
                 break;
 
@@ -6809,6 +6831,7 @@ void CMySuperGrid::ChangeSubItemText(int iItem, int iSubItem, const TCHAR *sUpda
                 if (fileMP3->strSoftwareSI != strText) {
                     fileMP3->strSoftwareSI = strText;
                     fileMP3->bModifyFlag = TRUE;    // 編集フラグを設定する
+                    fileMP3->bTagModifyFlag = TRUE;	// タグ情報が変更された /* STEP 047 */
                 }
                 break;
 
@@ -6816,6 +6839,7 @@ void CMySuperGrid::ChangeSubItemText(int iItem, int iSubItem, const TCHAR *sUpda
                 if (fileMP3->strKeywordSI != strText) {
                     fileMP3->strKeywordSI = strText;
                     fileMP3->bModifyFlag = TRUE;    // 編集フラグを設定する
+                    fileMP3->bTagModifyFlag = TRUE;	// タグ情報が変更された /* STEP 047 */
                 }
                 break;
 
@@ -6823,6 +6847,7 @@ void CMySuperGrid::ChangeSubItemText(int iItem, int iSubItem, const TCHAR *sUpda
                 if (fileMP3->strTechnicianSI != strText) {
                     fileMP3->strTechnicianSI = strText;
                     fileMP3->bModifyFlag = TRUE;    // 編集フラグを設定する
+                    fileMP3->bTagModifyFlag = TRUE;	// タグ情報が変更された /* STEP 047 */
                 }
                 break;
 
@@ -6830,6 +6855,7 @@ void CMySuperGrid::ChangeSubItemText(int iItem, int iSubItem, const TCHAR *sUpda
                 if (fileMP3->strLyricSI != strText) {
                     fileMP3->strLyricSI = strText;
                     fileMP3->bModifyFlag = TRUE;    // 編集フラグを設定する
+                    fileMP3->bTagModifyFlag = TRUE;	// タグ情報が変更された /* STEP 047 */
                 }
                 break;
 
@@ -6837,6 +6863,7 @@ void CMySuperGrid::ChangeSubItemText(int iItem, int iSubItem, const TCHAR *sUpda
                 if (fileMP3->strCommissionSI != strText) {
                     fileMP3->strCommissionSI = strText;
                     fileMP3->bModifyFlag = TRUE;    // 編集フラグを設定する
+                    fileMP3->bTagModifyFlag = TRUE;	// タグ情報が変更された /* STEP 047 */
                 }
                 break;
 
@@ -6844,6 +6871,7 @@ void CMySuperGrid::ChangeSubItemText(int iItem, int iSubItem, const TCHAR *sUpda
                 if (fileMP3->strWriterSI != strText) {
                     fileMP3->strWriterSI = strText;
                     fileMP3->bModifyFlag = TRUE;    // 編集フラグを設定する
+                    fileMP3->bTagModifyFlag = TRUE;	// タグ情報が変更された /* STEP 047 */
                 }
                 break;
 
@@ -6851,6 +6879,7 @@ void CMySuperGrid::ChangeSubItemText(int iItem, int iSubItem, const TCHAR *sUpda
                 if (fileMP3->strComposerSI != strText) {
                     fileMP3->strComposerSI = strText;
                     fileMP3->bModifyFlag = TRUE;    // 編集フラグを設定する
+                    fileMP3->bTagModifyFlag = TRUE;	// タグ情報が変更された /* STEP 047 */
                 }
                 break;
 
@@ -6858,6 +6887,7 @@ void CMySuperGrid::ChangeSubItemText(int iItem, int iSubItem, const TCHAR *sUpda
                 if (fileMP3->strAlbmArtistSI != strText) {
                     fileMP3->strAlbmArtistSI = strText;
                     fileMP3->bModifyFlag = TRUE;    // 編集フラグを設定する
+                    fileMP3->bTagModifyFlag = TRUE;	// タグ情報が変更された /* STEP 047 */
                 }
                 break;
 
@@ -6865,6 +6895,7 @@ void CMySuperGrid::ChangeSubItemText(int iItem, int iSubItem, const TCHAR *sUpda
                 if (fileMP3->strOrigArtistSI != strText) {
                     fileMP3->strOrigArtistSI = strText;
                     fileMP3->bModifyFlag = TRUE;    // 編集フラグを設定する
+                    fileMP3->bTagModifyFlag = TRUE;	// タグ情報が変更された /* STEP 047 */
                 }
                 break;
 
@@ -6872,6 +6903,7 @@ void CMySuperGrid::ChangeSubItemText(int iItem, int iSubItem, const TCHAR *sUpda
                 if (fileMP3->strURLSI != strText) {
                     fileMP3->strURLSI = strText;
                     fileMP3->bModifyFlag = TRUE;    // 編集フラグを設定する
+                    fileMP3->bTagModifyFlag = TRUE;	// タグ情報が変更された /* STEP 047 */
                 }
                 break;
 
@@ -6879,6 +6911,7 @@ void CMySuperGrid::ChangeSubItemText(int iItem, int iSubItem, const TCHAR *sUpda
                 if (fileMP3->strEncodest != strText) {
                     fileMP3->strEncodest = strText;
                     fileMP3->bModifyFlag = TRUE;    // 編集フラグを設定する
+                    fileMP3->bTagModifyFlag = TRUE;	// タグ情報が変更された /* STEP 047 */
                 }
                 break;
 
@@ -6886,6 +6919,7 @@ void CMySuperGrid::ChangeSubItemText(int iItem, int iSubItem, const TCHAR *sUpda
                 if (fileMP3->strOther != strText) {
                     fileMP3->strOther = strText;
                     fileMP3->bModifyFlag = TRUE;    // 編集フラグを設定する
+                    fileMP3->bTagModifyFlag = TRUE;	// タグ情報が変更された /* STEP 047 */
                 }
                 break;
 

@@ -522,6 +522,7 @@ void CFileMP3::InitData(FILE_MP3 *fileMP3)
     }
 
     fileMP3->bModifyFlag    = false;    // 外部から編集されたかどうかのフラグ
+    fileMP3->bTagModifyFlag = false;	// 外部からタグ情報が編集されたかどうかのフラグ /* STEP 047 */
     fileMP3->bCheckFlag     = false;    // チェック状態
     fileMP3->lFileSize      = 0L;       // ファイルサイズ
 //	fileMP3->time			= CTime(0);	// ファイル更新日

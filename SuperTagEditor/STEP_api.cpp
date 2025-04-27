@@ -458,12 +458,13 @@ bool SaveFile(FILE_MP3* pFileMP3)
     }
     PSTEPlugin plugin = (PSTEPlugin)plugins.arPlugins.GetAt(nIndex);
     if (!plugin->bUse) return false;
-    if (plugin->STEPSave != NULL) {
+    if (plugin->STEPSave != NULL && pFileMP3->bTagModifyFlag/* STEP 047 */) {
         //タグの更新に失敗後、pFileMP3 の中身が変わって場合は更新前に戻す
         //本来はプラグインのバグであり、本体でやるべきことではない
         FILE_MP3 file_mp3_saved = *pFileMP3;//書き換え前の情報を保存(失敗したら更新前に戻す)
         result = plugin->STEPSave(&fileInfo);
         if (result == STEP_SUCCESS) {
+            pFileMP3->bTagModifyFlag = false; /* STEP 047 */
             result = CFileMP3::ConvFileName(pFileMP3) == true ? STEP_SUCCESS : STEP_ERROR;
         }
         else{//失敗
@@ -481,10 +482,14 @@ bool SaveFile(FILE_MP3* pFileMP3)
             }
         }
     }
+    else { /* STEP 047 */
+        result = CFileMP3::ConvFileName(pFileMP3) == true ? STEP_SUCCESS : STEP_ERROR;
+    }
     if (result != STEP_SUCCESS) {
         return false;
     }
     pFileMP3->bModifyFlag = false;
+    pFileMP3->bTagModifyFlag = false; /* STEP 047 */
     //by Kobarin
     //ファイルを再読み込みして表示更新
     CString strFullPath = pFileMP3->strFullPathName;
@@ -1010,6 +1015,7 @@ extern "C" STEP_API void WINAPI STEPSetBooleanValue(FILE_INFO* pFileInfo, UINT n
     switch (nField) {
     case 0:            // 外部から編集されたかどうかのフラグ
         pFileMP3->bModifyFlag = bFlag;
+        pFileMP3->bTagModifyFlag = bFlag; /* STEP 047 */
         break;
     case 1:            // チェック状態
         pFileMP3->bCheckFlag = bFlag;

@@ -98,6 +98,8 @@ struct    FILE_MP3    {
     CString strFileTypeName;            // ファイルタイプ文字列
 
     void *pTreeItem;
+
+    bool	bTagModifyFlag;				// 外部からタグ情報が編集されたかどうかのフラグ /* STEP 047 */
 };
 
 struct    GENRE_LIST {      // ジャンルリスト

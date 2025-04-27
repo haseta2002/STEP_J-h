@@ -1023,6 +1023,7 @@ void CSuperTagEditorDoc::SaveAllTag(BOOL bSaveOnly)
 
             if (CFileMP3::WriteTag(fileMP3, g_bOptKeepTimeStamp)) {
                 fileMP3->bModifyFlag = FALSE;
+                fileMP3->bTagModifyFlag = FALSE; /* STEP 047 */
             } else {
                 MessageBox(NULL, _T("タグ情報をファイルを更新できませんでした"), fileMP3->strFullPathName, MB_ICONSTOP|MB_OK|MB_TOPMOST);
                 m_bSaveAllTagResult = false;
