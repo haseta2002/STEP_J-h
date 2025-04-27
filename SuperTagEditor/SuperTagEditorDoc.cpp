@@ -1047,4 +1047,5 @@ void CSuperTagEditorDoc::SaveAllTag(BOOL bSaveOnly)
 #ifdef FLICKERFREE
     //listCtrl.SetRedraw(TRUE);
 #endif
+    listCtrl.OnChangeSelect();	// STEP 048 */
 }

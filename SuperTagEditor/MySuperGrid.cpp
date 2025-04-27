@@ -7529,6 +7529,7 @@ bool CMySuperGrid::ProcessSelectedFiles(LPCTSTR szProgressBarTitle, STEPProcessS
     }
 
     m_pDoc->UpdateAllFiles(true);
+    OnChangeSelect();			// STEP 048 */
     AfxSetResourceHandle(hOldRes);
 
     return true;
@@ -7713,6 +7714,7 @@ bool CMySuperGrid::ProcessSelectedFilesForUpdate(LPCTSTR szProgressBarTitle, STE
 
     m_pDoc->UpdateAllFiles(true);
 
+    OnChangeSelect();			// STEP 048 */
     return true;
 }
 
