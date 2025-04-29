@@ -5251,13 +5251,12 @@ bool CMySuperGrid::MoveFolderFormat(USER_MOVE_FODLER_FORMAT *pForm, CString strF
         strText = StrReplace(strText, _T("%URL%")          , fileMP3->strURLSI.SpanExcluding(_T("\r"))); /* Baja 154 */
         strText = StrReplace(strText, _T("%ENCODEST%")     , fileMP3->strEncodest.SpanExcluding(_T("\r"))); /* Baja 154 */
         strText = StrReplace(strText, _T("%OTHER%")        , fileMP3->strOther.SpanExcluding(_T("\r"))); /* Conspiracy 196 */
-        strText = StrReplace(strText, _T("%ALBUM_ARTIST%") , fileMP3->strAlbmArtistSI.SpanExcluding(_T("\r"))); /* STEP 042 */
         strText = StrReplace(strText, _T("%DISK_NUMBER%"), GetFileColumnText(fileMP3, COLUMN_DISK_NUMBER).SpanExcluding(_T("\r"))); /* STEP 045 */
         strText = StrReplace(strText, _T("%DISK_NUMBER1%"), strDiskNumber1); /* STEP 045 */
         strText = StrReplace(strText, _T("%DISK_NUMBER2%"), strDiskNumber2); /* STEP 045 */
         strText = StrReplace(strText, _T("%DISK_NUMBER3%"), strDiskNumber3); /* STEP 045 */
         strText = StrReplace(strText, _T("%COMPILATION%"), GetFileColumnText(fileMP3, COLUMN_COMPILATION).SpanExcluding(_T("\r"))); /* STEP 049 */
-
+        strText = StrReplace(strText, _T("%ALBUM_ARTIST%"), GetFileColumnText(fileMP3, COLUMN_ALBUM_ARTIST).SpanExcluding(_T("\r"))); /* STEP 050 */
 
         // 制御コード（一部）をスペースに置き換え /* SeaKnows2 040 */
         strText = StrReplace(strText, _T("\n"), _T(" "));
