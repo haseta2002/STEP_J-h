@@ -209,6 +209,8 @@ STEP_API LPCTSTR WINAPI STEPGetPluginInfo(void)
     return _T("Version 1.02 Copyright (C) 2003-2006 haseta\r\n")
            _T("Version 1.04M Copyright (C) 2008-2010 Mimura\r\n")
            _T("Version 1.07 Copyright (C) 2016-2019 Kobarin\r\n")
+           _T("Version 1.07 Copyright (C) 2016-2019 Kobarin\r\n")
+           _T("Version 1.08 Copyright (C) 2025 haseta\r\n")
            _T("MP3(ID3v1/ID3v2)/RIFF形式をサポートしています");
 }
 
@@ -501,6 +503,16 @@ extern "C" STEP_API CONTROLTYPE WINAPI STEPGetControlType(UINT nFormat, COLUMNTY
             return _EDIT;
         }
         return _NULL;
+    case COLUMN_COMPILATION: /* STEP 049 */
+        if (!isEditSIF) {
+            return _NULL;
+        }
+        if ((TYPE_IS_MP3V1(nFormat) && bOptAutoConvID3v2) || nFormat == nFileTypeID3V2) {
+            return _CBOX;
+        }
+        else {
+            return _NULL;
+        }
     case COLUMN_ENGINEER:
         if (!isEditSIF) {
             return _NULL;
@@ -549,6 +561,8 @@ extern "C" STEP_API UINT WINAPI STEPGetColumnMax(UINT nFormat, COLUMNTYPE nColum
         case COLUMN_DISC_NUMBER:    // ディスク番号
         case COLUMN_DISC_TOTAL:     // ディスク数
             return 32;
+        case COLUMN_COMPILATION:	// コンピレーション /* STEP 049 */
+            return 8;
         }
     } else {
         switch (nColumn) {
@@ -778,6 +792,8 @@ bool ReadTagID3v2(LPCTSTR sFileName, FILE_INFO *pFileMP3)
     SetEncodest(pFileMP3, id3v2.GetEncodedBy());        // エンコードした人
     //SetAlbumArtistSI(pFileMP3, id3v2.GetAlbumArtist());	// アルバムアーティスト /* STEP 042 */
     //SetWriterSI(pFileMP3, id3v2.GetWriter());			// 作詞者 /* STEP 043 */
+    //SetDiskNumberSI(pFileMP3, id3v2.GetDiskNo());		// DiskNumber /* STEP 045 */
+    SetCompilationSI(pFileMP3, id3v2.GetCompilation());	// コンピレーション /* STEP 049 */
     SetEngineerSI(pFileMP3,id3v2.GetEngineer());        // エンジニア（出版）
 
 //  SetFileTypeName(pFileMP3, "MP3(ID3v2)");
@@ -1183,6 +1199,8 @@ bool WriteTagID3v2(FILE_INFO *pFileMP3)
     id3v2.SetEncodedBy(GetEncodest(pFileMP3));          // エンコードした人
     //id3v2.SetAlbumArtist(GetAlbumArtistSI(pFileMP3));	// アルバムアーティスト /* STEP 042 */
     //id3v2.SetWriter(GetWriterSI(pFileMP3));				// 作詞者 /* STEP 043 */
+    //id3v2.SetDiskNo(GetDiskNumberSI(pFileMP3));			// DiskNumber /* STEP 045 */
+    id3v2.SetCompilation(GetCompilationSI(pFileMP3));	// コンピレーション /* STEP 049 */
     id3v2.SetEngineer(GetEngineerSI(pFileMP3));         // エンジニア（出版）
     // ジャンル名
     CString strGenre;
@@ -1355,6 +1373,9 @@ bool IsCreateID3v2SI(FILE_INFO *pFileMP3, bool bID3v1Only = FALSE)
     if (_tcslen(GetSoftwareSI(pFileMP3)) > 0
         && _tcscmp(GetSoftwareSI(pFileMP3), strOptSoftwareTag) != 0)        return true;    // ソフトウェア
     if (_tcslen(GetAlbumArtistSI(pFileMP3)) > 0)				return true;	// アルバムアーティスト /* STEP 042 */
+    //if (strlen(GetWriterSI(pFileMP3)) > 0)							return true;	// 作詞者 /* STEP 043 */
+    //if (strlen(GetDiskNumberSI(pFileMP3)) > 0)						return true;	// DiskNumber /* STEP 045 */
+    if (_tcslen(GetCompilationSI(pFileMP3)) > 0)						return true;	// コンピレーション /* STEP 049 */
     return false;
 }
 

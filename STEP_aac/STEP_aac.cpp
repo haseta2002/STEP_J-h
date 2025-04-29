@@ -90,6 +90,7 @@ STEP_API LPCTSTR WINAPI STEPGetPluginInfo(void)
     return _T("Version 1.00 Copyright (C) 2004-2005 haseta\r\n")
            _T("Version 1.02M Copyright (C) 2008-2010 Mimura\r\n")
            _T("Version 1.04 Copyright (C) 2016 Kobarin\r\n")
+           _T("Version 1.05 Copyright (C) 2025 haseta\r\n")
            _T("MP4(mp4,m4v,m4a)形式をサポートしています\r\n");
 }
 
@@ -172,6 +173,10 @@ STEP_API CONTROLTYPE WINAPI STEPGetControlType(UINT nFormat, COLUMNTYPE nColumn,
         } else {
             return _EDIT;
         }
+    //case COLUMN_DISK_NUMBER: /* STEP 045 */
+    //    return _EDIT;
+    case COLUMN_COMPILATION: /* STEP 049 */
+        return _CBOX;
     }
     return _NULL;
 }
@@ -194,6 +199,8 @@ STEP_API UINT WINAPI STEPGetColumnMax(UINT nFormat, COLUMNTYPE nColumn, bool isE
     case COLUMN_KEYWORD:        return 1024;
     case COLUMN_SOFTWARE:       return 1024;
     case COLUMN_ALBM_ARTIST:    return 1024;
+    //case COLUMN_DISK_NUMBER:	return 7; /* STEP 045 */
+    case COLUMN_COMPILATION:	return 7; /* STEP 049 */
     }
     return 0;
 }

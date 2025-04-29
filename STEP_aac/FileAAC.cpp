@@ -75,6 +75,16 @@ bool LoadFileAAC(FILE_INFO *pFile)
         _tcsncpy_s(szFormat, szAudio, _TRUNCATE);
     }
     SetAudioFormat(pFile, szFormat);
+
+    int compilation = TagMp4.GetMetadata_Compilation();
+    if (compilation >= 0) {
+        _sntprintf_s(buf, _TRUNCATE, _T("%d"),compilation);
+        SetCompilationSI(pFile, buf);
+    }
+    else {
+        SetCompilationSI(pFile, _T(""));
+    }
+
     return true;
 }
 
@@ -111,6 +121,10 @@ bool WriteFileAAC(FILE_INFO *pFile)
     TagMp4.SetMetadata_Track2(tracktotal);
     TagMp4.SetMetadata_Disc1(discnumber);
     TagMp4.SetMetadata_Disc2(disctotal);
+
+    CString strCompilation = GetCompilationSI(pFile);
+    int compilation = strCompilation.IsEmpty() ? -1 : _ttoi(strCompilation);
+    TagMp4.SetMetadata_Compilation(compilation);
 
     TagMp4.Save(GetFullPath(pFile));
     return true;

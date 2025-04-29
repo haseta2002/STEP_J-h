@@ -121,6 +121,7 @@ public:
     CMySuperGrid();
 
     CStringList    m_strListGenre;
+    CStringList    m_strListCompilation; /* STEP 049 */
     CSuperTagEditorDoc    *m_pDoc;
     BOOL    m_bSortAscending;
     int     m_nSortedCol;

@@ -195,6 +195,9 @@ public:
     void SetWriter(LPCTSTR writer){SetId3String("TEXT", writer);}
     CString GetEngineer() { return GetId3String("TPUB"); }
     void SetEngineer(LPCTSTR engineer) { SetId3String("TPUB", engineer); }
+    /* STEP 049 */
+    CString GetCompilation() { return GetId3String("TCMP"); }
+    void SetCompilation(LPCTSTR compilation) { SetId3String("TCMP", compilation); };
 
     //
     DWORD Load(LPCTSTR szFileName);

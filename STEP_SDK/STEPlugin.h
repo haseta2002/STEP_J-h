@@ -92,6 +92,8 @@ extern LPCTSTR GetOther(FILE_INFO* info);
 extern LPCTSTR GetFileTypeName(FILE_INFO* info);
 //extern LPCTSTR GetAlbumArtistSI(FILE_INFO* info); /* STEP 042 */
 extern LPCTSTR GetWriterSI(FILE_INFO* info); /* STEP 043 */
+extern LPCTSTR GetDiskNumberSI(FILE_INFO* info); /* STEP 045 */
+extern LPCTSTR GetCompilationSI(FILE_INFO* info); /* STEP 049 */
 extern void SetFullPathName(FILE_INFO* info, LPCTSTR szValue);
 extern void SetFileName(FILE_INFO* info, LPCTSTR szValue);
 extern void SetFilePath(FILE_INFO* info, LPCTSTR szValue);
@@ -132,6 +134,8 @@ extern void SetOther(FILE_INFO* info, LPCTSTR szValue);
 extern void SetFileTypeName(FILE_INFO* info, LPCTSTR szValue);
 //extern void SetAlbumArtistSI(FILE_INFO* info, LPCTSTR szValue); /* STEP 042 */
 extern void SetWriterSI(FILE_INFO* info, LPCTSTR szValue); /* STEP 043 */
+extern void SetDiskNumberSI(FILE_INFO* info, LPCTSTR szValue); /* STEP 045 */
+extern void SetCompilationSI(FILE_INFO* info, LPCTSTR szValue); /* STEP 049 */
 
 extern bool isModify(FILE_INFO*);
 extern void SetModifyFlag(FILE_INFO* pInfo, bool bModify);

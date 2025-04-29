@@ -16,7 +16,7 @@ static const unsigned long ID3V2_PADDING_SIZE = 0x0800;
 
 static const char *numeric_frames[] = {
 	"TBPM", "TDAT", "TDLY", "TIME", "TLEN", "TPOS", "TRCK", "TSIZ", "TYER",
-	"TDEN", "TDOR", "TDRC", "TDRL", "TDTG",
+	"TDEN", "TDOR", "TDRC", "TDRL", "TDTG", "TCMP"/* STEP 049 */,
 	NULL
 };
 
@@ -85,6 +85,7 @@ static const id3_v23v22table_t id3_v23v22table[] = {
 	{"WOAS", "WAS"},
 	{"WPUB", "WPB"},
 	{"WXXX", "WXX"},
+    {"TCMP", "TCP"}, /* STEP 049 */
 	{NULL, NULL}
 };
 
@@ -1014,6 +1015,32 @@ void CId3tagv2::SetWriter(const char *writer)
 {
 	// 作詞者
 	SetId3String("TEXT",writer);
+}
+
+/* STEP 045 */
+CString CId3tagv2::GetDiskNo()
+{
+    //ディスク番号
+    return GetId3String("TPOS");
+}
+
+void CId3tagv2::SetDiskNo(const char* szDiskNo)
+{
+    //ディスク番号
+    SetId3String("TPOS", szDiskNo);
+}
+
+/* STEP 049 */
+CString CId3tagv2::GetCompilation()
+{
+    //コンピレーション
+    return GetId3String("TCMP");
+}
+
+void CId3tagv2::SetCompilation(const char* szCompilation)
+{
+    //コンピレーション
+    SetId3String("TCMP", szCompilation);
 }
 #endif
 

@@ -300,6 +300,13 @@ inline LPCTSTR GetFileTypeName(FILE_INFO* info) {
 //inline LPCTSTR GetWriterSI(FILE_INFO* info) { /* STEP 043 */
 //    return GetValue(info, FILED_WRITER_SI);
 //}
+inline LPCTSTR GetDiskNumberSI(FILE_INFO* info) { /* STEP 045 */
+    return GetValue(info, FIELD_DISK_NUMBER_SI);
+}
+inline LPCTSTR GetCompilationSI(FILE_INFO* info) { /* STEP 049 */
+    return GetValue(info, FIELD_COMPILATION_SI);
+}
+
 inline void SetFullPathName(FILE_INFO* info, LPCTSTR szValue) {
     SetValue(info, FIELD_FULL_PATH_NAME, szValue);
 }
@@ -421,3 +428,9 @@ inline void SetFileTypeName(FILE_INFO* info, LPCTSTR szValue) {
 // (FILE_INFO* info, LPCTSTR szValue) { /* STEP 043 */
 //    SetValue(info, FILED_WRITER_SI, szValue);
 //}
+inline void SetDiskNumberSI(FILE_INFO* info, LPCTSTR szValue) { /* STEP 045 */
+    SetValue(info, FIELD_DISK_NUMBER_SI, szValue);
+}
+inline void SetCompilationSI(FILE_INFO* info, LPCTSTR szValue) { /* STEP 049 */
+    SetValue(info, FIELD_COMPILATION_SI, szValue);
+}

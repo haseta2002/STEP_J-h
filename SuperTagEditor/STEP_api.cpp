@@ -854,6 +854,8 @@ extern "C" STEP_API LPCTSTR WINAPI STEPGetValue(FILE_INFO* pFileInfo, FIELDTYPE 
     case FIELD_DISK_NUMBER_SI:			// ディスク番号 /* STEP 045 */ -> FIELD_DISC_NUMBER_SI
         return pFileMP3->strDiskNumberSI;
 #endif
+    case FIELD_COMPILATION_SI:			// コンピレーション /* STEP 049 */
+        return pFileMP3->strCompilationSI;
     }
     return _T("");
 }
@@ -992,6 +994,8 @@ extern "C" STEP_API void WINAPI STEPSetValue(FILE_INFO* pFileInfo, FIELDTYPE nFi
         pFileMP3->strDiskNumberSI = szValue;
         break;
 #endif
+    case FIELD_COMPILATION_SI:			// コンピレーション /* STEP 049 */
+        pFileMP3->strCompilationSI = szValue;
     }
 }
 

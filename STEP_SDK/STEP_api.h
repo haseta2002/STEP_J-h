@@ -5,7 +5,8 @@
 
 //#define STEP_API_VERSION 0x000200 /* STEP 029 */
 //#define STEP_API_VERSION 0x000300 /* STEP 042 */
-#define STEP_API_VERSION 0x000400 /* STEP 043 */
+//#define STEP_API_VERSION 0x000400 /* STEP 043 */
+#define STEP_API_VERSION 0x000500 /* STEP 045 *//* STEP 049 */
 
 /* 処理結果 */
 enum {
@@ -87,11 +88,11 @@ enum COLUMNTYPE {
     COLUMN_FORMAT,          // フォーマット
     COLUMN_OTHER,           // その他
     COLUMN_FILE_CTIME,      // ファイル作成日 /* 2003.06.19 add */
+    COLUMN_COMPILATION,		// コンピレーション /* STEP 049 */
     COLUMN_MAX,
 };
 //#define COLUMN_EDIT_MAX COLUMN_OTHER
 #define COLUMN_EDIT_MAX (COLUMN_MAX-1) /* STEP 042 */
-#define COLUMN_LIST_MAX (COLUMN_MAX+1/* COLUMN_FILE_NAME */) /* STEP J-h */
 
 /* タグ情報取得／設定用のフィールド名 */
 enum FIELDTYPE {
@@ -139,6 +140,7 @@ enum FIELDTYPE {
     FILED_ALBUM_ARTIST_SI,			// アルバムアーティスト /* STEP 042 */
     FIELD_WRITER_SI,				// 作詞者 /* STEP 043 */
 #endif
+    FIELD_COMPILATION_SI,			// コンピレーション /* STEP 049 */
     FIELD_MAX
 };
 

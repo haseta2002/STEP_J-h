@@ -91,6 +91,7 @@ struct    FILE_MP3    {
     //CString strAlbumArtist;				// アルバムアーティスト /* STEP 042 */
     CString strWriter;					// 作詞者 /* STEP 043 */
     //CString	strDiskNumberSI;			// ディスク番号 /* STEP 045 */ -> strDiscNumberSI
+    CString strCompilationSI;			// コンピレーション(YES=1,NO=0) /* STEP 049 */
     CString strEngineer;                // エンジニア（出版）/* ADD MIMURA */
 
     void*    fileSpecificInfo;          // ファイル固有情報

@@ -590,9 +590,11 @@ DWORD CTag_Mp4::Save(LPCTSTR szFileName)
 
 		if(m_iMetadata_Compilation != -1)
 		{
-			uint8_t compilation = 1;
-			MP4TagsSetCompilation(tags, &compilation);
-		}
+            /* STEP 049 */
+			//uint8_t compilation = 1;
+			//MP4TagsSetCompilation(tags, &compilation);
+            MP4TagsSetCompilation(tags, &(uint8_t)m_iMetadata_Compilation);
+        }
 		else
 		{
 			MP4TagsSetCompilation(tags, NULL);
