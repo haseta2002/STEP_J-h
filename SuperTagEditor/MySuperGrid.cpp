@@ -3010,24 +3010,24 @@ bool CMySuperGrid::ConvTagInfo(CTreeItem *pItem, int nType, const TCHAR *sFormat
             strFileName = StrReplace(strFileName, _T("%COMMENT%")      , GetFileColumnText(fileMP3, COLUMN_COMMENT).SpanExcluding(_T("\r"))); /* BeachMonster 089 */
             strFileName = StrReplace(strFileName, _T("%GENRE%")        , GetFileColumnText(fileMP3, COLUMN_GENRE).SpanExcluding(_T("\r")));
             // SIF の項目
-            strFileName = StrReplace(strFileName, _T("%COPYRIGHT%") , fileMP3->strCopyrightSI.SpanExcluding(_T("\r")));
-            strFileName = StrReplace(strFileName, _T("%ENGINEER%")  , fileMP3->strEngineerSI.SpanExcluding(_T("\r")));
-            strFileName = StrReplace(strFileName, _T("%SOURCE%")    , fileMP3->strSourceSI.SpanExcluding(_T("\r")));
-            strFileName = StrReplace(strFileName, _T("%SOFTWARE%")  , fileMP3->strSoftwareSI.SpanExcluding(_T("\r")));
-            strFileName = StrReplace(strFileName, _T("%KEYWORD%")   , fileMP3->strKeywordSI.SpanExcluding(_T("\r")));
-            strFileName = StrReplace(strFileName, _T("%TECHNICIAN%"), fileMP3->strTechnicianSI.SpanExcluding(_T("\r")));
-            strFileName = StrReplace(strFileName, _T("%LYRIC%")     , fileMP3->strLyricSI.SpanExcluding(_T("\r")));
-            strFileName = StrReplace(strFileName, _T("%COMMISSION%"), fileMP3->strCommissionSI.SpanExcluding(_T("\r")));
-            strFileName = StrReplace(strFileName, _T("%WRITER%")    , fileMP3->strWriterSI.SpanExcluding(_T("\r"))); /* Baja 154 */
-            strFileName = StrReplace(strFileName, _T("%COMPOSER%")    , fileMP3->strComposerSI.SpanExcluding(_T("\r"))); /* Baja 154 */
-            strFileName = StrReplace(strFileName, _T("%ALBM_ARTIST%"), fileMP3->strAlbmArtistSI.SpanExcluding(_T("\r"))); /* Baja 154 */
-            strFileName = StrReplace(strFileName, _T("%ORIG_ARTIST%"), fileMP3->strOrigArtistSI.SpanExcluding(_T("\r"))); /* Baja 154 */
-            strFileName = StrReplace(strFileName, _T("%URL%")        , fileMP3->strURLSI.SpanExcluding(_T("\r"))); /* Baja 154 */
-            strFileName = StrReplace(strFileName, _T("%ENCODEST%")    , fileMP3->strEncodest.SpanExcluding(_T("\r"))); /* Baja 154 */
-            strFileName = StrReplace(strFileName, _T("%OTHER%")        , fileMP3->strOther.SpanExcluding(_T("\r"))); /* Conspiracy 196 */
-            strFileName = StrReplace(strFileName, _T("%ALBUM_ARTIST%"), fileMP3->strAlbmArtistSI.SpanExcluding(_T("\r"))); /* STEP 042 */
-            strFileName = StrReplace(strFileName, _T("%WRITER%"), fileMP3->strWriter.SpanExcluding(_T("\r"))); /* STEP 043 */
-            strFileName = StrReplace(strFileName, _T("%DISK_NUMBER%"), fileMP3->strDiscNumberSI.SpanExcluding(_T("\r"))); /* STEP 045 */
+            strFileName = StrReplace(strFileName, _T("%COPYRIGHT%") , GetFileColumnText(fileMP3, COLUMN_COPYRIGHT).SpanExcluding(_T("\r")));
+            strFileName = StrReplace(strFileName, _T("%ENGINEER%")  , GetFileColumnText(fileMP3, COLUMN_ENGINEER).SpanExcluding(_T("\r")));
+            strFileName = StrReplace(strFileName, _T("%SOURCE%")    , GetFileColumnText(fileMP3, COLUMN_SOURCE).SpanExcluding(_T("\r")));
+            strFileName = StrReplace(strFileName, _T("%SOFTWARE%")  , GetFileColumnText(fileMP3, COLUMN_SOFTWARE).SpanExcluding(_T("\r")));
+            strFileName = StrReplace(strFileName, _T("%KEYWORD%")   , GetFileColumnText(fileMP3, COLUMN_KEYWORD).SpanExcluding(_T("\r")));
+            strFileName = StrReplace(strFileName, _T("%TECHNICIAN%"), GetFileColumnText(fileMP3, COLUMN_TECHNICIAN).SpanExcluding(_T("\r")));
+            strFileName = StrReplace(strFileName, _T("%LYRIC%")     , GetFileColumnText(fileMP3, COLUMN_LYRIC).SpanExcluding(_T("\r")));
+            strFileName = StrReplace(strFileName, _T("%COMMISSION%"), GetFileColumnText(fileMP3, COLUMN_COMMISSION).SpanExcluding(_T("\r"))); /* Baja 154 */
+            strFileName = StrReplace(strFileName, _T("%WRITER%")    , GetFileColumnText(fileMP3, COLUMN_WRITER).SpanExcluding(_T("\r")));
+            strFileName = StrReplace(strFileName, _T("%COMPOSER%")    , GetFileColumnText(fileMP3, COLUMN_COMPOSER).SpanExcluding(_T("\r"))); /* Baja 154 */
+            strFileName = StrReplace(strFileName, _T("%ALBM_ARTIST%"), GetFileColumnText(fileMP3, COLUMN_ALBM_ARTIST).SpanExcluding(_T("\r")));
+            strFileName = StrReplace(strFileName, _T("%ORIG_ARTIST%"), GetFileColumnText(fileMP3, COLUMN_ORIG_ARTIST).SpanExcluding(_T("\r"))); /* Baja 154 */
+            strFileName = StrReplace(strFileName, _T("%URL%")        , GetFileColumnText(fileMP3, COLUMN_URL).SpanExcluding(_T("\r"))); /* Baja 154 */
+            strFileName = StrReplace(strFileName, _T("%ENCODEST%")    , GetFileColumnText(fileMP3, COLUMN_ENCODEST).SpanExcluding(_T("\r"))); /* Baja 154 */
+            strFileName = StrReplace(strFileName, _T("%OTHER%")        , GetFileColumnText(fileMP3, COLUMN_OTHER).SpanExcluding(_T("\r"))); /* Conspiracy 196 */
+            strFileName = StrReplace(strFileName, _T("%ALBUM_ARTIST%"), GetFileColumnText(fileMP3, COLUMN_ALBUM_ARTIST).SpanExcluding(_T("\r"))); /* STEP 042 */
+            //strFileName = StrReplace(strFileName, _T("%WRITER%"), fileMP3->strWriter.SpanExcluding(_T("\r"))); /* STEP 043 */
+            strFileName = StrReplace(strFileName, _T("%DISK_NUMBER%"), GetFileColumnText(fileMP3, COLUMN_DISK_NUMBER).SpanExcluding(_T("\r"))); /* STEP 045 */
             strFileName = StrReplace(strFileName, _T("%DISK_NUMBER1%"), strDiskNumber1); /* STEP 045 */
             strFileName = StrReplace(strFileName, _T("%DISK_NUMBER2%"), strDiskNumber2); /* STEP 045 */
             strFileName = StrReplace(strFileName, _T("%DISK_NUMBER3%"), strDiskNumber3); /* STEP 045 */
@@ -4113,29 +4113,29 @@ bool CMySuperGrid::ConvUserFormatEx(USER_CONV_FORMAT_EX *pForm)
             strText = StrReplace(strText, _T("%NUMBER%")       , strNumber);
             strText = StrReplace(strText, _T("%NUMBER2%")      , strNumber2);
             strText = StrReplace(strText, _T("%STRING%")       , pForm->strFixString);
-            // SIF の項目 /* STEPTODO: データ取得元を確認する */
-            strText = StrReplace(strText, _T("%COPYRIGHT%") , fileMP3->strCopyrightSI.SpanExcluding(_T("\r")));
-            strText = StrReplace(strText, _T("%ENGINEER%")  , fileMP3->strEngineerSI.SpanExcluding(_T("\r")));
-            strText = StrReplace(strText, _T("%SOURCE%")    , fileMP3->strSourceSI.SpanExcluding(_T("\r")));
-            strText = StrReplace(strText, _T("%SOFTWARE%")  , fileMP3->strSoftwareSI.SpanExcluding(_T("\r")));
-            strText = StrReplace(strText, _T("%KEYWORD%")   , fileMP3->strKeywordSI.SpanExcluding(_T("\r")));
-            strText = StrReplace(strText, _T("%TECHNICIAN%"), fileMP3->strTechnicianSI.SpanExcluding(_T("\r")));
-            strText = StrReplace(strText, _T("%LYRIC%")     , fileMP3->strLyricSI.SpanExcluding(_T("\r")));
-            strText = StrReplace(strText, _T("%COMMISSION%"), fileMP3->strCommissionSI.SpanExcluding(_T("\r")));
-            strText = StrReplace(strText, _T("%WRITER%")    , fileMP3->strWriterSI.SpanExcluding(_T("\r"))); /* Baja 154 */
-            strText = StrReplace(strText, _T("%COMPOSER%")    , fileMP3->strComposerSI.SpanExcluding(_T("\r"))); /* Baja 154 */
-            strText = StrReplace(strText, _T("%ALBM_ARTIST%"), fileMP3->strAlbmArtistSI.SpanExcluding(_T("\r"))); /* Baja 154 */
-            strText = StrReplace(strText, _T("%ORIG_ARTIST%"), fileMP3->strOrigArtistSI.SpanExcluding(_T("\r"))); /* Baja 154 */
-            strText = StrReplace(strText, _T("%URL%")        , fileMP3->strURLSI.SpanExcluding(_T("\r"))); /* Baja 154 */
-            strText = StrReplace(strText, _T("%ENCODEST%")    , fileMP3->strEncodest.SpanExcluding(_T("\r"))); /* Baja 154 */
-            strText = StrReplace(strText, _T("%OTHER%")      , fileMP3->strOther.SpanExcluding(_T("\r"))); /* Conspiracy 196 */
-            strText = StrReplace(strText, _T("%ALBUM_ARTIST%"), fileMP3->strAlbmArtistSI.SpanExcluding(_T("\r"))); /* STEP 042 */
-            strText = StrReplace(strText, _T("%WRITER%"), fileMP3->strWriter.SpanExcluding(_T("\r"))); /* STEP 043 */
-            strText = StrReplace(strText, _T("%DISK_NUMBER%"), fileMP3->strDiscNumberSI.SpanExcluding(_T("\r"))); /* STEP 045 */
-            strText = StrReplace(strText, _T("%DISK_NUMBER1%"), strDiskNumber1); /* STEP 045 */
-            strText = StrReplace(strText, _T("%DISK_NUMBER2%"), strDiskNumber2); /* STEP 045 */
-            strText = StrReplace(strText, _T("%DISK_NUMBER3%"), strDiskNumber3); /* STEP 045 */
-            strText = StrReplace(strText, _T("%COMPILATION%"), GetFileColumnText(fileMP3, COLUMN_COMPILATION).SpanExcluding(_T("\r"))); /* STEP 049 */
+            // SIF の項目
+            strFileName = StrReplace(strFileName, _T("%COPYRIGHT%"), GetFileColumnText(fileMP3, COLUMN_COPYRIGHT).SpanExcluding(_T("\r")));
+            strFileName = StrReplace(strFileName, _T("%ENGINEER%"), GetFileColumnText(fileMP3, COLUMN_ENGINEER).SpanExcluding(_T("\r")));
+            strFileName = StrReplace(strFileName, _T("%SOURCE%"), GetFileColumnText(fileMP3, COLUMN_SOURCE).SpanExcluding(_T("\r")));
+            strFileName = StrReplace(strFileName, _T("%SOFTWARE%"), GetFileColumnText(fileMP3, COLUMN_SOFTWARE).SpanExcluding(_T("\r")));
+            strFileName = StrReplace(strFileName, _T("%KEYWORD%"), GetFileColumnText(fileMP3, COLUMN_KEYWORD).SpanExcluding(_T("\r")));
+            strFileName = StrReplace(strFileName, _T("%TECHNICIAN%"), GetFileColumnText(fileMP3, COLUMN_TECHNICIAN).SpanExcluding(_T("\r")));
+            strFileName = StrReplace(strFileName, _T("%LYRIC%"), GetFileColumnText(fileMP3, COLUMN_LYRIC).SpanExcluding(_T("\r")));
+            strFileName = StrReplace(strFileName, _T("%COMMISSION%"), GetFileColumnText(fileMP3, COLUMN_COMMISSION).SpanExcluding(_T("\r"))); /* Baja 154 */
+            strFileName = StrReplace(strFileName, _T("%WRITER%"), GetFileColumnText(fileMP3, COLUMN_WRITER).SpanExcluding(_T("\r")));
+            strFileName = StrReplace(strFileName, _T("%COMPOSER%"), GetFileColumnText(fileMP3, COLUMN_COMPOSER).SpanExcluding(_T("\r"))); /* Baja 154 */
+            strFileName = StrReplace(strFileName, _T("%ALBM_ARTIST%"), GetFileColumnText(fileMP3, COLUMN_ALBM_ARTIST).SpanExcluding(_T("\r")));
+            strFileName = StrReplace(strFileName, _T("%ORIG_ARTIST%"), GetFileColumnText(fileMP3, COLUMN_ORIG_ARTIST).SpanExcluding(_T("\r"))); /* Baja 154 */
+            strFileName = StrReplace(strFileName, _T("%URL%"), GetFileColumnText(fileMP3, COLUMN_URL).SpanExcluding(_T("\r"))); /* Baja 154 */
+            strFileName = StrReplace(strFileName, _T("%ENCODEST%"), GetFileColumnText(fileMP3, COLUMN_ENCODEST).SpanExcluding(_T("\r"))); /* Baja 154 */
+            strFileName = StrReplace(strFileName, _T("%OTHER%"), GetFileColumnText(fileMP3, COLUMN_OTHER).SpanExcluding(_T("\r"))); /* Conspiracy 196 */
+            strFileName = StrReplace(strFileName, _T("%ALBUM_ARTIST%"), GetFileColumnText(fileMP3, COLUMN_ALBUM_ARTIST).SpanExcluding(_T("\r"))); /* STEP 042 */
+            //strFileName = StrReplace(strFileName, _T("%WRITER%"), fileMP3->strWriter.SpanExcluding(_T("\r"))); /* STEP 043 */
+            strFileName = StrReplace(strFileName, _T("%DISK_NUMBER%"), GetFileColumnText(fileMP3, COLUMN_DISK_NUMBER).SpanExcluding(_T("\r"))); /* STEP 045 */
+            strFileName = StrReplace(strFileName, _T("%DISK_NUMBER1%"), strDiskNumber1); /* STEP 045 */
+            strFileName = StrReplace(strFileName, _T("%DISK_NUMBER2%"), strDiskNumber2); /* STEP 045 */
+            strFileName = StrReplace(strFileName, _T("%DISK_NUMBER3%"), strDiskNumber3); /* STEP 045 */
+            strFileName = StrReplace(strFileName, _T("%COMPILATION%"), GetFileColumnText(fileMP3, COLUMN_COMPILATION).SpanExcluding(_T("\r"))); /* STEP 049 */
 
             /* STEP 007 */
             if (fileCount == 0) {
@@ -5235,27 +5235,28 @@ bool CMySuperGrid::MoveFolderFormat(USER_MOVE_FODLER_FORMAT *pForm, CString strF
         strText = StrReplace(strText, _T("%COMMENT%")      , GetFileColumnText(fileMP3, COLUMN_COMMENT).SpanExcluding(_T("\r"))); /* BeachMonster 089 */
         strText = StrReplace(strText, _T("%GENRE%")        , GetFileColumnText(fileMP3, COLUMN_GENRE).SpanExcluding(_T("\r")));
         strText = StrReplace(strText, _T("%STRING%")       , pForm->strFixString);
-        // SIF の項目 /* STEPTODO: データ取得元を確認する */
-        strText = StrReplace(strText, _T("%COPYRIGHT%")    , fileMP3->strCopyrightSI.SpanExcluding(_T("\r")));
-        strText = StrReplace(strText, _T("%ENGINEER%")     , fileMP3->strEngineerSI.SpanExcluding(_T("\r")));
-        strText = StrReplace(strText, _T("%SOURCE%")       , fileMP3->strSourceSI.SpanExcluding(_T("\r")));
-        strText = StrReplace(strText, _T("%SOFTWARE%")     , fileMP3->strSoftwareSI.SpanExcluding(_T("\r")));
-        strText = StrReplace(strText, _T("%KEYWORD%")      , fileMP3->strKeywordSI.SpanExcluding(_T("\r")));
-        strText = StrReplace(strText, _T("%TECHNICIAN%")   , fileMP3->strTechnicianSI.SpanExcluding(_T("\r")));
-        strText = StrReplace(strText, _T("%LYRIC%")        , fileMP3->strLyricSI.SpanExcluding(_T("\r")));
-        strText = StrReplace(strText, _T("%COMMISSION%")   , fileMP3->strCommissionSI.SpanExcluding(_T("\r")));
-        strText = StrReplace(strText, _T("%WRITER%")       , fileMP3->strWriterSI.SpanExcluding(_T("\r"))); /* Baja 154 */
-        strText = StrReplace(strText, _T("%COMPOSER%")     , fileMP3->strComposerSI.SpanExcluding(_T("\r"))); /* Baja 154 */
-        strText = StrReplace(strText, _T("%ALBM_ARTIST%")  , fileMP3->strAlbmArtistSI.SpanExcluding(_T("\r"))); /* Baja 154 */
-        strText = StrReplace(strText, _T("%ORIG_ARTIST%")  , fileMP3->strOrigArtistSI.SpanExcluding(_T("\r"))); /* Baja 154 */
-        strText = StrReplace(strText, _T("%URL%")          , fileMP3->strURLSI.SpanExcluding(_T("\r"))); /* Baja 154 */
-        strText = StrReplace(strText, _T("%ENCODEST%")     , fileMP3->strEncodest.SpanExcluding(_T("\r"))); /* Baja 154 */
-        strText = StrReplace(strText, _T("%OTHER%")        , fileMP3->strOther.SpanExcluding(_T("\r"))); /* Conspiracy 196 */
+        // SIF の項目
+        strText = StrReplace(strText, _T("%COPYRIGHT%"), GetFileColumnText(fileMP3, COLUMN_COPYRIGHT).SpanExcluding(_T("\r")));
+        strText = StrReplace(strText, _T("%ENGINEER%"), GetFileColumnText(fileMP3, COLUMN_ENGINEER).SpanExcluding(_T("\r")));
+        strText = StrReplace(strText, _T("%SOURCE%"), GetFileColumnText(fileMP3, COLUMN_SOURCE).SpanExcluding(_T("\r")));
+        strText = StrReplace(strText, _T("%SOFTWARE%"), GetFileColumnText(fileMP3, COLUMN_SOFTWARE).SpanExcluding(_T("\r")));
+        strText = StrReplace(strText, _T("%KEYWORD%"), GetFileColumnText(fileMP3, COLUMN_KEYWORD).SpanExcluding(_T("\r")));
+        strText = StrReplace(strText, _T("%TECHNICIAN%"), GetFileColumnText(fileMP3, COLUMN_TECHNICIAN).SpanExcluding(_T("\r")));
+        strText = StrReplace(strText, _T("%LYRIC%"), GetFileColumnText(fileMP3, COLUMN_LYRIC).SpanExcluding(_T("\r")));
+        strText = StrReplace(strText, _T("%COMMISSION%"), GetFileColumnText(fileMP3, COLUMN_COMMISSION).SpanExcluding(_T("\r"))); /* Baja 154 */
+        strText = StrReplace(strText, _T("%WRITER%"), GetFileColumnText(fileMP3, COLUMN_WRITER).SpanExcluding(_T("\r")));
+        strText = StrReplace(strText, _T("%COMPOSER%"), GetFileColumnText(fileMP3, COLUMN_COMPOSER).SpanExcluding(_T("\r"))); /* Baja 154 */
+        strText = StrReplace(strText, _T("%ALBM_ARTIST%"), GetFileColumnText(fileMP3, COLUMN_ALBM_ARTIST).SpanExcluding(_T("\r")));
+        strText = StrReplace(strText, _T("%ORIG_ARTIST%"), GetFileColumnText(fileMP3, COLUMN_ORIG_ARTIST).SpanExcluding(_T("\r"))); /* Baja 154 */
+        strText = StrReplace(strText, _T("%URL%"), GetFileColumnText(fileMP3, COLUMN_URL).SpanExcluding(_T("\r"))); /* Baja 154 */
+        strText = StrReplace(strText, _T("%ENCODEST%"), GetFileColumnText(fileMP3, COLUMN_ENCODEST).SpanExcluding(_T("\r"))); /* Baja 154 */
+        strText = StrReplace(strText, _T("%OTHER%"), GetFileColumnText(fileMP3, COLUMN_OTHER).SpanExcluding(_T("\r"))); /* Conspiracy 196 */
+        strText = StrReplace(strText, _T("%ALBUM_ARTIST%"), GetFileColumnText(fileMP3, COLUMN_ALBUM_ARTIST).SpanExcluding(_T("\r"))); /* STEP 042 */
+        //strText = StrReplace(strText, _T("%WRITER%"), fileMP3->strWriter.SpanExcluding(_T("\r"))); /* STEP 043 */
         strText = StrReplace(strText, _T("%DISK_NUMBER%"), GetFileColumnText(fileMP3, COLUMN_DISK_NUMBER).SpanExcluding(_T("\r"))); /* STEP 045 */
         strText = StrReplace(strText, _T("%DISK_NUMBER1%"), strDiskNumber1); /* STEP 045 */
         strText = StrReplace(strText, _T("%DISK_NUMBER2%"), strDiskNumber2); /* STEP 045 */
         strText = StrReplace(strText, _T("%DISK_NUMBER3%"), strDiskNumber3); /* STEP 045 */
-        strText = StrReplace(strText, _T("%COMPILATION%"), GetFileColumnText(fileMP3, COLUMN_COMPILATION).SpanExcluding(_T("\r"))); /* STEP 049 */
         strText = StrReplace(strText, _T("%ALBUM_ARTIST%"), GetFileColumnText(fileMP3, COLUMN_ALBUM_ARTIST).SpanExcluding(_T("\r"))); /* STEP 050 */
 
         // 制御コード（一部）をスペースに置き換え /* SeaKnows2 040 */
@@ -7102,22 +7103,24 @@ void CMySuperGrid::ClipboardCopyFormat(USER_COPY_FORMAT_FORMAT *pForm) /* FunnyC
         strText = StrReplace(strText, _T("%DISK_NUMBER2%"), strDiskNumber2); /* STEP 045 */
         strText = StrReplace(strText, _T("%DISK_NUMBER3%"), strDiskNumber3); /* STEP 045 */
         strText = StrReplace(strText, _T("%STRING%")       , pForm->strFixString);
-        // SIF の項目 /* STEPTODO: データ取得元を確認する */
-        strText = StrReplace(strText, _T("%COPYRIGHT%") , fileMP3->strCopyrightSI.SpanExcluding(_T("\r")));
-        strText = StrReplace(strText, _T("%ENGINEER%")  , fileMP3->strEngineerSI.SpanExcluding(_T("\r")));
-        strText = StrReplace(strText, _T("%SOURCE%")    , fileMP3->strSourceSI.SpanExcluding(_T("\r")));
-        strText = StrReplace(strText, _T("%SOFTWARE%")  , fileMP3->strSoftwareSI.SpanExcluding(_T("\r")));
-        strText = StrReplace(strText, _T("%KEYWORD%")   , fileMP3->strKeywordSI.SpanExcluding(_T("\r")));
-        strText = StrReplace(strText, _T("%TECHNICIAN%"), fileMP3->strTechnicianSI.SpanExcluding(_T("\r")));
-        strText = StrReplace(strText, _T("%LYRIC%")     , fileMP3->strLyricSI.SpanExcluding(_T("\r")));
-        strText = StrReplace(strText, _T("%COMMISSION%"), fileMP3->strCommissionSI.SpanExcluding(_T("\r")));
-        strText = StrReplace(strText, _T("%WRITER%")    , fileMP3->strWriterSI.SpanExcluding(_T("\r"))); /* Baja 154 */
-        strText = StrReplace(strText, _T("%COMPOSER%")    , fileMP3->strComposerSI.SpanExcluding(_T("\r"))); /* Baja 154 */
-        strText = StrReplace(strText, _T("%ALBM_ARTIST%"), fileMP3->strAlbmArtistSI.SpanExcluding(_T("\r"))); /* Baja 154 */
-        strText = StrReplace(strText, _T("%ORIG_ARTIST%"), fileMP3->strOrigArtistSI.SpanExcluding(_T("\r"))); /* Baja 154 */
-        strText = StrReplace(strText, _T("%URL%")        , fileMP3->strURLSI.SpanExcluding(_T("\r"))); /* Baja 154 */
-        strText = StrReplace(strText, _T("%ENCODEST%")    , fileMP3->strEncodest.SpanExcluding(_T("\r"))); /* Baja 154 */
-        strText = StrReplace(strText, _T("%OTHER%")      , fileMP3->strOther.SpanExcluding(_T("\r"))); /* Conspiracy 196 */
+        // SIF の項目
+        strText = StrReplace(strText, _T("%COPYRIGHT%"), GetFileColumnText(fileMP3, COLUMN_COPYRIGHT).SpanExcluding(_T("\r")));
+        strText = StrReplace(strText, _T("%ENGINEER%"), GetFileColumnText(fileMP3, COLUMN_ENGINEER).SpanExcluding(_T("\r")));
+        strText = StrReplace(strText, _T("%SOURCE%"), GetFileColumnText(fileMP3, COLUMN_SOURCE).SpanExcluding(_T("\r")));
+        strText = StrReplace(strText, _T("%SOFTWARE%"), GetFileColumnText(fileMP3, COLUMN_SOFTWARE).SpanExcluding(_T("\r")));
+        strText = StrReplace(strText, _T("%KEYWORD%"), GetFileColumnText(fileMP3, COLUMN_KEYWORD).SpanExcluding(_T("\r")));
+        strText = StrReplace(strText, _T("%TECHNICIAN%"), GetFileColumnText(fileMP3, COLUMN_TECHNICIAN).SpanExcluding(_T("\r")));
+        strText = StrReplace(strText, _T("%LYRIC%"), GetFileColumnText(fileMP3, COLUMN_LYRIC).SpanExcluding(_T("\r")));
+        strText = StrReplace(strText, _T("%COMMISSION%"), GetFileColumnText(fileMP3, COLUMN_COMMISSION).SpanExcluding(_T("\r"))); /* Baja 154 */
+        strText = StrReplace(strText, _T("%WRITER%"), GetFileColumnText(fileMP3, COLUMN_WRITER).SpanExcluding(_T("\r")));
+        strText = StrReplace(strText, _T("%COMPOSER%"), GetFileColumnText(fileMP3, COLUMN_COMPOSER).SpanExcluding(_T("\r"))); /* Baja 154 */
+        strText = StrReplace(strText, _T("%ALBM_ARTIST%"), GetFileColumnText(fileMP3, COLUMN_ALBM_ARTIST).SpanExcluding(_T("\r")));
+        strText = StrReplace(strText, _T("%ORIG_ARTIST%"), GetFileColumnText(fileMP3, COLUMN_ORIG_ARTIST).SpanExcluding(_T("\r"))); /* Baja 154 */
+        strText = StrReplace(strText, _T("%URL%"), GetFileColumnText(fileMP3, COLUMN_URL).SpanExcluding(_T("\r"))); /* Baja 154 */
+        strText = StrReplace(strText, _T("%ENCODEST%"), GetFileColumnText(fileMP3, COLUMN_ENCODEST).SpanExcluding(_T("\r"))); /* Baja 154 */
+        strText = StrReplace(strText, _T("%OTHER%"), GetFileColumnText(fileMP3, COLUMN_OTHER).SpanExcluding(_T("\r"))); /* Conspiracy 196 */
+        strText = StrReplace(strText, _T("%ALBUM_ARTIST%"), GetFileColumnText(fileMP3, COLUMN_ALBUM_ARTIST).SpanExcluding(_T("\r"))); /* STEP 042 */
+        //strText = StrReplace(strText, _T("%WRITER%"), fileMP3->strWriter.SpanExcluding(_T("\r"))); /* STEP 043 */
 
         // 総合演奏時間
         CString strBuffer;
@@ -7405,25 +7408,25 @@ CString CMySuperGrid::MakeFormatFileBody(FILE_MP3    *fileMP3, const CString &st
     strText = StrReplaceEx(strText, _T("%LYRIC_FILE_NAME%") , ConvHTML(strLyricFile, bWriteHtml), bIsHtml); /* Rumble 191 */
     strText = StrReplaceEx(strText, _T("%LYRIC_FILE_NAME_SHORT%") , ConvHTML(strLyricFileShort, bWriteHtml), bIsHtml); /* Rumble 191 */
     strText = StrReplaceEx(strText, _T("%FILE_EXTENSION%")  , strExt, bIsHtml); /* Baja 162 */
-    // SIF の情報 /* STEPTODO: データ取得元を確認する */
-    strText = StrReplaceEx(strText, _T("%COPYRIGHT%")       , ConvHTML(fileMP3->strCopyrightSI, bWriteHtml), bIsHtml); /* BeachMonster5 120 */
-    strText = StrReplaceEx(strText, _T("%ENGINEER%")        , ConvHTML(fileMP3->strEngineerSI, bWriteHtml), bIsHtml); /* BeachMonster5 120 */
-    strText = StrReplaceEx(strText, _T("%SOURCE%")          , ConvHTML(fileMP3->strSourceSI, bWriteHtml), bIsHtml); /* BeachMonster5 120 */
-    strText = StrReplaceEx(strText, _T("%SOFTWARE%")        , ConvHTML(fileMP3->strSoftwareSI, bWriteHtml), bIsHtml); /* BeachMonster5 120 */
-    strText = StrReplaceEx(strText, _T("%KEYWORD%")         , ConvHTML(fileMP3->strKeywordSI, bWriteHtml), bIsHtml); /* BeachMonster5 120 */
-    strText = StrReplaceEx(strText, _T("%TECHNICIAN%")      , ConvHTML(fileMP3->strTechnicianSI, bWriteHtml), bIsHtml); /* BeachMonster5 120 */
-    strText = StrReplaceEx(strText, _T("%LYRIC%")           , ConvHTML(fileMP3->strLyricSI, bWriteHtml), bIsHtml); /* BeachMonster5 120 */
-    strText = StrReplaceEx(strText, _T("%COMMISSION%")      , ConvHTML(fileMP3->strCommissionSI, bWriteHtml), bIsHtml); /* BeachMonster5 120 */
-    strText = StrReplaceEx(strText, _T("%WRITER%")            , ConvHTML(fileMP3->strWriterSI, bWriteHtml), bIsHtml); /* Baja 154 */
-    strText = StrReplaceEx(strText, _T("%COMPOSER%")        , ConvHTML(fileMP3->strComposerSI, bWriteHtml), bIsHtml); /* Baja 154 */
-    strText = StrReplaceEx(strText, _T("%ALBM_ARTIST%")        , ConvHTML(fileMP3->strAlbmArtistSI, bWriteHtml), bIsHtml); /* Baja 154 */
-    strText = StrReplaceEx(strText, _T("%ORIG_ARTIST%")        , ConvHTML(fileMP3->strOrigArtistSI, bWriteHtml), bIsHtml); /* Baja 154 */
-    strText = StrReplaceEx(strText, _T("%URL%")                , ConvHTML(fileMP3->strURLSI, bWriteHtml), bIsHtml); /* Baja 154 */
-    strText = StrReplaceEx(strText, _T("%ENCODEST%")        , ConvHTML(fileMP3->strEncodest, bWriteHtml), bIsHtml); /* Baja 154 */
-    strText = StrReplaceEx(strText, _T("%OTHER%")            , ConvHTML(fileMP3->strOther, bWriteHtml), bIsHtml); /* Conspiracy 196 */
-    strText = StrReplaceEx(strText, _T("%ALBUM_ARTIST%"), ConvHTML(fileMP3->strAlbmArtistSI, bWriteHtml), bIsHtml); /* STEP 042 */
-    strText = StrReplaceEx(strText, _T("%WRITER%"), ConvHTML(fileMP3->strWriter, bWriteHtml), bIsHtml); /* STEP 043 */
-    strText = StrReplaceEx(strText, _T("%DISK_NUMBER%"), ConvHTML(fileMP3->strDiscNumberSI, bWriteHtml), bIsHtml); /* STEP 045 */
+    // SIF の情報
+    strText = StrReplaceEx(strText, _T("%COPYRIGHT%")       , ConvHTML(GetFileColumnText(fileMP3, COLUMN_COPYRIGHT), bWriteHtml), bIsHtml); /* BeachMonster5 120 */
+    strText = StrReplaceEx(strText, _T("%ENGINEER%")        , ConvHTML(GetFileColumnText(fileMP3, COLUMN_ENGINEER), bWriteHtml), bIsHtml); /* BeachMonster5 120 */
+    strText = StrReplaceEx(strText, _T("%SOURCE%")          , ConvHTML(GetFileColumnText(fileMP3, COLUMN_SOURCE), bWriteHtml), bIsHtml); /* BeachMonster5 120 */
+    strText = StrReplaceEx(strText, _T("%SOFTWARE%")        , ConvHTML(GetFileColumnText(fileMP3, COLUMN_SOFTWARE), bWriteHtml), bIsHtml); /* BeachMonster5 120 */
+    strText = StrReplaceEx(strText, _T("%KEYWORD%")         , ConvHTML(GetFileColumnText(fileMP3, COLUMN_KEYWORD), bWriteHtml), bIsHtml); /* BeachMonster5 120 */
+    strText = StrReplaceEx(strText, _T("%TECHNICIAN%")      , ConvHTML(GetFileColumnText(fileMP3, COLUMN_TECHNICIAN), bWriteHtml), bIsHtml); /* BeachMonster5 120 */
+    strText = StrReplaceEx(strText, _T("%LYRIC%")           , ConvHTML(GetFileColumnText(fileMP3, COLUMN_LYRIC), bWriteHtml), bIsHtml); /* BeachMonster5 120 */
+    strText = StrReplaceEx(strText, _T("%COMMISSION%")      , ConvHTML(GetFileColumnText(fileMP3, COLUMN_COMMISSION), bWriteHtml), bIsHtml); /* BeachMonster5 120 */
+    strText = StrReplaceEx(strText, _T("%WRITER%")            , ConvHTML(GetFileColumnText(fileMP3, COLUMN_WRITER), bWriteHtml), bIsHtml);
+    strText = StrReplaceEx(strText, _T("%COMPOSER%")        , ConvHTML(GetFileColumnText(fileMP3, COLUMN_COMPOSER), bWriteHtml), bIsHtml); /* Baja 154 */
+    strText = StrReplaceEx(strText, _T("%ALBM_ARTIST%")        , ConvHTML(GetFileColumnText(fileMP3, COLUMN_ALBM_ARTIST), bWriteHtml), bIsHtml);
+    strText = StrReplaceEx(strText, _T("%ORIG_ARTIST%")        , ConvHTML(GetFileColumnText(fileMP3, COLUMN_ORIG_ARTIST), bWriteHtml), bIsHtml); /* Baja 154 */
+    strText = StrReplaceEx(strText, _T("%URL%")                , ConvHTML(GetFileColumnText(fileMP3, COLUMN_URL), bWriteHtml), bIsHtml); /* Baja 154 */
+    strText = StrReplaceEx(strText, _T("%ENCODEST%")        , ConvHTML(GetFileColumnText(fileMP3, COLUMN_ENCODEST), bWriteHtml), bIsHtml); /* Baja 154 */
+    strText = StrReplaceEx(strText, _T("%OTHER%")            , ConvHTML(GetFileColumnText(fileMP3, COLUMN_OTHER), bWriteHtml), bIsHtml); /* Conspiracy 196 */
+    strText = StrReplaceEx(strText, _T("%ALBUM_ARTIST%"), ConvHTML(GetFileColumnText(fileMP3, COLUMN_ALBUM_ARTIST), bWriteHtml), bIsHtml); /* STEP 042 */
+    //strText = StrReplaceEx(strText, _T("%WRITER%"), ConvHTML(fileMP3->strWriter, bWriteHtml), bIsHtml); /* STEP 043 */
+    strText = StrReplaceEx(strText, _T("%DISK_NUMBER%"), ConvHTML(GetFileColumnText(fileMP3, COLUMN_DISK_NUMBER), bWriteHtml), bIsHtml); /* STEP 045 */
     strText = StrReplaceEx(strText, _T("%DISK_NUMBER1%"), strDiskNumber1, bIsHtml); /* STEP 045 */
     strText = StrReplaceEx(strText, _T("%DISK_NUMBER2%"), strDiskNumber2, bIsHtml); /* STEP 045 */
     strText = StrReplaceEx(strText, _T("%DISK_NUMBER3%"), strDiskNumber3, bIsHtml); /* STEP 045 */
