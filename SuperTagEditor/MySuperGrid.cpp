@@ -4627,7 +4627,7 @@ void CMySuperGrid::ExecFolderTreeSync(const TCHAR *sFolder, CTreeItem *pItem, bo
 #endif
 }
 
-bool CMySuperGrid::WriteFormatFileBody(CFile &file, CTreeItem *pItem, const CString &strBody, bool bIsHtml, LIST_WRITE_STATUS *pStatus, bool bWriteHtml /* BeachMonster5 120 */)
+bool CMySuperGrid::WriteFormatFileBody(CFile &file, CTreeItem *pItem, const CString &strBody, bool bIsHtml, LIST_WRITE_STATUS *pStatus, bool bWriteHtml /* BeachMonster5 120 */, int& nCount, int nTotalCount /* STEP_J-h 003 */)
 {
     ASSERT(pItem != NULL);
     if (pItem != NULL) {
@@ -4642,6 +4642,8 @@ bool CMySuperGrid::WriteFormatFileBody(CFile &file, CTreeItem *pItem, const CStr
 
             // １ファイル分を出力
             file.Write(strText, strText.GetLength() * sizeof(TCHAR));
+            // プログレスバー更新
+            m_pDoc->GetDlgLoadProgressBarPtr()->SetPos(++nCount * 100 / nTotalCount); /* STEP_J-h 003 */
         } else {
             // フォルダの場合
             // 子アイテムを全て処理する
@@ -4650,7 +4652,7 @@ bool CMySuperGrid::WriteFormatFileBody(CFile &file, CTreeItem *pItem, const CStr
                 if (ItemHasChildren(pSelItem)) {
                     POSITION pos = GetHeadPosition(pSelItem);
                     while(pos != NULL) {
-                        WriteFormatFileBody(file, (CTreeItem *)GetNextChild(pSelItem, pos), strBody, bIsHtml, pStatus, bWriteHtml);
+                        WriteFormatFileBody(file, (CTreeItem *)GetNextChild(pSelItem, pos), strBody, bIsHtml, pStatus, bWriteHtml, nCount, nTotalCount /* STEP_J-h 003 */);
                     }
                 }
             }
@@ -4727,6 +4729,23 @@ bool CMySuperGrid::WriteFormatFile(const TCHAR *sFileName, const CString &strHea
             file.Write("\xFF\xFE", 2);
         }
 #endif
+        /* STEP_J-h 003  */
+        // プログレスバー初期化
+		int nTotalCount = m_pDoc->GetArrayFileCount();
+		if (bSelected) {
+			CArray <int, const int&> arrayList;
+			nTotalCount = MakeSelectFileArray(arrayList);
+
+		}
+		nTotalCount *= 3; // // 3 = ヘッダ、ボディ フッタ
+        int nProcessedCount = 0;
+		if (nTotalCount == 0) {
+			MessageBox(_T("対象ファイルがありません"), _T("リスト出力エラー"), MB_ICONSTOP | MB_OK | MB_TOPMOST);
+			return false;
+		}
+		m_pDoc->StartLoadFile(_T("リスト出力中..."));
+		m_pDoc->GetDlgLoadProgressBarPtr()->SetDlgItemText(IDC_ST_MESSAGE, _T("しばらくお待ち下さい..."));
+
         // リスト出力情報
         LIST_WRITE_STATUS    status;
         status.nFileNumber    = 0;            // 現在のファイル番号
@@ -4748,14 +4767,14 @@ bool CMySuperGrid::WriteFormatFile(const TCHAR *sFileName, const CString &strHea
             int     nCount;
             nCount = MakeSelectFileArray(arrayList);
             int i; for (i = 0; i < nCount; i++) {
-                strText = WriteFormatFileHeader(file, GetTreeItem(arrayList[i]), strText, bIsHtml, &status, bWriteHtml);
+                strText = WriteFormatFileHeader(file, GetTreeItem(arrayList[i]), strText, bIsHtml, &status, bWriteHtml, nProcessedCount, nTotalCount /* STEP_J-h 003 */);
             }
         } else {
             // ルートのアイテムを全て処理する
             POSITION pos = GetRootHeadPosition();
             while(pos != NULL) {
                 CTreeItem    *pItem = (CTreeItem*)GetNextRoot(pos);
-                strText = WriteFormatFileHeader(file, pItem, strText, bIsHtml, &status, bWriteHtml);
+                strText = WriteFormatFileHeader(file, pItem, strText, bIsHtml, &status, bWriteHtml, nProcessedCount, nTotalCount);
             }
         }
         /* Rumble 190 *///file.Write(strHead, strHead.GetLength());
@@ -4775,14 +4794,14 @@ bool CMySuperGrid::WriteFormatFile(const TCHAR *sFileName, const CString &strHea
             int     nCount;
             nCount = MakeSelectFileArray(arrayList);
             int i; for (i = 0; i < nCount; i++) {
-                WriteFormatFileBody(file, GetTreeItem(arrayList[i]), strBody, bIsHtml, &status, bWriteHtml);
+                WriteFormatFileBody(file, GetTreeItem(arrayList[i]), strBody, bIsHtml, &status, bWriteHtml, nProcessedCount, nTotalCount /* STEP_J-h 003 */);
             }
         } else {
             // ルートのアイテムを全て処理する
             POSITION pos = GetRootHeadPosition();
             while(pos != NULL) {
                 CTreeItem    *pItem = (CTreeItem*)GetNextRoot(pos);
-                WriteFormatFileBody(file, pItem, strBody, bIsHtml, &status, bWriteHtml);
+                WriteFormatFileBody(file, pItem, strBody, bIsHtml, &status, bWriteHtml, nProcessedCount, nTotalCount /* STEP_J-h 003 */);
             }
         }
 
@@ -4799,20 +4818,28 @@ bool CMySuperGrid::WriteFormatFile(const TCHAR *sFileName, const CString &strHea
             int     nCount;
             nCount = MakeSelectFileArray(arrayList);
             int i; for (i = 0; i < nCount; i++) {
-                strTextFoot = WriteFormatFileHeader(file, GetTreeItem(arrayList[i]), strTextFoot, bIsHtml, &status, bWriteHtml);
-            }
+                strTextFoot = WriteFormatFileHeader(file, GetTreeItem(arrayList[i]), strTextFoot, bIsHtml, &status, bWriteHtml, nProcessedCount, nTotalCount /* STEP_J-h 003 */);
+           }
         } else {
             // ルートのアイテムを全て処理する
             POSITION pos = GetRootHeadPosition();
             while(pos != NULL) {
                 CTreeItem    *pItem = (CTreeItem*)GetNextRoot(pos);
-                strTextFoot = WriteFormatFileHeader(file, pItem, strTextFoot, bIsHtml, &status, bWriteHtml);
+                strTextFoot = WriteFormatFileHeader(file, pItem, strTextFoot, bIsHtml, &status, bWriteHtml, nProcessedCount, nTotalCount /* STEP_J-h 003 */);
             }
         }
         /* Rumble 190 *///file.Write(strHead, strHead.GetLength());
         strTextFoot = MakeFormatFileFoot(strTextFoot, bIsHtml, &status, bWriteHtml); /* Rumble 190 */
         /* Rumble 190 *///WriteFormatFileFoot(file, strFoot, bIsHtml, &status, bWriteHtml);
         WriteFormatFileFoot(file, strTextFoot, bIsHtml, &status, bWriteHtml);
+
+        /* STEP_J-h 003 */
+        if (bSelected) {
+            // プログレスバー終了
+            m_pDoc->EndLoadFile();
+        }
+        // プログレスバー終了
+        m_pDoc->EndLoadFile();
     }
     CATCH(CFileException, e) {
         CString strMsg;
@@ -7502,7 +7529,7 @@ CString CMySuperGrid::MakeFormatFileFoot(const CString &strFoot, bool bIsHtml, L
     return strText;
 }
 
-CString CMySuperGrid::WriteFormatFileHeader(CFile &file, CTreeItem *pItem, const CString &strHead, bool bIsHtml, LIST_WRITE_STATUS *pStatus, bool bWriteHtml) /* Rumble 190 */
+CString CMySuperGrid::WriteFormatFileHeader(CFile &file, CTreeItem *pItem, const CString &strHead, bool bIsHtml, LIST_WRITE_STATUS *pStatus, bool bWriteHtml, int& nCount, int nTotalCount /* STEP_J-h 003 */) /* Rumble 190 */
 {
     ASSERT(pItem != NULL);
     CString strText = strHead;
@@ -7516,7 +7543,9 @@ CString CMySuperGrid::WriteFormatFileHeader(CFile &file, CTreeItem *pItem, const
             FILE_MP3    *fileMP3 = m_pDoc->GetListMP3((int)pInfo->GetLParam());
 
             strText = MakeFormatFileBody(fileMP3, strText, bIsHtml, pStatus, bWriteHtml);
-        } else {
+			// プログレスバー更新
+			m_pDoc->GetDlgLoadProgressBarPtr()->SetPos(++nCount * 100 / nTotalCount); /* STEP_J-h 003 */
+		} else {
             // フォルダの場合
             // 子アイテムを全て処理する
             if (ItemHasChildren(pItem) == TRUE) {
@@ -7524,7 +7553,7 @@ CString CMySuperGrid::WriteFormatFileHeader(CFile &file, CTreeItem *pItem, const
                 if (ItemHasChildren(pSelItem)) {
                     POSITION pos = GetHeadPosition(pSelItem);
                     while(pos != NULL) {
-                        strText = WriteFormatFileHeader(file, (CTreeItem *)GetNextChild(pSelItem, pos), strText, bIsHtml, pStatus, bWriteHtml); /* Hurricane 216 */
+                        strText = WriteFormatFileHeader(file, (CTreeItem *)GetNextChild(pSelItem, pos), strText, bIsHtml, pStatus, bWriteHtml, nCount, nTotalCount /* STEP_J-h 003 */); /* Hurricane 216 */
                     }
                 }
             }

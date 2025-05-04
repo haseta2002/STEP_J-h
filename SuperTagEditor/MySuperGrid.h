@@ -238,9 +238,9 @@ public:
             bool    WriteTreePlayList(const TCHAR *, CTreeItem *, CString &);
 
             bool    WriteFormatFile(const TCHAR *, const CString &, const CString &, const CString &, bool, bool, bool, bool); /* BeachMonster5 120 */
-            bool    WriteFormatFileBody(CFile &, CTreeItem *, const CString &, bool, LIST_WRITE_STATUS *, bool); /* BeachMonster5 120 */
+            bool    WriteFormatFileBody(CFile &, CTreeItem *, const CString &, bool, LIST_WRITE_STATUS *, bool, int&, int); /* BeachMonster5 120 */ /* STEP_J-h 003 */
             bool    WriteFormatFileFoot(CFile &, const CString &, bool, LIST_WRITE_STATUS *, bool); /* BeachMonster5 120 */
-            CString WriteFormatFileHeader(CFile &file, CTreeItem *pItem, const CString &strHead, bool bIsHtml, LIST_WRITE_STATUS *pStatus, bool bWriteHtml); /* Rumble 190 */
+            CString WriteFormatFileHeader(CFile &file, CTreeItem *pItem, const CString &strHead, bool bIsHtml, LIST_WRITE_STATUS *pStatus, bool bWriteHtml, int&, int); /* Rumble 190 */ /* STEP_J-h 003 */
 
             CString GetFileColumnText(const FILE_MP3 *, int);
 
