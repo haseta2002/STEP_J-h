@@ -4374,6 +4374,10 @@ void CMySuperGrid::ExecFolderTreeSync(const TCHAR *sRootFolder, bool bCheckOnly)
 
 bool CMySuperGrid::CheckExist(const TCHAR *sTarget)
 {
+/* STEP_J-h 005 */
+#ifdef DISABLE_FOLDER_SYNC
+    return false;
+#else
     bool    bReturn = false;
 //    int     nLen = strlen(sTarget);
 
@@ -4417,6 +4421,7 @@ bool CMySuperGrid::CheckExist(const TCHAR *sTarget)
         }
     }
     return(bReturn);
+#endif
 }
 
 // =============================================
@@ -4427,6 +4432,10 @@ bool CMySuperGrid::CheckExist(const TCHAR *sTarget)
 // =============================================
 bool CMySuperGrid::CheckFileName(const TCHAR *sTarget)
 {
+/* STEP_J-h 005 */
+#ifdef DISABLE_FOLDER_SYNC
+    return false;
+#else
     if ((sTarget[0] == _T('\\') && sTarget[1] == _T('\\'))
     &&  _tcschr(sTarget+2, _T('\\')) == NULL) {
         // "\\ネットワーク名" のみの場合は常に真
@@ -4444,20 +4453,30 @@ bool CMySuperGrid::CheckFileName(const TCHAR *sTarget)
         }
     }
     return(true);
+#endif
 }
 
 void CMySuperGrid::ChangeFileAttr(const TCHAR *sFileName, DWORD dwAttr)
 {
+/* STEP_J-h 005 */
+#ifdef DISABLE_FOLDER_SYNC
+    return;
+#else
     DWORD    dwAttrNow;
     if ((dwAttrNow = GetFileAttributes((LPTSTR)sFileName)) != (DWORD)-1L) {
         if (dwAttrNow != dwAttr) {
             SetFileAttributes((LPTSTR)sFileName, dwAttr);
         }
     }
+#endif
 }
 
 bool CMySuperGrid::DirectoryMake(CString &strDir)
 {
+/* STEP_J-h 005 */
+#ifdef DISABLE_FOLDER_SYNC
+    return false;
+#else
     TCHAR    *sTemp;
     int     i, nLen = strDir.GetLength();
 
@@ -4508,10 +4527,15 @@ RETRY:
         }
     }
     return(true);
+#endif
 }
 
 bool CMySuperGrid::DirectoryRemove(CString &strDir)
 {
+/* STEP_J-h 005 */
+#ifdef DISABLE_FOLDER_SYNC
+    return false;
+#else
     // 削除するディレクトリの属性をクリア
     ChangeFileAttr(strDir, CFile::normal);
 
@@ -4539,6 +4563,7 @@ bool CMySuperGrid::DirectoryRemove(CString &strDir)
         return(false);    // エラー
     }
     return(true);
+#endif
 }
 
 void CMySuperGrid::ExecFolderTreeSync(const TCHAR *sFolder, CTreeItem *pItem, bool bCheckOnly, bool bIsRoot)
@@ -4834,10 +4859,6 @@ bool CMySuperGrid::WriteFormatFile(const TCHAR *sFileName, const CString &strHea
         WriteFormatFileFoot(file, strTextFoot, bIsHtml, &status, bWriteHtml);
 
         /* STEP_J-h 003 */
-        if (bSelected) {
-            // プログレスバー終了
-            m_pDoc->EndLoadFile();
-        }
         // プログレスバー終了
         m_pDoc->EndLoadFile();
     }
@@ -5337,6 +5358,20 @@ bool CMySuperGrid::MoveFolderFormat(USER_MOVE_FODLER_FORMAT *pForm, CString strF
             //if (strPathName.Right(1) == "\\") {
             //    strPathName=strPathName.Left(strPathName.GetLength()-1);
             //}
+
+            /* STEP_J-h 004 */
+            // UNC パスかどうかを判定
+            bool isUNC = (strFolder.Left(2) == _T("\\\\"));
+            // UNC パスの場合、共有フォルダ部分をスキップ
+            if (isUNC)             {
+                int secondSlash = strFolder.Find(_T('\\'), 2);
+                if (secondSlash != -1)                 {
+                    secondSlash = strFolder.Find(_T('\\'), secondSlash + 1);
+                    if (secondSlash != -1)                     {
+                        nStart = secondSlash; // 共有フォルダ部分をスキップ
+                    }
+                }
+            }
 
             // ディレクトリを1つずつ繰り返し作成
             CString strNewPath = strPathName;
