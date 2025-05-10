@@ -269,7 +269,7 @@ copy "$(ProjectDir)..\Help\SuperTagEditor.chm" /b "$(outputpath)"
     <ManifestResourceCompile />
     <PostBuildEvent>
       <Command>
-</Command>
+      </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -326,6 +326,7 @@ copy "$(ProjectDir)..\Help\SuperTagEditor.chm" /b "$(outputpath)"
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CIFileDialogFolderSelector.cpp" />
     <ClCompile Include="ComboInListView.cpp" />
     <ClCompile Include="dde\kbdde.cpp" />
     <ClCompile Include="dde\player_control.cpp" />
@@ -410,6 +411,7 @@ copy "$(ProjectDir)..\Help\SuperTagEditor.chm" /b "$(outputpath)"
     <ClInclude Include="..\STEP_SDK\STEPlugin.h" />
     <ClInclude Include="..\STEP_SDK\STEP_api.h" />
     <ClInclude Include="AutoBuildCount.h" />
+    <ClInclude Include="CIFileDialogFolderSelector.h" />
     <ClInclude Include="ComboInListView.h" />
     <ClInclude Include="dde\kbdde.h" />
     <ClInclude Include="dde\player_control.h" />
