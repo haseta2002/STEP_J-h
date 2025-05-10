@@ -14,6 +14,9 @@
 #include "DlgAddNumber.h"
 #include "SHBrowseForFolder.h"
 #include "strcnv.h"
+#ifndef USE_STE_ORIGINAL
+#include "CIFileDialogFolderSelector.h"
+#endif
 
 static KbDDEServer *g_DdeServer = NULL;
 static CSuperTagEditorView *g_SteView = NULL;
@@ -2197,6 +2200,8 @@ void CSuperTagEditorView::OnMoveFolder05()
     DoMoveFolder(4); /* STEP 022 */
 }
 
+/* STEP_J-h 004 */
+#ifdef USE_STE_ORIGINAL
 BOOL CSuperTagEditorView::SelectDirectory(TCHAR *sLocal, int size, bool bCopy)
 {
     bool    bResult;
@@ -2206,6 +2211,17 @@ BOOL CSuperTagEditorView::SelectDirectory(TCHAR *sLocal, int size, bool bCopy)
     g_bEnableMoveFolderCopy = browse.GetSearchSubDirState();
     return(bResult);
 }
+#else
+BOOL CSuperTagEditorView::SelectDirectory(TCHAR* sLocal, int size, bool bCopy)
+{
+    bool    bResult;
+    CIFileDialogFolderSelector    browse(true, /*g_bEnableMoveFolderCopy*/bCopy); /* WildCherry 064 */
+    browse.SetCheckBoxTitle(_T("コピーする"));
+    bResult = browse.Exec(sLocal, size);
+    g_bEnableMoveFolderCopy = browse.GetSearchSubDirState();
+    return(bResult);
+}
+#endif
 
 BOOL CSuperTagEditorView::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT* pResult)
 {
