@@ -7,7 +7,11 @@
 #include "SuperTagEditor.h"
 #include "DlgCommonProg.h"
 #include "DlgEnvSheet.h"
+#ifdef USE_STE_ORIGINAL /* STEP_J-h 006 */
 #include "SHBrowseForFolder.h"
+#else
+#include "CIFileDialogFolderSelector.h"
+#endif
 #include "SuperTagEditorView.h"
 #include "SuperTagEditorDoc.h"
 #include "DlgPluginSetup.h"
@@ -594,7 +598,11 @@ bool CSuperTagEditorDoc::SearchFileReent(const TCHAR *sDir, CSuperGridCtrl::CTre
 BOOL CSuperTagEditorDoc::SelectDirectory(TCHAR *sLocal, int size)
 {
     bool    bResult;
+#ifdef USE_STE_ORIGINAL /* STEP_J-h 006 */
     CSHBrowseForFolder  browse(true, g_bEnableSearchSubDir);
+#else
+    CIFileDialogFolderSelector browse(true, g_bEnableSearchSubDir);
+#endif
     bResult = browse.Exec(sLocal, size);
     g_bEnableSearchSubDir = browse.GetSearchSubDirState();
     return(bResult);

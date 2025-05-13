@@ -4,7 +4,11 @@
 #include "stdafx.h"
 #include "supertageditor.h"
 #include "DlgFavorites.h"
+#ifdef USE_STE_ORIGINAL /* STEP_J-h 006 */
 #include "SHBrowseForFolder.h"
+#else
+//#include "CIFileDialogFolderSelector.h"
+#endif
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

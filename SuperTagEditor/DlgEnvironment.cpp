@@ -3,7 +3,11 @@
 
 #include "stdafx.h"
 #include "supertageditor.h"
+#ifdef USE_STE_ORIGINAL /* STEP_J-h 006 */
 #include "SHBrowseForFolder.h"
+#else
+//#include "CIFileDialogFolderSelector.h"
+#endif
 #include "DlgEnvironment.h"
 
 #ifdef _DEBUG

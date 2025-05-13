@@ -12,11 +12,12 @@
 #include "DlgReplaceWord.h"
 #include "DlgDeleteChar.h"
 #include "DlgAddNumber.h"
+#ifdef USE_STE_ORIGINAL /* STEP_J-h 004 */
 #include "SHBrowseForFolder.h"
-#include "strcnv.h"
-#ifndef USE_STE_ORIGINAL
+#else
 #include "CIFileDialogFolderSelector.h"
 #endif
+#include "strcnv.h"
 
 static KbDDEServer *g_DdeServer = NULL;
 static CSuperTagEditorView *g_SteView = NULL;

@@ -3,7 +3,11 @@
 
 #include "stdafx.h"
 #include "supertageditor.h"
+#ifdef USE_STE_ORIGINAL /* STEP_J-h 006 */
 #include "SHBrowseForFolder.h"
+#else
+#include "CIFileDialogFolderSelector.h"
+#endif
 #include "DlgLyricFile.h"
 
 #ifdef _DEBUG
@@ -20,7 +24,11 @@ static char THIS_FILE[] = __FILE__;
 // =============================================
 BOOL SelectDirectory(TCHAR *sLocal, int size)
 {
+#ifdef USE_STE_ORIGINAL /* STEP_J-h 006 */
     CSHBrowseForFolder    browse;
+#else
+    CIFileDialogFolderSelector browse;
+#endif
     browse.SetEnableSubDirButton(false);
     return(browse.Exec(sLocal, size) ? TRUE : FALSE);
 }
