@@ -5,7 +5,12 @@
 #include "supertageditor.h"
 #include "DlgMoveFolder.h"
 #include "DlgNameChange.h"
+#ifdef USE_STE_ORIGINAL /* STEP_J-h 004 */
 #include "SHBrowseForFolder.h"
+#else
+#include "CIFileDialogFolderSelector.h"
+#endif
+
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -206,7 +211,11 @@ void CDlgMoveFolder::OnBtRef()
     TCHAR    sFolderName[_MAX_PATH] = {'\0'};
     _tcsncpy_s(sFolderName, strFolder, _TRUNCATE);
 
+#ifdef USE_STE_ORIGINAL /* STEP_J-h 004 */
     CSHBrowseForFolder    browse;
+#else
+    CIFileDialogFolderSelector browse;
+#endif
     browse.SetEnableSubDirButton(false);
     if (browse.Exec(sFolderName, _MAX_PATH)) {
         SetDlgItemText(IDC_EDIT_INIT_PATH, sFolderName);
