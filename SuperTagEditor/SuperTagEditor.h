@@ -15,7 +15,7 @@
 #include "resource.h"       // メイン シンボル
 
 #define PROG_NAME       _T("STEP_J-h")     // プログラム名
-#define PROG_VERSION    _T("1.04-h01")  // バージョン
+#define PROG_VERSION    _T("1.04-h02")  // バージョン
 #define PROG_COPYRIGHT_ORG5  _T("Copyright (C) 2022 jarupxx")
 #define PROG_COPYRIGHT  _T("Copyright (C) 2025 haseta")
 #define PROG_URL_ORG5   _T("https://github.com/jarupxx/STEP_J/")
