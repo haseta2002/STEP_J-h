@@ -1715,8 +1715,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,0,4,1
- PRODUCTVERSION 1,0,4,1
+ FILEVERSION 1,0,4,2
+ PRODUCTVERSION 1,0,4,2
  FILEFLAGSMASK 0x17L
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -1734,12 +1734,12 @@ BEGIN
             VALUE "Comments", "オリジナルはMERCURY様、Mimura様、Kobarin様、jarupxx様"
             VALUE "CompanyName", "haseta"
             VALUE "FileDescription", "STEP_J-h"
-            VALUE "FileVersion", "1.0.4.1"
+            VALUE "FileVersion", "1.0.4.2"
             VALUE "InternalName", "STEP_J-h"
             VALUE "LegalCopyright", "Copyright (C) 2025 haseta"
             VALUE "OriginalFilename", "SuperTagEditor.exe"
             VALUE "ProductName", "五代目+h SuperTagEditor STEP_J-h"
-            VALUE "ProductVersion", "1.0.4.1"
+            VALUE "ProductVersion", "1.0.4.2"
         END
     END
     BLOCK "VarFileInfo"
@@ -4685,12 +4685,12 @@ BEGIN
             VALUE "Comments", "Original Author: MERCURY, Mimura, Kobarin, jarupxx"
             VALUE "CompanyName", "haseta"
             VALUE "FileDescription", "STEP_J-h"
-            VALUE "FileVersion", "1.0.4.1"
+            VALUE "FileVersion", "1.0.4.2"
             VALUE "InternalName", "STEP_J-h"
             VALUE "LegalCopyright", "Copyright (C) 2025 haseta"
             VALUE "OriginalFilename", "SuperTagEditor.exe"
             VALUE "ProductName", "Fifth gen.+h SuperTagEditor STEP_J-h"
-            VALUE "ProductVersion", "1.0.4.1"
+            VALUE "ProductVersion", "1.0.4.2"
         END
     END
     BLOCK "VarFileInfo"

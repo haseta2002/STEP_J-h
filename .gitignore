@@ -11,7 +11,7 @@ ipch/
 *.cachefile
 
 Thumbs.db
-*/.vs
+.vs
 */Release
 */Debug
 */_temp

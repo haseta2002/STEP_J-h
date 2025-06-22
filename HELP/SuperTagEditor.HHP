@@ -9,14 +9,14 @@ Default Font=MS UI Gothic,10,128
 Default Window=XHP
 Default topic=_RESOURCE\index.html
 Display compile progress=No
-Error log file=C:\STEP_K_src\STEP\HELP\Compile.Log
+Error log file=D:\Users\haseta\Documents\My Projects\git\haseta2002\STEP_J-h\HELP\Compile.Log
 Flat=No
 Full-text search=Yes
 Language=0x0411 Japanese
 Title=SuperTagEditor
 
 [WINDOWS]
-XHP="SuperTagEditor","C:\STEP_K_src\STEP\HELP\SuperTagEditor.hhc","C:\STEP_K_src\STEP\HELP\SuperTagEditor.hhk","_RESOURCE\index.html",,,,,,0x60720,200,0xE,[200,200,800,600],0x0,0x0,,,,,0
+XHP="SuperTagEditor","D:\Users\haseta\Documents\My Projects\git\haseta2002\STEP_J-h\HELP\SuperTagEditor.hhc","D:\Users\haseta\Documents\My Projects\git\haseta2002\STEP_J-h\HELP\SuperTagEditor.hhk","_RESOURCE\index.html",,,,,,0x60720,200,0xE,[200,200,800,600],0x0,0x0,,,,,0
 $global_Web="Remote URL",,,,,,,,,,,0x383c,[125,144,721,602],,,,,,,0
 
 [FILES]

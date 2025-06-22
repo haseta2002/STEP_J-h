@@ -1,9 +1,9 @@
 [XHP]
 Version=249
-PDir=C:\STEP_K_src\STEP\HELP
+PDir=D:\Users\haseta\Documents\My Projects\git\haseta2002\STEP_J-h\HELP
 Name=SuperTagEditor
-XHP=C:\STEP_K_src\STEP\HELP\SuperTagEditor.XHP
-XHC=C:\STEP_K_src\STEP\HELP\SuperTagEditor.XHC
+XHP=D:\Users\haseta\Documents\My Projects\git\haseta2002\STEP_J-h\HELP\SuperTagEditor.XHP
+XHC=D:\Users\haseta\Documents\My Projects\git\haseta2002\STEP_J-h\HELP\SuperTagEditor.XHC
 HelpName=SuperTagEditor
 FileName=SuperTagEditor.chm
 NodeIcon=0
